@@ -1,0 +1,16 @@
+com\sukur\educationwebapp\student\service\StudentService.class
+com\sukur\educationwebapp\course\entity\Course.class
+com\sukur\educationwebapp\student\entity\Student.class
+com\sukur\educationwebapp\teacher\repository\TeacherRepository.class
+com\sukur\educationwebapp\comman\MyRepository.class
+com\sukur\educationwebapp\HelloServlet.class
+com\sukur\educationwebapp\course\repository\CourseRepository.class
+com\sukur\educationwebapp\teacher\TeacherServlet.class
+com\sukur\educationwebapp\teacher\entity\Teacher.class
+com\sukur\educationwebapp\course\CourseServlet.class
+com\sukur\educationwebapp\student\repository\StudentRepository.class
+com\sukur\educationwebapp\course\service\CourseService.class
+com\sukur\educationwebapp\teacher\service\TeacherService.class
+com\sukur\educationwebapp\SystemStatusServlet.class
+com\sukur\educationwebapp\comman\MyService.class
+com\sukur\educationwebapp\db\Db.class
