@@ -255,3 +255,4 @@
     });
 })();
 </script>
+<script src="js/confetti.js?v=1.0"></script>

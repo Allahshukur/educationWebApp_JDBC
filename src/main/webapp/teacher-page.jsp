@@ -98,6 +98,7 @@
             <!-- Avatar -->
             <div class="tp-avatar-wrap flex-shrink-0">
                 <div class="tp-avatar-ring"></div>
+                <div class="tp-avatar-ring2"></div>
                 <div class="tp-avatar"><%= initials %></div>
                 <div class="tp-avatar-edit" title="Şəkil yüklə"><i class="bi bi-camera-fill"></i></div>
             </div>
@@ -359,6 +360,7 @@
                     <!-- Son aktivliklər -->
                     <div class="tp-card">
                         <div class="tp-card-title"><i class="bi bi-clock-history"></i>Son Aktivliklər</div>
+                        <div class="tp-timeline-wrap">
                         <div class="tp-timeline-item">
                             <div class="tp-timeline-dot" style="background:#ccfbf1;"><i class="bi bi-patch-check-fill" style="color:#0d9488;"></i></div>
                             <div><div class="tp-timeline-title">Spring Boot Dərsi Keçildi — 18 tələbə</div><div class="tp-timeline-time"><i class="bi bi-clock me-1"></i>1 saat əvvəl</div></div>
@@ -374,6 +376,7 @@
                         <div class="tp-timeline-item">
                             <div class="tp-timeline-dot" style="background:#dbeafe;"><i class="bi bi-file-earmark-check-fill" style="color:#2563eb;"></i></div>
                             <div><div class="tp-timeline-title">12 tələbənin imtahan nəticəsi yoxlandı</div><div class="tp-timeline-time"><i class="bi bi-clock me-1"></i>4 gün əvvəl</div></div>
+                        </div>
                         </div>
                     </div>
 
