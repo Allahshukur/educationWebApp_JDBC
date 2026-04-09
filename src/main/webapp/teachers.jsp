@@ -236,9 +236,11 @@
                             </form>
                             <!-- Yeni Müəllim + Export + Çap (vahid toolbar) -->
                             <div class="table-toolbar">
-                                <button class="btn-toolbar-action" title="Yeni Müəllim"
+                                <button class="btn btn-primary btn-add-new shadow-sm text-nowrap"
+                                        style="padding:6px 14px;font-size:0.82rem;border-radius:8px;"
+                                        title="Yeni Müəllim"
                                         data-bs-toggle="modal" data-bs-target="#addTeacherModal">
-                                    <i class="bi bi-person-plus-fill text-info"></i> Yeni Müəllim
+                                    <i class="bi bi-person-plus-fill me-1"></i> Yeni Müəllim
                                 </button>
                                 <button class="btn-toolbar-action" title="Export"
                                         onclick="openExportModal('teacherTable','Müəllim Siyahısı','muellimler',<%= totalAllTeachers %>, getTeacherExportData())">
@@ -349,7 +351,7 @@
                                 String initials = teacher.getName().substring(0, 1).toUpperCase()
                                         + teacher.getSurname().substring(0, 1).toUpperCase();
                     %>
-                    <tr class="stagger-item" data-export-email="<%= teacher.getEmail() %>">
+                    <tr class="stagger-item row-clickable" data-tid="<%= teacher.getId() %>" data-export-email="<%= teacher.getEmail() %>">
                         <td class="ps-4">
                             <span class="id-badge"><%= teacher.getId() %></span>
                         </td>
@@ -837,6 +839,10 @@ function updateTeacherVisibleCount() {
 document.querySelectorAll('.edu-col-chk-t').forEach(chk => {
     chk.addEventListener('change', function () {
         const idx = parseInt(this.dataset.colidx);
+        const lbl = this.dataset.label || '';
+        /* Email / Yaş / Sahə: cədvəldə heç vaxt dəyişməsin,
+           yalnız export üçün checked/unchecked vəziyyəti saxlanır */
+        if (idx === 2 || idx === 3 || lbl === 'Email') return;
         document.querySelectorAll('#teacherTable tr').forEach(row => {
             const cell = row.children[idx];
             if (cell) cell.style.display = this.checked ? '' : 'none';
@@ -851,16 +857,46 @@ function tchDensity(mode) {
     t.classList.add('edu-' + mode);
 }
 
-/* ─── Fullscreen ─── */
+/* ─── Fullscreen (DOM portal — AOS transform fix) ─── */
+function tchShowHiddenCols(show) {
+    const tbl = document.getElementById('teacherTable');
+    if (!tbl) return;
+    const disp = show ? '' : 'none';
+    tbl.querySelectorAll('tr').forEach(function(row) {
+        if (row.children[2]) row.children[2].style.display = disp;
+        if (row.children[3]) row.children[3].style.display = disp;
+    });
+    tbl.querySelectorAll('.row-email-inline').forEach(function(el) {
+        el.style.display = show ? 'block' : 'none';
+    });
+}
+
 function tchFullscreen() {
     const card = document.getElementById('teacherTableCard');
     const icon = document.getElementById('tchFsIcon');
     const btn  = document.getElementById('tchFsBtn');
-    const isFs = card.classList.toggle('edu-tbl-fullscreen');
-    icon.className = isFs ? 'bi bi-fullscreen-exit' : 'bi bi-fullscreen';
-    btn.classList.toggle('fs-active', isFs);
-    document.body.classList.toggle('has-fullscreen', isFs);
-    document.body.style.overflow = isFs ? 'hidden' : '';
+
+    if (!card.classList.contains('edu-tbl-fullscreen')) {
+        card._origParent  = card.parentElement;
+        card._origNextSib = card.nextSibling || null;
+        document.body.appendChild(card);
+        card.classList.add('edu-tbl-fullscreen');
+        icon.className = 'bi bi-fullscreen-exit';
+        btn.classList.add('fs-active');
+        document.body.style.overflow = 'hidden';
+        document.body.classList.add('has-fullscreen');
+        tchShowHiddenCols(true);
+    } else {
+        card.classList.remove('edu-tbl-fullscreen');
+        if (card._origParent) {
+            card._origParent.insertBefore(card, card._origNextSib);
+        }
+        icon.className = 'bi bi-fullscreen';
+        btn.classList.remove('fs-active');
+        document.body.style.overflow = '';
+        document.body.classList.remove('has-fullscreen');
+        tchShowHiddenCols(false);
+    }
 }
 
 /* ─── Esc → fullscreen bağla ─── */
@@ -873,6 +909,36 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
+/* ─── Yaş, Sahə, Email default gizlət ── */
+/* ─── Yaş / Sahə / Email: cədvəldə gizlət, checkbox-lar aktiv+checked qalır ─── */
+(function initHiddenCols() {
+    tchShowHiddenCols(false);
+})();
+
+/* ─── Göz düyməsi: sətri deaktiv/aktiv et,
+       aktiv sətirdə edit+delete işləyir,
+       deaktiv sətirdə yalnız göz işləyir ─── */
+(function overrideViewBtn() {
+    document.querySelectorAll('#teacherTable .btn-view').forEach(function(oldBtn) {
+        const btn = oldBtn.cloneNode(true);
+        oldBtn.parentNode.replaceChild(btn, oldBtn);
+        btn.title = 'Sətri aktiv/deaktiv et';
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const row = this.closest('tr');
+            const isInactive = row.classList.toggle('tch-row-inactive');
+            this.querySelector('i').className = isInactive ? 'bi bi-eye-slash' : 'bi bi-eye';
+            /* CSS artıq tr.tch-row-inactive .btn-edit/.btn-delete-i deaktiv edir,
+               aktiv sətirdə inline style-ı sıfırla (CSS-dən üstün gəlməsin) */
+            row.querySelectorAll('.btn-edit, .btn-delete').forEach(function(b) {
+                b.style.opacity      = '';
+                b.style.pointerEvents = '';
+                b.style.cursor       = '';
+            });
+        });
+    });
+})();
+
 /* ─── Init popovers ─── */
 document.querySelectorAll('[data-bs-toggle="popover"]').forEach(el => new bootstrap.Popover(el));
 document.addEventListener('table:pageChanged', function(event) {
@@ -882,5 +948,22 @@ document.addEventListener('table:pageChanged', function(event) {
 });
 updateTeacherVisibleCount();
 </script>
+
+<script>
+/* ── Müəllim sətrinə klik → teacher-page.jsp ── */
+(function initTeacherRowClick() {
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('#teacherTable tbody tr.row-clickable').forEach(function (row) {
+            row.style.cursor = 'pointer';
+            row.addEventListener('click', function (e) {
+                if (e.target.closest('.btn-action, .btn-edit, .btn-delete, .btn-view, button, input, a, .dropdown')) return;
+                var tid = row.dataset.tid;
+                if (tid) window.location.href = 'teacher-page.jsp?id=' + tid;
+            });
+        });
+    });
+})();
+</script>
+
 </body>
-</
+</html>

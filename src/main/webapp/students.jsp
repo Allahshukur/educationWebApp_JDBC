@@ -394,7 +394,7 @@
                                 for (Student student : students) {
                                     String initials = student.getName().substring(0, 1).toUpperCase() + student.getSurname().substring(0, 1).toUpperCase();
                             %>
-                            <tr class="stagger-item" data-export-email="<%= student.getEmail() %>" data-status="active">
+                            <tr class="stagger-item row-clickable" data-sid="<%= student.getId() %>" data-export-email="<%= student.getEmail() %>" data-status="active">
                                 <td class="ps-4"><span class="id-badge"><%= student.getId() %></span></td>
                                 <td data-export="<%= student.getName() %> <%= student.getSurname() %>">
                                     <div class="d-flex align-items-center gap-3">
@@ -797,26 +797,31 @@
                 btn.removeAttribute('data-bs-toggle');
                 btn.removeAttribute('data-bs-target');
             } else {
-                if (btn.dataset.modalToggle) btn.setAttribute('data-bs-toggle', btn.dataset.modalToggle);
+
+                if (btn.dataset.modalToggle) btn.setAttribute('data-bs-toggle', 'modal');
                 if (btn.dataset.modalTarget) btn.setAttribute('data-bs-target', btn.dataset.modalTarget);
             }
         });
-
-        refreshStudentCounts();
-
-        const activeFilterBtn = document.querySelector('.edu-qf.active');
-        if (activeFilterBtn) {
-            studentFilter(activeFilterBtn, activeFilterBtn.dataset.filter || 'all');
-        } else {
-            updateStudentVisibleCount();
-        }
     });
-
-    document.querySelectorAll('[data-bs-toggle="popover"]').forEach(el => new bootstrap.Popover(el));
-    document.addEventListener('table:pageChanged', function (event) {
-        if (event.detail && event.detail.tableId === '#studentTable') updateStudentVisibleCount();
-    });
-    updateStudentVisibleCount();
 </script>
+
+<script>
+/* ── Tələbə sətrinə klik → student-page.jsp ── */
+(function initRowClick() {
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('#studentTable tbody tr.row-clickable').forEach(function (row) {
+            row.style.cursor = 'pointer';
+            row.addEventListener('click', function (e) {
+                // Əgər klik düyməyə, checkboxa və ya modal trigger-ə aiddisə — keç
+                if (e.target.closest('.btn-action, .btn-edit, .btn-delete, .btn-view, button, input, a')) return;
+                var sid = row.dataset.sid;
+                if (sid) window.location.href = 'student-page.jsp?id=' + sid;
+            });
+        });
+    });
+})();
+</script>
+
+<jsp:include page="footer.jsp"/>
 </body>
-</
+</html>

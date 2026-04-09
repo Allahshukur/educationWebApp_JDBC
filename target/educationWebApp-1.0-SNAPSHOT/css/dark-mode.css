@@ -499,15 +499,208 @@ body.dark-mode .tg-top-sub  { color: rgba(255,255,255,.45); }
 /* Avatar sıraları */
 body.dark-mode .tg-av-row { border-color: rgba(255,255,255,.08); }
 body.dark-mode .tg-av-name { color: #f1f5f9; }
-body.dark-mode .tg-av-sub  { color: rgba(255,255,255,.45); }
 
-/* Pie chart */
-body.dark-mode .tg-pie-inner { background: #0d0b1e; }
-body.dark-mode .tg-pie-val   { color: #fff; }
-body.dark-mode .tg-pie-lbl   { color: rgba(255,255,255,.45); }
-body.dark-mode .tg-legend-item { color: rgba(255,255,255,.55); }
+/* ──────────────────────────────────────────────
+   STUDENT-PAGE.JSP — Dark Mode Stillər
+   ────────────────────────────────────────────── */
 
-/* Şərhlər */
-body.dark-mode .tg-comment-item { border-color: rgba(255,255,255,.08); }
-body.dark-mode .tg-comment-name { color: #f1f5f9; }
-body.dark-mode .tg-comment-text { color: rgba(255,255,255,.5); }
+/* Hero section */
+body.dark-mode .sp-hero {
+    background: linear-gradient(135deg, #312e81 0%, #4c1d95 60%, #5b21b6 100%) !important;
+}
+
+/* Info kartlar */
+body.dark-mode .sp-info-card {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+    color: #e2e8f0 !important;
+}
+
+body.dark-mode .sp-info-card-title {
+    color: #64748b !important;
+}
+
+/* Info rows */
+body.dark-mode .sp-info-row {
+    border-color: #334155 !important;
+}
+
+body.dark-mode .sp-info-label {
+    color: #64748b !important;
+}
+
+body.dark-mode .sp-info-value {
+    color: #e2e8f0 !important;
+}
+
+body.dark-mode .sp-info-value a {
+    color: #818cf8 !important;
+}
+
+/* Stat kartlar */
+body.dark-mode .sp-stat {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+}
+
+body.dark-mode .sp-stat-value {
+    color: #e2e8f0 !important;
+}
+
+body.dark-mode .sp-stat-label {
+    color: #64748b !important;
+}
+
+body.dark-mode .sp-stat-icon[style*="background:#ede9fe"] {
+    background: #1e1b4b !important;
+}
+body.dark-mode .sp-stat-icon[style*="background:#d1fae5"] {
+    background: #052e16 !important;
+}
+body.dark-mode .sp-stat-icon[style*="background:#fef3c7"] {
+    background: #2d1700 !important;
+}
+body.dark-mode .sp-stat-icon[style*="background:#dbeafe"] {
+    background: #0c1a3a !important;
+}
+
+/* Müəllim chipləri */
+body.dark-mode .sp-teacher-chip {
+    background: #334155 !important;
+    border-color: #475569 !important;
+    color: #e2e8f0 !important;
+}
+
+/* Progress bar */
+body.dark-mode .sp-progress-label {
+    color: #94a3b8 !important;
+}
+
+body.dark-mode .sp-progress-bar {
+    background: #334155 !important;
+}
+
+/* Timeline */
+body.dark-mode .sp-timeline-item {
+    border-color: #334155 !important;
+}
+
+body.dark-mode .sp-timeline-title {
+    color: #e2e8f0 !important;
+}
+
+body.dark-mode .sp-timeline-time {
+    color: #64748b !important;
+}
+
+/* Timeline dot icon backgrounds (dark) */
+body.dark-mode .sp-timeline-dot[style*="background:#ede9fe"] {
+    background: #1e1b4b !important;
+}
+body.dark-mode .sp-timeline-dot[style*="background:#d1fae5"] {
+    background: #052e16 !important;
+}
+body.dark-mode .sp-timeline-dot[style*="background:#dbeafe"] {
+    background: #0c1a3a !important;
+}
+body.dark-mode .sp-timeline-dot[style*="background:#fef3c7"] {
+    background: #2d1700 !important;
+}
+
+/* Info icon backgrounds (dark) */
+body.dark-mode .sp-info-icon[style*="background:#ede9fe"] { background: #1e1b4b !important; }
+body.dark-mode .sp-info-icon[style*="background:#dbeafe"] { background: #0c1a3a !important; }
+body.dark-mode .sp-info-icon[style*="background:#d1fae5"] { background: #052e16 !important; }
+body.dark-mode .sp-info-icon[style*="background:#fef3c7"] { background: #2d1700 !important; }
+body.dark-mode .sp-info-icon[style*="background:#fce7f3"] { background: #2d0a1a !important; }
+body.dark-mode .sp-info-icon[style*="background:#f0fdf4"] { background: #052e16 !important; }
+
+/* Not found */
+body.dark-mode .sp-not-found-icon { color: #475569 !important; }
+
+/* Page background override for student-page */
+body.dark-mode { background: #0f172a !important; }
+
+/* Breadcrumb bar */
+body.dark-mode .page-breadcrumb-bar {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+}
+
+/* Row clickable hover in students.jsp table */
+body.dark-mode #studentTable tbody tr.stagger-item.row-clickable:hover {
+    background: rgba(99,102,241,0.12) !important;
+    cursor: pointer;
+}
+
+/* ──────────────────────────────────────────────
+   TEACHER-PAGE.JSP — Dark Mode Stillər
+   ────────────────────────────────────────────── */
+
+/* Hero */
+body.dark-mode .tp-hero {
+    background: linear-gradient(135deg, #134e4a 0%, #0f766e 40%, #115e59 100%) !important;
+}
+
+/* Kartlar */
+body.dark-mode .tp-card {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+    color: #e2e8f0 !important;
+}
+body.dark-mode .tp-card-title   { color: #64748b !important; }
+body.dark-mode .tp-info-label   { color: #64748b !important; }
+body.dark-mode .tp-info-value   { color: #e2e8f0 !important; }
+body.dark-mode .tp-info-value a { color: #2dd4bf !important; }
+body.dark-mode .tp-info-row     { border-color: #334155 !important; }
+body.dark-mode .tp-exp-item     { border-color: #334155 !important; }
+body.dark-mode .tp-exp-role     { color: #e2e8f0 !important; }
+body.dark-mode .tp-exp-period   { color: #64748b !important; }
+
+/* Stat kartlar */
+body.dark-mode .tp-stat { background: #1e293b !important; border-color: #334155 !important; }
+body.dark-mode .tp-stat-value  { color: #e2e8f0 !important; }
+body.dark-mode .tp-stat-label  { color: #64748b !important; }
+
+/* Student chipləri */
+body.dark-mode .tp-student-chip { background: #0f2a27 !important; border-color: #134e4a !important; color: #99f6e4 !important; }
+body.dark-mode .tp-student-chip:hover { background: #134e4a !important; }
+
+/* Skill badge */
+body.dark-mode .tp-skill-badge { background: linear-gradient(135deg,#0f2a27,#134e4a) !important; color: #2dd4bf !important; border-color: #0f766e !important; }
+
+/* Progress */
+body.dark-mode .tp-progress-label { color: #94a3b8 !important; }
+body.dark-mode .tp-progress-bar   { background: #334155 !important; }
+
+/* Timeline */
+body.dark-mode .tp-timeline-item  { border-color: #334155 !important; }
+body.dark-mode .tp-timeline-title { color: #e2e8f0 !important; }
+body.dark-mode .tp-timeline-time  { color: #64748b !important; }
+
+/* Rating */
+body.dark-mode .tp-rating-value { color: #e2e8f0 !important; }
+
+/* Icon backgrounds (dark) */
+body.dark-mode .tp-info-icon[style*="background:#ccfbf1"] { background: #0f2a27 !important; }
+body.dark-mode .tp-info-icon[style*="background:#dbeafe"] { background: #0c1a3a !important; }
+body.dark-mode .tp-info-icon[style*="background:#fef3c7"] { background: #2d1700 !important; }
+body.dark-mode .tp-info-icon[style*="background:#ede9fe"] { background: #1e1b4b !important; }
+body.dark-mode .tp-info-icon[style*="background:#fce7f3"] { background: #2d0a1a !important; }
+body.dark-mode .tp-info-icon[style*="background:#f0fdf4"] { background: #0f2a27 !important; }
+body.dark-mode .tp-exp-icon[style*="background:#ccfbf1"]  { background: #0f2a27 !important; }
+body.dark-mode .tp-exp-icon[style*="background:#dbeafe"]  { background: #0c1a3a !important; }
+body.dark-mode .tp-exp-icon[style*="background:#ede9fe"]  { background: #1e1b4b !important; }
+body.dark-mode .tp-timeline-dot[style*="background:#ccfbf1"] { background: #0f2a27 !important; }
+body.dark-mode .tp-timeline-dot[style*="background:#ede9fe"] { background: #1e1b4b !important; }
+body.dark-mode .tp-timeline-dot[style*="background:#fef3c7"] { background: #2d1700 !important; }
+body.dark-mode .tp-timeline-dot[style*="background:#dbeafe"] { background: #0c1a3a !important; }
+body.dark-mode .tp-stat-icon[style*="background:#ccfbf1"] { background: #0f2a27 !important; }
+body.dark-mode .tp-stat-icon[style*="background:#fef3c7"] { background: #2d1700 !important; }
+body.dark-mode .tp-stat-icon[style*="background:#dbeafe"] { background: #0c1a3a !important; }
+body.dark-mode .tp-stat-icon[style*="background:#ede9fe"] { background: #1e1b4b !important; }
+
+/* Teachers.jsp — row clickable hover */
+body.dark-mode #teacherTable tbody tr.row-clickable:hover {
+    background: rgba(13,148,136,0.12) !important;
+}

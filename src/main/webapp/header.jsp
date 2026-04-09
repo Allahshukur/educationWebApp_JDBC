@@ -50,7 +50,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
 
             <!-- Nav Links -->
-            <ul class="navbar-nav navbar-nav-responsive align-items-lg-center me-auto ms-2 ms-lg-3 gap-lg-1">
+            <ul class="navbar-nav navbar-nav-responsive align-items-lg-center ms-auto gap-lg-1">
                 <li class="nav-item">
                     <a class="nav-link nav-btn fw-semibold <%= isHome ? "nav-active" : "" %>"
                        href="index.jsp">
@@ -194,16 +194,16 @@
 <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async defer></script>
 
 <% if (request.getAttribute("isHome") == null || !(Boolean)request.getAttribute("isHome")) { %>
-<div class="page-breadcrumb-bar bg-light border-bottom py-2">
+<div class="page-breadcrumb-bar bg-light border-bottom">
     <div class="container">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
                 <li class="breadcrumb-item">
-                    <a href="index.jsp" class="text-primary text-decoration-none">
-                        <i class="bi bi-house me-1"></i>Ana Səhifə
+                    <a href="index.jsp" class="text-decoration-none">
+                        <i class="bi bi-house"></i>Ana Səhifə
                     </a>
                 </li>
-                <li class="breadcrumb-item active fw-semibold text-secondary" aria-current="page">
+                <li class="breadcrumb-item active" aria-current="page">
                     <%= request.getAttribute("pageLabel") %>
                 </li>
             </ol>
@@ -250,7 +250,7 @@
                     var toggler = document.querySelector('.btn-hamburger');
                     if (toggler) toggler.classList.add('collapsed');
                 }
-            }, 100);
+            }, 200);
         });
     });
 })();
