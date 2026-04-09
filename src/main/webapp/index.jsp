@@ -25,7 +25,8 @@
     <!-- AOS CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="css/style.css?v=3.0" rel="stylesheet">
+    <link href="css/style.css?v=3.4" rel="stylesheet">
+    <link href="css/dark-mode.css?v=1.1" rel="stylesheet">
     <!-- Google Fonts - Outfit + Sora -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
@@ -63,6 +64,9 @@
     </div>
 </div>
 
+<%
+    request.setAttribute("isHome", true);
+%>
 <jsp:include page="header.jsp" />
 
 <header class="hero-section overflow-hidden py-5" style="position:relative;">

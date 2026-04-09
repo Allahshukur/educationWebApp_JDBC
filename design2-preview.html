@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dizayn 2 – Neon Cyber</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --neon-pink: #f0abfc;
+    --neon-green: #4ade80;
+    --neon-blue: #38bdf8;
+    --neon-yellow: #fde68a;
+    --dark-bg: #030712;
+    --card-bg: #0d1117;
+    --card-border: #21262d;
+    --text-primary: #e6edf3;
+    --text-muted: #7d8590;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--dark-bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Grid lines bg */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0;
+    background-image:
+      linear-gradient(rgba(48,255,200,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(48,255,200,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  .page-content { position: relative; z-index: 1; padding-top: 24px; }
+
+  /* Design label */
+  .design-label {
+    position: fixed; top: 12px; right: 16px; z-index: 9999;
+    background: linear-gradient(90deg, #f0abfc, #38bdf8);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    font-weight: 800; font-size: 0.9rem; letter-spacing: 1px;
+    border: 1px solid rgba(240,171,252,0.3);
+    border-radius: 8px; padding: 6px 16px;
+    background-color: #0d1117;
+    -webkit-text-fill-color: unset;
+  }
+  .design-label-inner { background: linear-gradient(90deg,#f0abfc,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+
+  /* Neon border cards */
+  .cyber-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+  }
+  .cyber-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, #f0abfc, #38bdf8, #4ade80);
+  }
+
+  /* Stat cards */
+  .stat-cyber {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  .stat-cyber:hover { border-color: rgba(240,171,252,0.4); transform: translateY(-4px); }
+  .stat-cyber::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .stat-cyber:hover::after { opacity: 1; }
+
+  .stat-cyber .top-line {
+    height: 3px; border-radius: 2px; margin-bottom: 20px;
+  }
+  .cyber-num { font-size: 2.5rem; font-weight: 800; line-height: 1; }
+  .cyber-lbl { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 8px; }
+  .cyber-trend {
+    margin-top: 14px;
+    font-size: 0.78rem; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 10px; border-radius: 6px;
+  }
+
+  /* Page title */
+  .cyber-title { font-size: 2rem; font-weight: 800; letter-spacing: -0.5px; }
+  .neon-glow-text {
+    text-shadow: 0 0 20px rgba(240,171,252,0.8), 0 0 40px rgba(240,171,252,0.4);
+    color: var(--neon-pink);
+  }
+
+  /* Btn */
+  .btn-neon {
+    background: transparent;
+    border: 1px solid var(--neon-pink);
+    color: var(--neon-pink);
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all 0.25s;
+    box-shadow: 0 0 12px rgba(240,171,252,0.3), inset 0 0 12px rgba(240,171,252,0.05);
+  }
+  .btn-neon:hover {
+    background: var(--neon-pink); color: #0d1117;
+    box-shadow: 0 0 30px rgba(240,171,252,0.7);
+  }
+
+  /* Search */
+  .cyber-input {
+    background: #161b22 !important;
+    border: 1px solid #30363d !important;
+    color: var(--text-primary) !important;
+    border-radius: 8px !important;
+    transition: all 0.2s;
+  }
+  .cyber-input:focus {
+    border-color: var(--neon-pink) !important;
+    box-shadow: 0 0 0 3px rgba(240,171,252,0.15) !important;
+  }
+  .cyber-input::placeholder { color: var(--text-muted) !important; }
+
+  .btn-cyber-search {
+    background: linear-gradient(135deg, #f0abfc, #818cf8);
+    border: none; border-radius: 8px; color: #0d1117;
+    padding: 9px 22px; font-weight: 700; transition: all 0.2s;
+  }
+  .btn-cyber-search:hover { opacity: 0.88; box-shadow: 0 0 20px rgba(240,171,252,0.5); }
+
+  /* Filter pills */
+  .cyber-pill {
+    background: #161b22;
+    border: 1px solid #30363d;
+    color: var(--text-muted);
+    border-radius: 8px;
+    padding: 5px 16px; font-size: 0.82rem;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .cyber-pill:hover, .cyber-pill.active {
+    border-color: var(--neon-pink);
+    color: var(--neon-pink);
+    background: rgba(240,171,252,0.08);
+    box-shadow: 0 0 10px rgba(240,171,252,0.2);
+  }
+
+  /* Table */
+  .cyber-table { width: 100%; }
+  .cyber-table thead tr {
+    border-bottom: 1px solid #30363d;
+  }
+  .cyber-table thead th {
+    background: #161b22;
+    color: var(--text-muted);
+    font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px;
+    font-weight: 600; border: none; padding: 12px 16px;
+  }
+  .cyber-table tbody tr {
+    border-bottom: 1px solid #161b22;
+    transition: all 0.2s;
+  }
+  .cyber-table tbody tr:hover {
+    background: rgba(240,171,252,0.04);
+    border-color: rgba(240,171,252,0.15);
+  }
+  .cyber-table tbody td { padding: 14px 16px; vertical-align: middle; font-size: 0.9rem; }
+
+  /* Avatar hex */
+  .hex-avatar {
+    width: 44px; height: 44px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.95rem; flex-shrink: 0;
+    position: relative;
+  }
+
+  /* ID badge */
+  .cyber-id {
+    font-family: 'Courier New', monospace;
+    color: var(--neon-blue); font-size: 0.85rem; font-weight: 700;
+    background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.2);
+    border-radius: 6px; padding: 3px 10px;
+    text-shadow: 0 0 10px rgba(56,189,248,0.5);
+  }
+
+  /* Status */
+  .status-online {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.8rem; font-weight: 600;
+    color: var(--neon-green);
+  }
+  .online-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--neon-green);
+    box-shadow: 0 0 8px var(--neon-green);
+    animation: blink 1.5s infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  /* Subject badge */
+  .cyber-subject {
+    background: rgba(56,189,248,0.1);
+    border: 1px solid rgba(56,189,248,0.2);
+    color: var(--neon-blue); border-radius: 6px;
+    padding: 4px 12px; font-size: 0.78rem; font-weight: 600;
+    text-shadow: 0 0 8px rgba(56,189,248,0.4);
+  }
+
+  /* Action buttons */
+  .cyber-btn {
+    width: 34px; height: 34px; border-radius: 8px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: #161b22; border: 1px solid #30363d;
+    color: var(--text-muted); font-size: 0.88rem;
+    cursor: pointer; transition: all 0.2s; text-decoration: none;
+  }
+  .cyber-btn:hover.view  { border-color: var(--neon-blue);  color: var(--neon-blue);  box-shadow: 0 0 12px rgba(56,189,248,0.3); }
+  .cyber-btn:hover.edit  { border-color: var(--neon-yellow);color: var(--neon-yellow);box-shadow: 0 0 12px rgba(253,230,138,0.3); }
+  .cyber-btn:hover.del   { border-color: #f87171; color: #f87171; box-shadow: 0 0 12px rgba(248,113,113,0.3); }
+  .cyber-btn.view:hover { border-color:var(--neon-blue);color:var(--neon-blue);box-shadow:0 0 12px rgba(56,189,248,0.3);}
+  .cyber-btn.edit:hover { border-color:var(--neon-yellow);color:var(--neon-yellow);box-shadow:0 0 12px rgba(253,230,138,0.3);}
+  .cyber-btn.del:hover  { border-color:#f87171;color:#f87171;box-shadow:0 0 12px rgba(248,113,113,0.3);}
+
+  /* Pagination */
+  .cyber-page-btn {
+    width: 34px; height: 34px; border-radius: 8px;
+    background: #161b22; border: 1px solid #30363d;
+    color: var(--text-muted); display: inline-flex;
+    align-items: center; justify-content: center;
+    cursor: pointer; transition: all 0.2s; text-decoration: none; font-size: 0.85rem;
+  }
+  .cyber-page-btn.active, .cyber-page-btn:hover {
+    border-color: var(--neon-pink); color: var(--neon-pink);
+    box-shadow: 0 0 10px rgba(240,171,252,0.25);
+  }
+
+  /* Scanline effect on stat card */
+  .scanlines::after {
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px);
+    pointer-events: none; border-radius: 12px;
+  }
+</style>
+</head>
+<body>
+<div class="page-content">
+<div class="container-fluid px-4 py-3">
+
+  <div class="design-label border rounded-2 px-3 py-1" style="position:fixed;top:12px;right:16px;z-index:9999;background:#0d1117;border-color:#30363d!important;">
+    <span class="design-label-inner">⚡ DİZAYN 2 – Neon Cyber</span>
+  </div>
+
+  <!-- HEADER -->
+  <div class="row align-items-center mb-5 g-3">
+    <div class="col-lg-7">
+      <div class="d-flex align-items-center gap-3">
+        <div style="width:54px;height:54px;background:#161b22;border:1px solid #30363d;
+                    border-radius:12px;display:flex;align-items:center;justify-content:center;
+                    box-shadow:0 0 20px rgba(240,171,252,0.2);">
+          <i class="bi bi-person-workspace" style="font-size:1.6rem;color:#f0abfc;text-shadow:0 0 15px rgba(240,171,252,0.8);"></i>
+        </div>
+        <div>
+          <h1 class="cyber-title mb-0">
+            Müəllim <span class="neon-glow-text">Paneli</span>
+          </h1>
+          <p class="mb-0 mt-1" style="color:var(--text-muted);font-size:0.9rem;">Tədris heyəti və kursların idarə edilməsi</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-5 text-lg-end">
+      <button class="btn-neon">
+        <i class="bi bi-person-plus-fill me-2"></i>Yeni Müəllim
+      </button>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="row g-4 mb-5">
+    <div class="col-sm-6 col-xl-4">
+      <div class="stat-cyber scanlines" style="--accent:#f0abfc;">
+        <div class="top-line" style="background:linear-gradient(90deg,#f0abfc,transparent);"></div>
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <div class="cyber-num" style="color:#f0abfc;text-shadow:0 0 20px rgba(240,171,252,0.6);">7</div>
+            <div class="cyber-lbl">Cəmi Müəllim</div>
+          </div>
+          <div style="width:50px;height:50px;background:rgba(240,171,252,0.08);border:1px solid rgba(240,171,252,0.2);
+                      border-radius:12px;display:flex;align-items:center;justify-content:center;">
+            <i class="bi bi-mortarboard-fill" style="color:#f0abfc;font-size:1.3rem;text-shadow:0 0 10px rgba(240,171,252,0.6);"></i>
+          </div>
+        </div>
+        <div class="cyber-trend mt-3" style="background:rgba(74,222,128,0.1);color:#4ade80;border-radius:6px;">
+          <i class="bi bi-arrow-up-short"></i> +2 bu ay
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-xl-4">
+      <div class="stat-cyber" style="--accent:#38bdf8;">
+        <div class="top-line" style="background:linear-gradient(90deg,#38bdf8,transparent);"></div>
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <div class="cyber-num" style="color:#38bdf8;text-shadow:0 0 20px rgba(56,189,248,0.6);">21</div>
+            <div class="cyber-lbl">Aktiv Kurslar</div>
+          </div>
+          <div style="width:50px;height:50px;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.2);
+                      border-radius:12px;display:flex;align-items:center;justify-content:center;">
+            <i class="bi bi-book-half" style="color:#38bdf8;font-size:1.3rem;text-shadow:0 0 10px rgba(56,189,248,0.6);"></i>
+          </div>
+        </div>
+        <div class="cyber-trend mt-3" style="background:rgba(74,222,128,0.1);color:#4ade80;border-radius:6px;">
+          <i class="bi bi-arrow-up-short"></i> +5 bu ay
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-xl-4">
+      <div class="stat-cyber" style="--accent:#fde68a;">
+        <div class="top-line" style="background:linear-gradient(90deg,#fde68a,transparent);"></div>
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <div class="cyber-num" style="color:#fde68a;text-shadow:0 0 20px rgba(253,230,138,0.5);">4.9<span style="font-size:1.2rem;opacity:0.5">/5</span></div>
+            <div class="cyber-lbl">Ümumi Reytinq</div>
+          </div>
+          <div style="width:50px;height:50px;background:rgba(253,230,138,0.08);border:1px solid rgba(253,230,138,0.2);
+                      border-radius:12px;display:flex;align-items:center;justify-content:center;">
+            <i class="bi bi-star-fill" style="color:#fde68a;font-size:1.3rem;text-shadow:0 0 10px rgba(253,230,138,0.6);"></i>
+          </div>
+        </div>
+        <div class="d-flex gap-1 mt-3">
+          <i class="bi bi-star-fill" style="color:#fde68a;font-size:0.9rem;text-shadow:0 0 6px rgba(253,230,138,0.8);"></i>
+          <i class="bi bi-star-fill" style="color:#fde68a;font-size:0.9rem;text-shadow:0 0 6px rgba(253,230,138,0.8);"></i>
+          <i class="bi bi-star-fill" style="color:#fde68a;font-size:0.9rem;text-shadow:0 0 6px rgba(253,230,138,0.8);"></i>
+          <i class="bi bi-star-fill" style="color:#fde68a;font-size:0.9rem;text-shadow:0 0 6px rgba(253,230,138,0.8);"></i>
+          <i class="bi bi-star-half" style="color:#fde68a;font-size:0.9rem;text-shadow:0 0 6px rgba(253,230,138,0.8);"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLE CARD -->
+  <div class="cyber-card">
+    <div class="p-4" style="border-bottom:1px solid #21262d;">
+      <div class="row align-items-center g-3">
+        <div class="col-md-4">
+          <h5 class="fw-bold mb-0 d-flex align-items-center gap-2">
+            <i class="bi bi-people-fill" style="color:#f0abfc;text-shadow:0 0 10px rgba(240,171,252,0.6);"></i>
+            <span>Akademik Heyət</span>
+            <span style="background:rgba(240,171,252,0.1);border:1px solid rgba(240,171,252,0.2);
+                         color:#f0abfc;border-radius:6px;padding:2px 10px;font-size:0.73rem;font-weight:600;">
+              7 nəfər
+            </span>
+          </h5>
+        </div>
+        <div class="col-md-8">
+          <div class="d-flex gap-2 flex-wrap">
+            <div class="input-group flex-grow-1" style="max-width:360px;">
+              <span class="input-group-text cyber-input border-end-0 ps-3">
+                <i class="bi bi-search" style="color:var(--text-muted)"></i>
+              </span>
+              <input type="text" class="form-control cyber-input border-start-0 border-end-0"
+                     placeholder="Axtar..." style="border-radius:0 !important;">
+              <button class="btn-cyber-search px-4">Axtar</button>
+            </div>
+            <button class="cyber-btn" style="width:auto;padding:0 14px;font-size:0.83rem;gap:6px;color:var(--neon-blue);">
+              <i class="bi bi-download"></i> Export
+            </button>
+            <button class="cyber-btn"><i class="bi bi-printer"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex gap-2 mt-3 flex-wrap">
+        <small style="color:var(--text-muted);font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;align-self:center;">Filtr:</small>
+        <button class="cyber-pill active"><i class="bi bi-grid me-1"></i>Hamısı <strong>7</strong></button>
+        <button class="cyber-pill"><span class="online-dot" style="animation:none;background:#4ade80;box-shadow:0 0 5px #4ade80;display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:4px;"></span>Aktiv</button>
+        <button class="cyber-pill"><i class="bi bi-pause-circle me-1"></i>Qeyri-aktiv</button>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="cyber-table">
+        <thead>
+          <tr>
+            <th style="padding-left:24px;">ID</th>
+            <th>Müəllim</th>
+            <th class="text-center">Yaş</th>
+            <th class="text-center">Sahə</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Əməliyyat</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding-left:24px;"><span class="cyber-id">#001</span></td>
+            <td>
+              <div class="d-flex align-items-center gap-3">
+                <div class="hex-avatar" style="background:linear-gradient(135deg,rgba(240,171,252,0.2),rgba(240,171,252,0.05));border:1px solid rgba(240,171,252,0.3);">
+                  <span style="color:#f0abfc;font-weight:700;">EK</span>
+                </div>
+                <div>
+                  <div class="fw-semibold">Ezel Ağayev</div>
+                  <small style="color:var(--text-muted);font-size:0.78rem;">ezel@education.az</small>
+                </div>
+              </div>
+            </td>
+            <td class="text-center">
+              <span style="background:#161b22;border:1px solid #30363d;color:var(--text-primary);
+                           border-radius:6px;padding:4px 14px;font-size:0.85rem;">32</span>
+            </td>
+            <td class="text-center"><span class="cyber-subject"><i class="bi bi-cpu me-1"></i>Proqramlaşdırma</span></td>
+            <td class="text-center"><span class="status-online"><span class="online-dot"></span>Aktiv</span></td>
+            <td class="text-center">
+              <div class="d-flex justify-content-center gap-1">
+                <a class="cyber-btn view"><i class="bi bi-eye"></i></a>
+                <a class="cyber-btn edit"><i class="bi bi-pencil"></i></a>
+                <a class="cyber-btn del"><i class="bi bi-trash3"></i></a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding-left:24px;"><span class="cyber-id">#002</span></td>
+            <td>
+              <div class="d-flex align-items-center gap-3">
+                <div class="hex-avatar" style="background:linear-gradient(135deg,rgba(56,189,248,0.2),rgba(56,189,248,0.05));border:1px solid rgba(56,189,248,0.3);">
+                  <span style="color:#38bdf8;font-weight:700;">LM</span>
+                </div>
+                <div>
+                  <div class="fw-semibold">Leyla Məmmədova</div>
+                  <small style="color:var(--text-muted);font-size:0.78rem;">leyla@education.az</small>
+                </div>
+              </div>
+            </td>
+            <td class="text-center"><span style="background:#161b22;border:1px solid #30363d;color:var(--text-primary);border-radius:6px;padding:4px 14px;font-size:0.85rem;">28</span></td>
+            <td class="text-center"><span class="cyber-subject" style="background:rgba(253,230,138,0.1);border-color:rgba(253,230,138,0.2);color:#fde68a;text-shadow:0 0 8px rgba(253,230,138,0.4);"><i class="bi bi-calculator me-1"></i>Riyaziyyat</span></td>
+            <td class="text-center"><span class="status-online"><span class="online-dot"></span>Aktiv</span></td>
+            <td class="text-center">
+              <div class="d-flex justify-content-center gap-1">
+                <a class="cyber-btn view"><i class="bi bi-eye"></i></a>
+                <a class="cyber-btn edit"><i class="bi bi-pencil"></i></a>
+                <a class="cyber-btn del"><i class="bi bi-trash3"></i></a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding-left:24px;"><span class="cyber-id">#003</span></td>
+            <td>
+              <div class="d-flex align-items-center gap-3">
+                <div class="hex-avatar" style="background:linear-gradient(135deg,rgba(74,222,128,0.2),rgba(74,222,128,0.05));border:1px solid rgba(74,222,128,0.3);">
+                  <span style="color:#4ade80;font-weight:700;">RƏ</span>
+                </div>
+                <div>
+                  <div class="fw-semibold">Rəşad Əliyev</div>
+                  <small style="color:var(--text-muted);font-size:0.78rem;">reshad@education.az</small>
+                </div>
+              </div>
+            </td>
+            <td class="text-center"><span style="background:#161b22;border:1px solid #30363d;color:var(--text-primary);border-radius:6px;padding:4px 14px;font-size:0.85rem;">35</span></td>
+            <td class="text-center"><span class="cyber-subject" style="background:rgba(74,222,128,0.1);border-color:rgba(74,222,128,0.2);color:#4ade80;text-shadow:0 0 8px rgba(74,222,128,0.4);"><i class="bi bi-graph-up me-1"></i>Biznes</span></td>
+            <td class="text-center"><span class="status-online"><span class="online-dot"></span>Aktiv</span></td>
+            <td class="text-center">
+              <div class="d-flex justify-content-center gap-1">
+                <a class="cyber-btn view"><i class="bi bi-eye"></i></a>
+                <a class="cyber-btn edit"><i class="bi bi-pencil"></i></a>
+                <a class="cyber-btn del"><i class="bi bi-trash3"></i></a>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center px-4 py-3" style="border-top:1px solid #21262d;">
+      <small style="color:var(--text-muted);font-family:'Courier New',monospace;font-size:0.8rem;">
+        <span style="color:#38bdf8;">›</span> Göstərilir: 1–7 / 7 nəticə
+      </small>
+      <div class="d-flex gap-1">
+        <a class="cyber-page-btn">&laquo;</a>
+        <a class="cyber-page-btn active">1</a>
+        <a class="cyber-page-btn">&raquo;</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

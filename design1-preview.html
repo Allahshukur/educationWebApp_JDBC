@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dizayn 1 – Aurora Glass</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  body { font-family: 'Outfit', sans-serif; background: #0f0c29; min-height: 100vh; overflow-x: hidden; }
+
+  /* Aurora animated bg */
+  .aurora-bg {
+    position: fixed; inset: 0; z-index: 0;
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+  }
+  .aurora-bg::before {
+    content: ''; position: absolute; width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(139,92,246,0.35) 0%, transparent 70%);
+    top: -200px; left: -200px; animation: aurora1 8s ease-in-out infinite alternate;
+  }
+  .aurora-bg::after {
+    content: ''; position: absolute; width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(6,182,212,0.25) 0%, transparent 70%);
+    bottom: -100px; right: -100px; animation: aurora2 10s ease-in-out infinite alternate;
+  }
+  @keyframes aurora1 { 0%{transform:translate(0,0) scale(1)} 100%{transform:translate(100px,80px) scale(1.2)} }
+  @keyframes aurora2 { 0%{transform:translate(0,0) scale(1)} 100%{transform:translate(-80px,-60px) scale(1.15)} }
+
+  .page-content { position: relative; z-index: 1; padding-top: 30px; }
+
+  /* Glass card */
+  .glass-card {
+    background: rgba(255,255,255,0.07);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.13);
+    border-radius: 24px;
+    color: #fff;
+  }
+
+  /* Stat cards */
+  .stat-glass {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 28px 24px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .stat-glass:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+  .stat-glass .glow-orb {
+    position: absolute; width: 120px; height: 120px; border-radius: 50%;
+    right: -30px; top: -30px; opacity: 0.35;
+  }
+  .orb-purple { background: radial-gradient(circle, #8b5cf6, transparent); }
+  .orb-cyan   { background: radial-gradient(circle, #06b6d4, transparent); }
+  .orb-green  { background: radial-gradient(circle, #10b981, transparent); }
+  .stat-glass .stat-num { font-size: 2.4rem; font-weight: 800; line-height: 1; }
+  .stat-glass .stat-lbl { font-size: 0.85rem; opacity: 0.7; margin-top: 6px; letter-spacing: 1px; text-transform: uppercase; }
+  .stat-glass .stat-icon { font-size: 2rem; margin-bottom: 12px; }
+
+  /* Page title */
+  .page-hero-title { font-size: 2.2rem; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
+  .page-hero-sub   { color: rgba(255,255,255,0.55); font-size: 0.95rem; }
+
+  /* Gradient badge title */
+  .gradient-text {
+    background: linear-gradient(90deg, #a78bfa, #38bdf8);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+
+  /* Search + toolbar */
+  .glass-input {
+    background: rgba(255,255,255,0.08) !important;
+    border: 1px solid rgba(255,255,255,0.18) !important;
+    color: #fff !important; border-radius: 50px !important;
+  }
+  .glass-input::placeholder { color: rgba(255,255,255,0.4) !important; }
+  .glass-input:focus { box-shadow: 0 0 0 3px rgba(139,92,246,0.3) !important; outline: none !important; }
+  .btn-glow {
+    background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+    border: none; border-radius: 50px;
+    color: #fff; font-weight: 600;
+    padding: 9px 24px;
+    transition: all 0.3s;
+    box-shadow: 0 4px 20px rgba(139,92,246,0.45);
+  }
+  .btn-glow:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(139,92,246,0.6); color: #fff; }
+
+  /* Filter pills */
+  .filter-pill {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.7);
+    border-radius: 50px;
+    padding: 6px 18px;
+    font-size: 0.83rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .filter-pill.active, .filter-pill:hover {
+    background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+    border-color: transparent; color: #fff;
+    box-shadow: 0 4px 15px rgba(139,92,246,0.4);
+  }
+
+  /* Table */
+  .glass-table { width: 100%; border-collapse: separate; border-spacing: 0 8px; }
+  .glass-table thead th {
+    background: transparent;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px;
+    font-weight: 600; border: none; padding: 12px 16px;
+  }
+  .glass-table tbody tr {
+    background: rgba(255,255,255,0.05);
+    border-radius: 14px;
+    transition: all 0.25s;
+  }
+  .glass-table tbody tr:hover {
+    background: rgba(139,92,246,0.18);
+    transform: scale(1.005);
+    box-shadow: 0 4px 30px rgba(139,92,246,0.2);
+  }
+  .glass-table tbody td {
+    color: #fff; border: none; padding: 14px 16px; vertical-align: middle;
+  }
+  .glass-table tbody td:first-child { border-radius: 14px 0 0 14px; }
+  .glass-table tbody td:last-child  { border-radius: 0 14px 14px 0; }
+
+  /* Avatar */
+  .avatar-glow {
+    width: 46px; height: 46px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 1rem; flex-shrink: 0;
+    box-shadow: 0 0 15px rgba(139,92,246,0.5);
+    border: 2px solid rgba(139,92,246,0.6);
+  }
+
+  /* Status badge */
+  .status-active {
+    background: rgba(16,185,129,0.18);
+    color: #34d399; border: 1px solid rgba(16,185,129,0.3);
+    border-radius: 50px; padding: 4px 14px; font-size: 0.8rem; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+  .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #34d399;
+    animation: pulse-dot 1.5s infinite; }
+  @keyframes pulse-dot {
+    0%,100% { box-shadow: 0 0 0 0 rgba(52,211,153,0.5); }
+    50%      { box-shadow: 0 0 0 5px transparent; }
+  }
+
+  /* Action buttons */
+  .btn-glass-action {
+    width: 36px; height: 36px; border-radius: 10px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.07);
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem; cursor: pointer; transition: all 0.2s;
+    text-decoration: none;
+  }
+  .btn-glass-action:hover { transform: translateY(-2px); color: #fff; }
+  .btn-glass-action.edit:hover  { background: rgba(251,191,36,0.2);  border-color: #fbbf24; color: #fbbf24; }
+  .btn-glass-action.del:hover   { background: rgba(239,68,68,0.2);   border-color: #ef4444; color: #ef4444; }
+  .btn-glass-action.view:hover  { background: rgba(99,102,241,0.2);  border-color: #818cf8; color: #818cf8; }
+
+  /* ID badge */
+  .id-glow {
+    background: rgba(139,92,246,0.2);
+    border: 1px solid rgba(139,92,246,0.4);
+    color: #c4b5fd; border-radius: 8px;
+    padding: 3px 10px; font-size: 0.82rem; font-weight: 700;
+  }
+
+  /* Btn add */
+  .btn-add-teacher {
+    background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
+    border: none; border-radius: 14px; color: #fff;
+    padding: 12px 28px; font-weight: 700; font-size: 0.95rem;
+    box-shadow: 0 6px 25px rgba(139,92,246,0.5);
+    transition: all 0.3s;
+  }
+  .btn-add-teacher:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(139,92,246,0.65); color: #fff; }
+
+  .subject-pill {
+    background: rgba(6,182,212,0.15); border: 1px solid rgba(6,182,212,0.3);
+    color: #38bdf8; border-radius: 50px; padding: 4px 14px; font-size: 0.8rem;
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+
+  /* Design label watermark */
+  .design-label {
+    position: fixed; top: 12px; right: 16px; z-index: 9999;
+    background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+    color: #fff; border-radius: 50px; padding: 6px 18px;
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 1px;
+    box-shadow: 0 4px 20px rgba(139,92,246,0.5);
+  }
+</style>
+</head>
+<body>
+<div class="aurora-bg"></div>
+<div class="design-label">✨ DİZAYN 1 – Aurora Glass</div>
+
+<div class="page-content">
+<div class="container-fluid px-4 py-3">
+
+  <!-- HERO HEADER -->
+  <div class="row align-items-center mb-5 g-3">
+    <div class="col-lg-7">
+      <div class="d-flex align-items-center gap-3 mb-2">
+        <div class="d-flex align-items-center justify-content-center rounded-4"
+             style="width:58px;height:58px;background:linear-gradient(135deg,#8b5cf6,#06b6d4);
+                    box-shadow:0 8px 30px rgba(139,92,246,0.5);">
+          <i class="bi bi-person-workspace text-white fs-3"></i>
+        </div>
+        <div>
+          <h1 class="page-hero-title mb-0">Müəllim <span class="gradient-text">Paneli</span></h1>
+          <p class="page-hero-sub mb-0 mt-1">Tədris heyəti və kursların idarə edilməsi</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-5 text-lg-end">
+      <button class="btn-add-teacher">
+        <i class="bi bi-person-plus-fill me-2"></i>Yeni Müəllim
+      </button>
+    </div>
+  </div>
+
+  <!-- STAT CARDS -->
+  <div class="row g-4 mb-5">
+    <div class="col-sm-6 col-xl-4">
+      <div class="stat-glass">
+        <div class="glow-orb orb-purple"></div>
+        <div class="stat-icon text-violet-300"><i class="bi bi-mortarboard-fill" style="color:#a78bfa"></i></div>
+        <div class="stat-num">7</div>
+        <div class="stat-lbl">Cəmi Müəllim</div>
+        <div class="mt-3 d-flex align-items-center gap-2">
+          <span class="badge rounded-pill" style="background:rgba(167,139,250,0.2);color:#c4b5fd;font-size:0.75rem;">
+            <i class="bi bi-arrow-up-short"></i>+2 bu ay
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-xl-4">
+      <div class="stat-glass">
+        <div class="glow-orb orb-cyan"></div>
+        <div class="stat-icon"><i class="bi bi-book-half" style="color:#38bdf8"></i></div>
+        <div class="stat-num">21</div>
+        <div class="stat-lbl">Aktiv Kurslar</div>
+        <div class="mt-3 d-flex align-items-center gap-2">
+          <span class="badge rounded-pill" style="background:rgba(56,189,248,0.2);color:#7dd3fc;font-size:0.75rem;">
+            <i class="bi bi-arrow-up-short"></i>+5 bu ay
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-xl-4">
+      <div class="stat-glass">
+        <div class="glow-orb orb-green"></div>
+        <div class="stat-icon"><i class="bi bi-star-fill" style="color:#34d399"></i></div>
+        <div class="stat-num">4.9<span style="font-size:1.4rem;opacity:0.6"> / 5</span></div>
+        <div class="stat-lbl">Ümumi Reytinq</div>
+        <div class="mt-3 d-flex gap-1">
+          <% for(int s=0;s<5;s++) { %><i class="bi bi-star-fill" style="color:#fbbf24;font-size:0.85rem;"></i><% } %>
+        </div>
+        <div class="mt-3 d-flex gap-1">
+          <i class="bi bi-star-fill" style="color:#fbbf24;font-size:0.85rem;"></i>
+          <i class="bi bi-star-fill" style="color:#fbbf24;font-size:0.85rem;"></i>
+          <i class="bi bi-star-fill" style="color:#fbbf24;font-size:0.85rem;"></i>
+          <i class="bi bi-star-fill" style="color:#fbbf24;font-size:0.85rem;"></i>
+          <i class="bi bi-star-half" style="color:#fbbf24;font-size:0.85rem;"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLE CARD -->
+  <div class="glass-card p-0 overflow-hidden">
+    <!-- Card header -->
+    <div class="p-4 border-bottom" style="border-color:rgba(255,255,255,0.1) !important;">
+      <div class="row align-items-center g-3">
+        <div class="col-md-4">
+          <h5 class="fw-bold mb-0 d-flex align-items-center gap-2" style="color:#fff;">
+            <i class="bi bi-people-fill" style="color:#a78bfa;"></i>
+            Akademik Heyət
+            <span class="badge rounded-pill ms-1" style="background:rgba(167,139,250,0.2);color:#c4b5fd;font-size:0.73rem;">7 nəfər</span>
+          </h5>
+        </div>
+        <div class="col-md-8">
+          <div class="d-flex gap-2 flex-wrap">
+            <div class="input-group flex-grow-1" style="max-width:360px;">
+              <span class="input-group-text glass-input border-end-0 rounded-start-pill ps-3">
+                <i class="bi bi-search" style="color:rgba(255,255,255,0.5)"></i>
+              </span>
+              <input type="text" class="form-control glass-input border-start-0 border-end-0 py-2"
+                     placeholder="Ad və ya soyad ilə axtar...">
+              <button class="btn-glow px-4">Axtar</button>
+            </div>
+            <button class="btn btn-sm d-flex align-items-center gap-1 px-3"
+                    style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);
+                           color:#a78bfa;border-radius:10px;font-size:0.85rem;">
+              <i class="bi bi-download"></i> Export
+            </button>
+            <button class="btn btn-sm d-flex align-items-center gap-1 px-3"
+                    style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);
+                           color:rgba(255,255,255,0.6);border-radius:10px;font-size:0.85rem;">
+              <i class="bi bi-printer"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter Pills -->
+      <div class="d-flex align-items-center gap-2 mt-3 flex-wrap">
+        <small style="color:rgba(255,255,255,0.4);text-transform:uppercase;font-size:0.72rem;letter-spacing:1px;">Filtr:</small>
+        <button class="filter-pill active"><i class="bi bi-grid-3x3-gap-fill me-1"></i>Hamısı <strong>7</strong></button>
+        <button class="filter-pill"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#34d399;margin-right:4px;"></span>Aktiv <strong>7</strong></button>
+        <button class="filter-pill"><i class="bi bi-pause-circle me-1"></i>Qeyri-aktiv <strong>0</strong></button>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="table-responsive p-3">
+      <table class="glass-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Müəllim</th>
+            <th class="text-center">Yaş</th>
+            <th class="text-center">Sahə</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Əməliyyat</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="id-glow">#01</span></td>
+            <td>
+              <div class="d-flex align-items-center gap-3">
+                <div class="avatar-glow" style="background:linear-gradient(135deg,#8b5cf6,#a78bfa);">EK</div>
+                <div>
+                  <div class="fw-semibold" style="color:#fff;">Ezel Ağayev</div>
+                  <small style="color:rgba(255,255,255,0.45);font-size:0.78rem;">ezel@education.az</small>
+                </div>
+              </div>
+            </td>
+            <td class="text-center"><span class="badge rounded-pill" style="background:rgba(255,255,255,0.1);color:#c4b5fd;padding:5px 14px;">32</span></td>
+            <td class="text-center"><span class="subject-pill"><i class="bi bi-cpu me-1"></i>Proqramlaşdırma</span></td>
+            <td class="text-center">
+              <span class="status-active"><span class="status-dot"></span>Aktiv</span>
+            </td>
+            <td class="text-center">
+              <div class="d-flex justify-content-center gap-1">
+                <a class="btn-glass-action view" title="Bax"><i class="bi bi-eye"></i></a>
+                <a class="btn-glass-action edit" title="Redaktə"><i class="bi bi-pencil"></i></a>
+                <a class="btn-glass-action del" title="Sil"><i class="bi bi-trash3"></i></a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="id-glow">#02</span></td>
+            <td>
+              <div class="d-flex align-items-center gap-3">
+                <div class="avatar-glow" style="background:linear-gradient(135deg,#06b6d4,#38bdf8);">LM</div>
+                <div>
+                  <div class="fw-semibold" style="color:#fff;">Leyla Məmmədova</div>
+                  <small style="color:rgba(255,255,255,0.45);font-size:0.78rem;">leyla@education.az</small>
+                </div>
+              </div>
+            </td>
+            <td class="text-center"><span class="badge rounded-pill" style="background:rgba(255,255,255,0.1);color:#c4b5fd;padding:5px 14px;">28</span></td>
+            <td class="text-center"><span class="subject-pill"><i class="bi bi-calculator me-1"></i>Riyaziyyat</span></td>
+            <td class="text-center"><span class="status-active"><span class="status-dot"></span>Aktiv</span></td>
+            <td class="text-center">
+              <div class="d-flex justify-content-center gap-1">
+                <a class="btn-glass-action view"><i class="bi bi-eye"></i></a>
+                <a class="btn-glass-action edit"><i class="bi bi-pencil"></i></a>
+                <a class="btn-glass-action del"><i class="bi bi-trash3"></i></a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="id-glow">#03</span></td>
+            <td>
+              <div class="d-flex align-items-center gap-3">
+                <div class="avatar-glow" style="background:linear-gradient(135deg,#f59e0b,#fbbf24);">RA</div>
+                <div>
+                  <div class="fw-semibold" style="color:#fff;">Rəşad Əliyev</div>
+                  <small style="color:rgba(255,255,255,0.45);font-size:0.78rem;">reshad@education.az</small>
+                </div>
+              </div>
+            </td>
+            <td class="text-center"><span class="badge rounded-pill" style="background:rgba(255,255,255,0.1);color:#c4b5fd;padding:5px 14px;">35</span></td>
+            <td class="text-center"><span class="subject-pill" style="background:rgba(251,191,36,0.15);border-color:rgba(251,191,36,0.3);color:#fbbf24;"><i class="bi bi-graph-up me-1"></i>Biznes</span></td>
+            <td class="text-center"><span class="status-active"><span class="status-dot"></span>Aktiv</span></td>
+            <td class="text-center">
+              <div class="d-flex justify-content-center gap-1">
+                <a class="btn-glass-action view"><i class="bi bi-eye"></i></a>
+                <a class="btn-glass-action edit"><i class="bi bi-pencil"></i></a>
+                <a class="btn-glass-action del"><i class="bi bi-trash3"></i></a>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="d-flex justify-content-between align-items-center px-4 py-3" style="border-top:1px solid rgba(255,255,255,0.08);">
+      <small style="color:rgba(255,255,255,0.4);">Göstərilir: 1–7, Cəmi: 7</small>
+      <nav>
+        <ul class="pagination pagination-sm mb-0 gap-1">
+          <li class="page-item"><a class="page-link rounded-3" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);color:#a78bfa;">&laquo;</a></li>
+          <li class="page-item active"><a class="page-link rounded-3" style="background:linear-gradient(135deg,#8b5cf6,#06b6d4);border:none;color:#fff;">1</a></li>
+          <li class="page-item"><a class="page-link rounded-3" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);color:#a78bfa;">&raquo;</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

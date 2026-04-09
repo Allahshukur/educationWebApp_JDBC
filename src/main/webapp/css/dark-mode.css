@@ -1,0 +1,513 @@
+/* ============================================================
+   DARK MODE — style.css-dən ayrılmış bütün dark mode qaydaları
+   İstifadə: <link rel="stylesheet" href="dark-mode.css">
+   (style.css-dən SONRA yüklənməlidir)
+   ============================================================ */
+
+/* ── Əsas body / global ── */
+body.dark-mode {
+    background: #0f172a !important;
+    color: #e2e8f0 !important;
+}
+
+/* ── Kart ── */
+body.dark-mode .card,
+body.dark-mode .custom-table-card,
+body.dark-mode .card-header.bg-white {
+    background: #1e293b !important;
+    color: #e2e8f0 !important;
+}
+
+body.dark-mode .bg-white {
+    background: #1e293b !important;
+}
+
+body.dark-mode .bg-light {
+    background: #1e293b !important;
+}
+
+/* ── Mətn ── */
+body.dark-mode .text-muted {
+    color: #94a3b8 !important;
+}
+
+body.dark-mode .text-dark {
+    color: #e2e8f0 !important;
+}
+
+body.dark-mode .page-title {
+    color: #e2e8f0;
+}
+
+/* ── Kənar xətlər ── */
+body.dark-mode .border,
+body.dark-mode .border-top,
+body.dark-mode .border-bottom {
+    border-color: #334155 !important;
+}
+
+/* ── Accordion ── */
+body.dark-mode .accordion-item,
+body.dark-mode .accordion-button {
+    background: #1e293b !important;
+    color: #e2e8f0 !important;
+}
+
+body.dark-mode .accordion-button:not(.collapsed) {
+    color: #818cf8 !important;
+}
+
+/* ── Form elementləri ── */
+body.dark-mode .form-control,
+body.dark-mode .form-select {
+    background: #334155 !important;
+    color: #e2e8f0 !important;
+    border-color: #475569 !important;
+}
+
+body.dark-mode .modal-body .form-label {
+    color: #94a3b8 !important;
+}
+
+/* ── Navbar / Hero ── */
+body.dark-mode .navbar,
+body.dark-mode header.hero-section {
+    background: #0f172a !important;
+}
+
+/* ── Stats section ── */
+body.dark-mode .stats-section {
+    background: linear-gradient(135deg, #1e293b, #312e81) !important;
+}
+
+/* ── Modal ── */
+body.dark-mode .modal-content {
+    background: #1e293b !important;
+    color: #e2e8f0 !important;
+}
+
+/* ── Düymələr ── */
+body.dark-mode .btn-light {
+    background: #334155 !important;
+    color: #e2e8f0 !important;
+    border-color: #475569 !important;
+}
+
+body.dark-mode .btn-toolbar-action {
+    background: #334155;
+    border-color: #475569;
+    color: #94a3b8;
+}
+
+body.dark-mode .btn-toolbar-action:hover {
+    color: #818cf8;
+    border-color: #818cf8;
+}
+
+/* ── Stat kartları ── */
+body.dark-mode .stat-card-modern {
+    filter: brightness(0.85);
+}
+
+/* ── Badge-lər ── */
+body.dark-mode .id-badge {
+    background: #334155 !important;
+    color: #818cf8 !important;
+}
+
+body.dark-mode .subject-badge {
+    background: #1e1b4b !important;
+    color: #818cf8 !important;
+}
+
+body.dark-mode .badge-soft-success {
+    background: #052e16 !important;
+    color: #4ade80 !important;
+}
+
+body.dark-mode .badge-soft-danger {
+    background: #450a0a !important;
+    color: #f87171 !important;
+}
+
+/* ── Cədvəl (table) — ümumi ── */
+body.dark-mode .table {
+    color: #e2e8f0 !important;
+}
+
+body.dark-mode .table thead th {
+    background: linear-gradient(135deg, #050816 0%, #0b1220 100%) !important;
+    color: #ffffff !important;
+    border-bottom: 3px solid #3b82f6;
+}
+
+body.dark-mode .table-hover tbody tr:hover {
+    background: rgba(99, 102, 241, 0.1) !important;
+}
+
+body.dark-mode .table tbody tr.row-passive {
+    background: #1e293b !important;
+    opacity: 0.6;
+}
+
+/* ── custom-table-card ── */
+body.dark-mode .custom-table-card {
+    border: 1px solid #22304a !important;
+    box-shadow: 0 24px 55px rgba(2, 6, 23, 0.5);
+}
+
+body.dark-mode .custom-table-card .card-header {
+    background: linear-gradient(135deg, #050816 0%, #0b1220 100%) !important;
+    border-bottom: 2px solid rgba(59, 130, 246, 0.55) !important;
+}
+
+body.dark-mode .custom-table-card .card-header h5,
+body.dark-mode .custom-table-card .card-header .text-dark,
+body.dark-mode .custom-table-card .card-header .fw-bold {
+    color: #ffffff !important;
+}
+
+body.dark-mode .custom-table-card .table-responsive {
+    border-color: rgba(59, 130, 246, 0.38) !important;
+    box-shadow: inset 0 0 0 1px rgba(96, 165, 250, 0.08);
+}
+
+body.dark-mode .custom-table-card .table thead th {
+    background: #0f172a !important;
+    color: #f8fbff !important;
+    border-bottom: 1px solid #22304a !important;
+}
+
+body.dark-mode .custom-table-card .table tbody tr,
+body.dark-mode .custom-table-card .table tbody > tr:nth-of-type(odd),
+body.dark-mode .custom-table-card .table tbody > tr:nth-of-type(even),
+body.dark-mode .custom-table-card .table tbody td {
+    background: #1c233e !important;
+    background-color: #1c233e !important;
+    color: #e5eefc !important;
+    border-color: #2d3659 !important;
+}
+
+body.dark-mode .custom-table-card .table tbody td .fw-semibold,
+body.dark-mode .custom-table-card .table tbody td .text-dark,
+body.dark-mode .custom-table-card .table tbody td small,
+body.dark-mode .custom-table-card .table tbody td .id-badge {
+    color: #e5eefc !important;
+}
+
+body.dark-mode .custom-table-card .table tbody > tr:hover {
+    background: #243052 !important;
+    background-color: #243052 !important;
+    box-shadow: 0 10px 20px rgba(2, 6, 23, 0.22) !important;
+}
+
+/* ── Dil seçici dropdown ── */
+body.dark-mode #langDropdownPortal {
+    background: #1e293b;
+}
+
+body.dark-mode .lang-opt {
+    color: #e2e8f0;
+}
+
+body.dark-mode .lang-opt:hover {
+    background: #334155;
+    color: #818cf8;
+}
+
+body.dark-mode .lang-opt.active-lang {
+    background: #312e81;
+    color: #818cf8;
+}
+
+/* ── Testimonial kart ── */
+body.dark-mode .testimonial-card {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+/* ── Chat ── */
+body.dark-mode #chatPanel {
+    background: #1e293b;
+}
+
+body.dark-mode .chat-msg {
+    background: #334155;
+    color: #e2e8f0;
+}
+
+body.dark-mode .chat-input-row {
+    border-color: #334155;
+}
+
+/* ── Toast ── */
+body.dark-mode .ea-toast {
+    background: #1e293b;
+    color: #e2e8f0;
+}
+
+/* ── Export modal düymələri ── */
+body.dark-mode .export-fmt-btn,
+body.dark-mode .export-row-btn {
+    background: #1e293b;
+    border-color: #334155;
+    color: #e2e8f0;
+}
+
+body.dark-mode .export-fmt-btn:hover,
+body.dark-mode .export-row-btn:hover {
+    border-color: #818cf8;
+}
+
+/* ── Students / Teachers səhifəsi ── */
+body.dark-mode .students-section {
+    background: linear-gradient(180deg, #0b1120 0%, #111827 100%);
+}
+
+body.dark-mode .page-breadcrumb-bar {
+    background: #1c233e !important;
+    border-bottom-color: #2d3659 !important;
+}
+
+body.dark-mode .page-breadcrumb-bar .breadcrumb-item,
+body.dark-mode .page-breadcrumb-bar .breadcrumb-item.active,
+body.dark-mode .page-breadcrumb-bar .breadcrumb-item + .breadcrumb-item::before,
+body.dark-mode .page-breadcrumb-bar .breadcrumb-item a {
+    color: #e5eefc !important;
+}
+
+body.dark-mode .student-analytics-card,
+body.dark-mode .student-sidebar-card,
+body.dark-mode .student-list-card,
+body.dark-mode .student-table-topbar,
+body.dark-mode .edu-smart-toolbar,
+body.dark-mode .edu-status-bar,
+body.dark-mode .card-footer.bg-white {
+    background: #111827 !important;
+    border-color: #22304a !important;
+    color: #e5eefc !important;
+}
+
+body.dark-mode .student-card-head h5,
+body.dark-mode .student-table-title h5,
+body.dark-mode .student-table-title .text-dark,
+body.dark-mode .student-sidebar-item,
+body.dark-mode .distribution-item {
+    color: #e5eefc !important;
+}
+
+body.dark-mode .student-card-note,
+body.dark-mode .student-table-subtitle,
+body.dark-mode .edu-sb-item,
+body.dark-mode .edu-sb-sep,
+body.dark-mode .student-performance-legend,
+body.dark-mode .edu-toolbar-lbl {
+    color: #93a4bf !important;
+}
+
+body.dark-mode .distribution-item,
+body.dark-mode .student-sidebar-item,
+body.dark-mode .edu-qf,
+body.dark-mode .edu-tool-btn,
+body.dark-mode .btn-toolbar-action,
+body.dark-mode .student-search-box .form-control,
+body.dark-mode .student-search-box .input-group-text {
+    background: #0f172a !important;
+    border-color: #22304a !important;
+    color: #dbe7fb !important;
+}
+
+body.dark-mode .student-distribution-chart::after {
+    background: #0b1120;
+}
+
+body.dark-mode .student-table tbody tr.row-passive,
+body.dark-mode .student-table tbody > tr.row-passive:nth-of-type(odd),
+body.dark-mode .student-table tbody > tr.row-passive:nth-of-type(even),
+body.dark-mode .student-table tbody tr.row-passive td {
+    background: #243052 !important;
+    background-color: #243052 !important;
+    color: #dbe7fb !important;
+    border-color: #314068 !important;
+}
+
+/* ── Responsive: mobil dark mode ── */
+@media (max-width: 768px) {
+    body.dark-mode .table tbody tr {
+        background: #1e293b !important;
+        border-color: #334155 !important;
+    }
+
+    body.dark-mode .table tbody td {
+        border-bottom-color: #334155 !important;
+    }
+
+    body.dark-mode .custom-table-card .table tbody tr {
+        background: #1c233e !important;
+        background-color: #1c233e !important;
+        border-color: rgba(15, 23, 42, 0.16) !important;
+    }
+
+    body.dark-mode .custom-table-card .table tbody td {
+        background: #1c233e !important;
+        background-color: #1c233e !important;
+        border-bottom-color: rgba(15, 23, 42, 0.12) !important;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DARK MODE – RESPONSIVE HEADER
+═══════════════════════════════════════════════════════════════ */
+
+body.dark-mode .navbar-responsive {
+    background:
+        radial-gradient(ellipse 60% 80% at 10% 50%, rgba(88, 28, 180, 0.55) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 90% at 85% 40%, rgba(67, 56, 202, 0.5) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 60% at 50% 80%, rgba(139, 92, 246, 0.25) 0%, transparent 60%),
+        linear-gradient(135deg, #0d0b1e 0%, #1a1035 40%, #0f0c2a 100%) !important;
+}
+
+body.dark-mode .btn-header-mobile {
+    background: rgba(0, 0, 0, 0.3) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    color: #e2e8f0 !important;
+}
+
+body.dark-mode .btn-header-mobile:hover {
+    background: rgba(0, 0, 0, 0.4) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+body.dark-mode .btn-hamburger {
+    background: rgba(0, 0, 0, 0.3) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+body.dark-mode .hamburger-line {
+    background-color: #e2e8f0;
+}
+
+body.dark-mode .nav-link {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+body.dark-mode .nav-link:hover {
+    background: rgba(0, 0, 0, 0.2) !important;
+    color: white !important;
+}
+
+body.dark-mode .nav-active {
+    background: rgba(0, 0, 0, 0.25) !important;
+    color: white !important;
+}
+
+body.dark-mode .lang-pill,
+body.dark-mode .dark-toggle-pill {
+    background: rgba(0, 0, 0, 0.3) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    color: #e2e8f0 !important;
+}
+
+body.dark-mode .lang-pill:hover,
+body.dark-mode .dark-toggle-pill:hover {
+    background: rgba(0, 0, 0, 0.4) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+body.dark-mode .btn-icon-nav {
+    background: rgba(0, 0, 0, 0.3) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    color: #e2e8f0 !important;
+}
+
+body.dark-mode .btn-icon-nav:hover {
+    background: rgba(0, 0, 0, 0.4) !important;
+}
+
+body.dark-mode .btn-login {
+    background: rgba(0, 0, 0, 0.25) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    color: #e2e8f0 !important;
+}
+
+body.dark-mode .btn-login:hover {
+    background: rgba(0, 0, 0, 0.35) !important;
+    color: #e2e8f0 !important;
+}
+
+body.dark-mode .page-breadcrumb-bar {
+    background-color: #1e293b !important;
+    border-color: #334155 !important;
+}
+
+/* ════════════════════════════════════════════════════
+   TEACHER GALAXY DASHBOARD  —  tg-*  (dark mode)
+════════════════════════════════════════════════════ */
+body.dark-mode .teacher-galaxy-section {
+    background:
+        radial-gradient(ellipse 55% 50% at 10% 20%, rgba(124,58,237,.22) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 45% at 88% 75%, rgba(79,70,229,.18) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 30% at 50% 0%,  rgba(6,182,212,.07) 0%, transparent 60%),
+        linear-gradient(135deg, #0d0b1e 0%, #1a1035 50%, #0f0c2a 100%);
+    background-attachment: fixed;
+}
+
+body.dark-mode .tg-page-title { color: #f1f5f9; }
+body.dark-mode .tg-page-sub   { color: rgba(255,255,255,.55); }
+
+body.dark-mode .tg-card {
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.1);
+    box-shadow: none;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+body.dark-mode .tg-card-title { color: rgba(255,255,255,.5); }
+
+/* Mövcud cədvəl kartı — dark */
+body.dark-mode .teacher-galaxy-section .custom-table-card {
+    background: rgba(255,255,255,.04) !important;
+    border: 1px solid rgba(255,255,255,.1) !important;
+    box-shadow: none !important;
+}
+body.dark-mode .teacher-galaxy-section .custom-table-card .card-header.bg-white {
+    background: rgba(255,255,255,.05) !important;
+    border-bottom: 1px solid rgba(255,255,255,.08) !important;
+}
+body.dark-mode .teacher-galaxy-section .custom-table-card .card-footer.bg-white {
+    background: rgba(255,255,255,.04) !important;
+}
+
+/* Profil */
+body.dark-mode .tg-profile-name  { color: #f1f5f9; }
+body.dark-mode .tg-profile-role  { color: rgba(255,255,255,.5); }
+body.dark-mode .tg-pstat-val     { color: #fff; }
+body.dark-mode .tg-pstat-lbl     { color: rgba(255,255,255,.45); }
+body.dark-mode .tg-pstat-divider { background: rgba(255,255,255,.15); }
+body.dark-mode .tg-profile-email { color: rgba(255,255,255,.45); }
+
+/* Bacarım */
+body.dark-mode .tg-skill-name { color: rgba(255,255,255,.7); }
+body.dark-mode .tg-skill-pct  { color: #fff; }
+body.dark-mode .tg-progress   { background: rgba(255,255,255,.1); }
+
+/* Top siyahı */
+body.dark-mode .tg-top-item { border-color: rgba(255,255,255,.08); }
+body.dark-mode .tg-top-name { color: #f1f5f9; }
+body.dark-mode .tg-top-sub  { color: rgba(255,255,255,.45); }
+
+/* Avatar sıraları */
+body.dark-mode .tg-av-row { border-color: rgba(255,255,255,.08); }
+body.dark-mode .tg-av-name { color: #f1f5f9; }
+body.dark-mode .tg-av-sub  { color: rgba(255,255,255,.45); }
+
+/* Pie chart */
+body.dark-mode .tg-pie-inner { background: #0d0b1e; }
+body.dark-mode .tg-pie-val   { color: #fff; }
+body.dark-mode .tg-pie-lbl   { color: rgba(255,255,255,.45); }
+body.dark-mode .tg-legend-item { color: rgba(255,255,255,.55); }
+
+/* Şərhlər */
+body.dark-mode .tg-comment-item { border-color: rgba(255,255,255,.08); }
+body.dark-mode .tg-comment-name { color: #f1f5f9; }
+body.dark-mode .tg-comment-text { color: rgba(255,255,255,.5); }
