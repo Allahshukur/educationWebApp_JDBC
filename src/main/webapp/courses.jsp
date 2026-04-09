@@ -28,6 +28,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="css/style.css?v=3.5" rel="stylesheet">
+    <link href="css/dark-mode.css?v=1.0" rel="stylesheet">
     <style>body{font-family:'Outfit',sans-serif;}</style>
 </head>
 <body class="overflow-hidden-init">
@@ -42,7 +43,10 @@
     </div>
 </div>
 
-
+<%
+    request.setAttribute("pageLabel", "Kurslar");
+    request.setAttribute("isHome", false);
+%>
 <jsp:include page="header.jsp"/>
 
 <section class="py-5 courses-section min-vh-100">

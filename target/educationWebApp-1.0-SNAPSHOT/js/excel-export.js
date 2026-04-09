@@ -34,9 +34,9 @@ function _showStep(step) {
     const visibleCount = table
         ? table.querySelectorAll('tbody tr:not([style*="display: none"]):not(.d-none)').length
         : 0;
-    const allCount = _ctx.allData && Array.isArray(_ctx.allData.dataRows)
-        ? _ctx.allData.dataRows.length
-        : (_ctx.total || 0);
+    const allCount = (_ctx.total && _ctx.total > 0)
+        ? _ctx.total
+        : (_ctx.allData && Array.isArray(_ctx.allData.dataRows) ? _ctx.allData.dataRows.length : 0);
 
     document.getElementById('exportVisibleCount').textContent = visibleCount;
     document.getElementById('exportAllCount').textContent = allCount || '-';
@@ -371,8 +371,8 @@ function _ensurePdfFonts(jsPDFCtor) {
     if (_pdfFontPromise) return _pdfFontPromise;
 
     _pdfFontPromise = Promise.all([
-        _fetchFontBase64('fonts/NotoSans-Regular.ttf'),
-        _fetchFontBase64('fonts/NotoSans-Bold.ttf')
+        _fetchFontBase64((window.FONT_BASE_PATH || 'fonts/') + 'NotoSans-Regular.ttf'),
+        _fetchFontBase64((window.FONT_BASE_PATH || 'fonts/') + 'NotoSans-Bold.ttf')
     ]).then(([regularFont, boldFont]) => {
         jsPDFCtor.API.events.push([
             'addFonts',

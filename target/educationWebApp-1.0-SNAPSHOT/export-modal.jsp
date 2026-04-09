@@ -184,3 +184,8 @@ body.dark-mode .export-row-btn  { background:#1e293b; border-color:#334155; colo
 body.dark-mode .export-fmt-btn:hover,
 body.dark-mode .export-row-btn:hover { border-color:#818cf8; }
 </style>
+
+<!-- Font yolu: context path dəyişsə belə düzgün işləyir -->
+<script>
+    window.FONT_BASE_PATH = '${pageContext.request.contextPath}/fonts/';
+</script>

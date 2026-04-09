@@ -8,45 +8,49 @@
     boolean isCourse  = uri.endsWith("courses.jsp");
     String pageLabel  = isHome ? "Ana Səhifə" : isStudent ? "Tələbələr" : isTeacher ? "Müəllimlər" : isCourse ? "Kurslar" : "";
 %>
-<!-- ═══════════════════════════════════════════
-     NAVBAR
-═══════════════════════════════════════════ -->
-<nav id="mainNavbar" class="navbar navbar-expand-lg fixed-top py-0"
+<!-- RESPONSIVE NAVBAR -->
+<nav id="mainNavbar" class="navbar navbar-expand-lg fixed-top navbar-responsive py-0"
      style="background:linear-gradient(135deg,#4f46e5 0%,#7c3aed 100%);
             box-shadow:0 2px 20px rgba(79,70,229,0.35);z-index:1030;">
     <div class="container">
 
-        <!-- ── Logo ── -->
-        <a class="navbar-brand flex-shrink-0 p-0" href="index.jsp">
+        <!-- LOGO -->
+        <a class="navbar-brand navbar-logo flex-shrink-0 p-0" href="index.jsp">
             <img src="foto/logo.png" alt="Education App" class="header-logo-img">
         </a>
 
-        <!-- ── Mobil: dil + dark toggle + hamburger ── -->
-        <div class="d-flex d-lg-none align-items-center gap-2 ms-auto me-2">
-            <!-- Dil seçici (mobil) -->
-            <div id="langPickerMobile" class="lang-pill" title="Dil seç">
-                <i class="bi bi-globe2 lang-pill-icon"></i>
+        <!-- MOBILE: Language + Dark + Hamburger -->
+        <div class="d-flex d-lg-none align-items-center gap-2 ms-auto">
+            <!-- Language Button (mobile) — lang-pill class lazımdır ki script.js tanısın -->
+            <div class="lang-pill lang-pill-mobile" id="langPickerMobile" title="Dil seç">
+                <i class="bi bi-globe2"></i>
                 <span class="lang-pill-cur">AZ</span>
-                <i class="bi bi-chevron-down lang-pill-arrow"></i>
             </div>
-            <!-- Dark toggle (mobil) -->
-            <div id="darkToggleMobile" class="dark-toggle-pill" title="Dark/Light">
+
+            <!-- Dark/Light Toggle -->
+            <div id="darkToggleMobile" class="dark-toggle-pill" title="Dark/Light" style="cursor:pointer;padding:6px 10px;border-radius:10px;">
                 <span class="dtp-knob"><i class="bi bi-moon-stars-fill"></i></span>
-                <span class="dtp-label">DARK<br>MODE</span>
             </div>
+
+            <!-- Hamburger Menu -->
+            <button class="navbar-toggler btn-hamburger border-0 flex-shrink-0 collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Menü">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
         </div>
 
-        <button class="navbar-toggler border-0 flex-shrink-0" type="button"
-                data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                style="color:white;background:rgba(255,255,255,0.1);border-radius:8px;padding:6px 10px;">
-            <i class="bi bi-list fs-4"></i>
-        </button>
-
-        <!-- ── Collapse ── -->
+        <!-- TABLET+: Navigation Collapse -->
         <div class="collapse navbar-collapse" id="navbarNav">
 
-            <!-- Nav linklər -->
-            <ul class="navbar-nav align-items-lg-center me-auto ms-3 gap-lg-1">
+            <!-- Nav Links -->
+            <ul class="navbar-nav navbar-nav-responsive align-items-lg-center ms-auto gap-lg-1">
                 <li class="nav-item">
                     <a class="nav-link nav-btn fw-semibold <%= isHome ? "nav-active" : "" %>"
                        href="index.jsp">
@@ -189,21 +193,65 @@
 </script>
 <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async defer></script>
 
-<% if (!isHome) { %>
-<div class="page-breadcrumb-bar" style="background:linear-gradient(135deg,#eef2ff,#f5f3ff);border-bottom:1px solid #e0e7ff;
-            margin-top:0;">
+<% if (request.getAttribute("isHome") == null || !(Boolean)request.getAttribute("isHome")) { %>
+<div class="page-breadcrumb-bar bg-light border-bottom">
     <div class="container">
         <nav aria-label="breadcrumb">
-            <ol class="breadcrumb mb-0" style="font-size:0.84rem;">
+            <ol class="breadcrumb mb-0">
                 <li class="breadcrumb-item">
-                    <a href="index.jsp" style="color:#4f46e5;text-decoration:none;">
-                        <i class="bi bi-house me-1"></i>Ana Səhifə</a>
+                    <a href="index.jsp" class="text-decoration-none">
+                        <i class="bi bi-house"></i>Ana Səhifə
+                    </a>
                 </li>
-                <li class="breadcrumb-item active" style="color:#6b7280;font-weight:600;">
-                    <%= pageLabel %>
+                <li class="breadcrumb-item active" aria-current="page">
+                    <%= request.getAttribute("pageLabel") %>
                 </li>
             </ol>
         </nav>
     </div>
 </div>
 <% } %>
+
+<!-- Hamburger fix -->
+<script>
+(function() {
+    // Dərhal icra et — DOMContentLoaded gözləmə
+    var navCollapse = document.getElementById('navbarNav');
+    if (navCollapse && window.innerWidth < 992) {
+        navCollapse.classList.remove('show');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var nav = document.getElementById('navbarNav');
+        if (!nav) return;
+
+        // Yenidən yüklənəndə mobile-da bağlı olsun
+        if (window.innerWidth < 992) {
+            nav.classList.remove('show');
+        }
+
+        // Nav link klikləndikdə mobile-da menünü bağla
+        nav.querySelectorAll('a.nav-link').forEach(function(link) {
+            link.addEventListener('click', function() {
+                if (window.innerWidth >= 992) return;
+                nav.classList.remove('show');
+                var toggler = document.querySelector('.btn-hamburger');
+                if (toggler) toggler.classList.add('collapsed');
+            });
+        });
+
+        // Resize: desktop-a keçdikdə menünü gizlət (açıq qalmasın)
+        var resizeTimer;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                if (window.innerWidth >= 992) {
+                    nav.classList.remove('show');
+                    var toggler = document.querySelector('.btn-hamburger');
+                    if (toggler) toggler.classList.add('collapsed');
+                }
+            }, 200);
+        });
+    });
+})();
+</script>

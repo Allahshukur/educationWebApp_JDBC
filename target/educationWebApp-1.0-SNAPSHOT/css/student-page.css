@@ -1,0 +1,304 @@
+/* ============================================================
+   STUDENT-PAGE.CSS  —  student-page.jsp üçün bütün stillər
+   ============================================================ */
+
+/* ── Profil Hero ── */
+.sp-hero {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 60%, #a78bfa 100%);
+    border-radius: 0 0 40px 40px;
+    padding: 48px 0 80px;
+    position: relative;
+    overflow: hidden;
+}
+.sp-hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.07);
+}
+.sp-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+}
+
+/* ── Avatar ── */
+.sp-avatar-wrap {
+    position: relative;
+    display: inline-block;
+}
+.sp-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 5px solid rgba(255,255,255,0.4);
+    object-fit: cover;
+    background: linear-gradient(135deg, #818cf8, #4f46e5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: white;
+    font-family: 'Outfit', sans-serif;
+    box-shadow: 0 8px 32px rgba(79,70,229,0.4);
+    margin: 0 auto;
+}
+.sp-avatar-edit {
+    position: absolute;
+    bottom: 4px; right: 4px;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: white;
+    color: #4f46e5;
+    font-size: 0.8rem;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    cursor: pointer;
+    border: 2px solid #e0e7ff;
+    transition: background 0.2s, color 0.2s;
+}
+.sp-avatar-edit:hover { background: #4f46e5; color: white; }
+
+.sp-avatar-ring {
+    position: absolute; inset: -7px;
+    border-radius: 50%;
+    border: 2px dashed rgba(255,255,255,0.35);
+    animation: sp-spin 12s linear infinite;
+    pointer-events: none;
+}
+@keyframes sp-spin { to { transform: rotate(360deg); } }
+
+/* ── Hero text ── */
+.sp-hero-name {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: white;
+    font-family: 'Outfit', sans-serif;
+    line-height: 1.2;
+}
+.sp-hero-sub {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.75);
+    font-weight: 500;
+}
+.sp-id-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.18);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    backdrop-filter: blur(6px);
+}
+.sp-hero-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(74,222,128,0.18);
+    color: #bbf7d0;
+    border: 1px solid rgba(74,222,128,0.3);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+/* ── Content lift ── */
+.sp-content {
+    margin-top: -48px;
+    position: relative;
+    z-index: 10;
+}
+
+/* ── Info card ── */
+.sp-info-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 24px rgba(79,70,229,0.10);
+    padding: 28px;
+    border: 1px solid #f1f5f9;
+    height: 100%;
+}
+.sp-info-card-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #94a3b8;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.sp-info-card-title i {
+    font-size: 1rem;
+    color: #4f46e5;
+}
+
+/* ── Info rows ── */
+.sp-info-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+.sp-info-row:last-child { border-bottom: none; }
+.sp-info-icon {
+    width: 40px; height: 40px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.05rem;
+    flex-shrink: 0;
+}
+.sp-info-label {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    margin-bottom: 3px;
+}
+.sp-info-value {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #1e293b;
+    line-height: 1.3;
+}
+
+/* ── Stat mini cards ── */
+.sp-stat {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 18px rgba(79,70,229,0.08);
+    border: 1px solid #f1f5f9;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.sp-stat:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(79,70,229,0.15); }
+.sp-stat-icon {
+    width: 48px; height: 48px;
+    border-radius: 14px;
+    margin: 0 auto 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+}
+.sp-stat-value {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #1e293b;
+    font-family: 'Outfit', sans-serif;
+    line-height: 1;
+}
+.sp-stat-label {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+/* ── Teacher chip ── */
+.sp-teacher-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #f1f5f9;
+    border-radius: 12px;
+    padding: 8px 14px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #334155;
+    border: 1px solid #e2e8f0;
+    margin: 4px;
+}
+.sp-teacher-chip i { color: #4f46e5; }
+
+/* ── Progress bar ── */
+.sp-progress-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #64748b;
+    margin-bottom: 4px;
+}
+.sp-progress-bar {
+    height: 8px;
+    border-radius: 99px;
+    background: #f1f5f9;
+    overflow: hidden;
+}
+.sp-progress-fill {
+    height: 100%;
+    border-radius: 99px;
+    background: linear-gradient(90deg, #4f46e5, #7c3aed);
+    transition: width 1s ease;
+}
+
+/* ── Back button ── */
+.sp-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.18);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 12px;
+    padding: 8px 18px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+    backdrop-filter: blur(6px);
+}
+.sp-back-btn:hover { background: rgba(255,255,255,0.28); color: white; }
+
+/* ── Not found ── */
+.sp-not-found {
+    text-align: center;
+    padding: 80px 20px;
+}
+.sp-not-found-icon {
+    font-size: 4rem;
+    color: #cbd5e1;
+    margin-bottom: 16px;
+}
+
+/* ── Activity timeline ── */
+.sp-timeline-item {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+.sp-timeline-item:last-child { border-bottom: none; }
+.sp-timeline-dot {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+.sp-timeline-title { font-size: 0.88rem; font-weight: 600; color: #334155; }
+.sp-timeline-time  { font-size: 0.75rem; color: #94a3b8; margin-top: 2px; }
+
+/* ── Responsive ── */
+@media (max-width: 767px) {
+    .sp-hero { padding: 36px 0 72px; border-radius: 0 0 28px 28px; }
+    .sp-avatar { width: 90px; height: 90px; font-size: 2rem; }
+    .sp-hero-name { font-size: 1.4rem; }
+    .sp-info-card { padding: 20px; }
+    .sp-stat { padding: 16px 12px; }
+    .sp-stat-value { font-size: 1.2rem; }
+}
