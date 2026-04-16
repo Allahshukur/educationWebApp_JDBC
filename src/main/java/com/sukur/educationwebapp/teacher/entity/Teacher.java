@@ -8,6 +8,10 @@ public class Teacher {
     private int age;
     private String email;
     private Boolean deleted;
+    private String phone;
+    private String position;
+    private String address;
+    private String status;
     private String student;
 
     public Teacher() {
@@ -64,6 +68,42 @@ public class Teacher {
 
     public Teacher setDeleted(Boolean deleted) {
         this.deleted = deleted;
+        return this;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public Teacher setPhone(String phone) {
+        this.phone = phone;
+        return this;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public Teacher setPosition(String position) {
+        this.position = position;
+        return this;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public Teacher setAddress(String address) {
+        this.address = address;
+        return this;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public Teacher setStatus(String status) {
+        this.status = status;
         return this;
     }
 

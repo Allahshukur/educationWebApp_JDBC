@@ -1,0 +1,235 @@
+/* ══════════════════════════════════════
+   SCHEDULE.CSS  —  Dərs Cədvəli  v2
+══════════════════════════════════════ */
+.sc-page { font-family:'Outfit',sans-serif; background:#f1f5f9; }
+
+/* Hero */
+.sc-hero {
+    background:linear-gradient(135deg,#0891b2 0%,#0f766e 100%);
+    padding:40px 0 88px; position:relative; overflow:hidden;
+}
+.sc-hero::before {
+    content:''; position:absolute; inset:0;
+    background:radial-gradient(circle at 75% 25%,rgba(255,255,255,.10),transparent 55%);
+}
+.sc-hero-title { font-size:clamp(1.4rem,3vw,2rem); font-weight:800; color:#fff; margin:0; }
+.sc-hero-sub   { font-size:.88rem; color:rgba(255,255,255,.70); margin-top:4px; }
+
+/* ── BAKÜ SAATI WİDGET ─────────────────── */
+.sc-clock {
+    background:rgba(255,255,255,.13);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.22);
+    border-radius:18px;
+    padding:14px 22px;
+    text-align:center;
+    min-width:190px;
+    box-shadow:0 4px 24px rgba(0,0,0,.18);
+}
+.sc-clock-day {
+    font-size:.70rem; font-weight:800;
+    color:rgba(255,255,255,.65);
+    text-transform:uppercase; letter-spacing:1.5px;
+    margin-bottom:2px;
+}
+.sc-clock-time {
+    font-size:2.1rem; font-weight:900; color:#fff;
+    line-height:1; letter-spacing:3px;
+    font-variant-numeric:tabular-nums;
+}
+.sc-clock-date {
+    font-size:.78rem; font-weight:600;
+    color:rgba(255,255,255,.82); margin-top:5px;
+}
+.sc-clock-tz {
+    font-size:.66rem; color:rgba(255,255,255,.48);
+    margin-top:4px;
+}
+
+/* Əsas */
+.sc-main { margin-top:-52px; z-index:2; position:relative; padding-bottom:60px; }
+
+/* Filter paneli */
+.sc-filter-bar {
+    background:#fff; border-radius:16px;
+    border:1px solid rgba(0,0,0,.06);
+    padding:16px 20px; margin-bottom:20px;
+    display:flex; align-items:center; flex-wrap:wrap; gap:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,.05);
+}
+.sc-filter-bar label { font-size:.82rem; font-weight:700; color:#475569; }
+.sc-filter-bar select {
+    border:1.5px solid rgba(0,0,0,.09); border-radius:10px;
+    padding:7px 12px; font-size:.84rem; font-weight:600;
+    color:#334155; background:#f8fafc; cursor:pointer;
+    transition:border-color .2s; outline:none; font-family:'Outfit',sans-serif;
+}
+.sc-filter-bar select:focus { border-color:#4f46e5; }
+
+/* Cədvəl kartı */
+.sc-card {
+    background:#fff; border-radius:20px;
+    border:1px solid rgba(0,0,0,.06);
+    box-shadow:0 2px 14px rgba(0,0,0,.06);
+    overflow:hidden;
+}
+
+/* Cədvəl header */
+.sc-table { width:100%; border-collapse:collapse; table-layout:fixed; }
+.sc-table th {
+    font-size:.78rem; font-weight:700; text-transform:uppercase;
+    letter-spacing:.5px; padding:14px 10px; text-align:center;
+    border-bottom:2px solid rgba(0,0,0,.07);
+    transition:filter .3s, box-shadow .3s;
+}
+.sc-table th.sc-time-col { width:76px; color:#94a3b8; }
+.sc-table th.sc-day { color:#fff; }
+.sc-table th.mon { background:#4f46e5; }
+.sc-table th.tue { background:#0891b2; }
+.sc-table th.wed { background:#059669; }
+.sc-table th.thu { background:#d97706; }
+.sc-table th.fri { background:#db2777; }
+.sc-table th.sat { background:#7c3aed; }
+.sc-table th.sun { background:#e11d48; }
+
+/* ── BUGÜNKÜ SÜTUN ─────────────────────── */
+.sc-table th.sc-col-current {
+    filter:brightness(1.18) saturate(1.2);
+    box-shadow:inset 0 -4px 0 rgba(255,255,255,.45);
+    position:relative;
+}
+.sc-table th.sc-col-current::after {
+    content:'▼';
+    position:absolute; bottom:-1px; left:50%; transform:translateX(-50%);
+    font-size:.55rem; color:rgba(255,255,255,.60);
+}
+.sc-table td.sc-col-current {
+    background:rgba(79,70,229,.04) !important;
+}
+
+/* Cədvəl hücrələri */
+.sc-table td {
+    vertical-align:top; padding:6px; border:1px solid rgba(0,0,0,.05);
+    min-height:70px; transition:background .3s;
+}
+.sc-table td.sc-time {
+    text-align:center; font-size:.75rem; font-weight:700;
+    color:#94a3b8; background:#f8fafc; vertical-align:middle;
+    white-space:nowrap; padding:8px 4px;
+}
+
+/* Dərs kartı */
+.sc-lesson {
+    border-radius:10px; padding:9px 11px;
+    font-size:.78rem; cursor:pointer;
+    transition:transform .2s, box-shadow .2s, opacity .3s, filter .3s;
+    border-left:3px solid;
+    position:relative;
+}
+.sc-lesson:hover { transform:translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,.12); }
+.sc-lesson-name    { font-weight:700; margin-bottom:2px; }
+.sc-lesson-teacher { font-weight:500; opacity:.80; }
+.sc-lesson-room    { font-weight:600; font-size:.70rem; opacity:.70; margin-top:3px; }
+
+/* ── CANLI DƏRS ────────────────────────── */
+@keyframes sc-glow {
+    0%,100% { box-shadow:0 0 0 2px currentColor, 0 4px 18px rgba(0,0,0,.15); }
+    50%      { box-shadow:0 0 0 3px currentColor, 0 6px 26px rgba(0,0,0,.22); }
+}
+.sc-lesson-current {
+    animation:sc-glow 2.2s ease-in-out infinite;
+    transform:scale(1.04) !important;
+    z-index:3;
+}
+.sc-lesson-current::before {
+    content:'● CANLI';
+    position:absolute; top:-11px; right:5px;
+    font-size:.58rem; font-weight:800;
+    color:#10b981; letter-spacing:.6px;
+    background:#fff; padding:1px 5px;
+    border-radius:6px;
+    border:1px solid rgba(16,185,129,.25);
+}
+
+/* ── KEÇMİŞ DƏRS ───────────────────────── */
+.sc-lesson-past {
+    opacity:.36 !important;
+    filter:grayscale(70%) !important;
+    transform:scale(.97) !important;
+    pointer-events:none;
+}
+.sc-lesson-past .sc-lesson-name::after {
+    content:' ✓';
+    font-size:.70rem;
+    opacity:.70;
+}
+
+/* Rəng variantları */
+.sc-l-indigo { background:rgba(79,70,229,.10);  border-color:#4f46e5; color:#3730a3; }
+.sc-l-teal   { background:rgba(13,148,136,.10);  border-color:#0d9488; color:#0f766e; }
+.sc-l-green  { background:rgba(16,185,129,.10);  border-color:#10b981; color:#047857; }
+.sc-l-amber  { background:rgba(245,158,11,.10);  border-color:#f59e0b; color:#b45309; }
+.sc-l-rose   { background:rgba(244,63,94,.10);   border-color:#f43f5e; color:#be123c; }
+.sc-l-violet { background:rgba(139,92,246,.10);  border-color:#8b5cf6; color:#6d28d9; }
+.sc-l-sky    { background:rgba(14,165,233,.10);  border-color:#0ea5e9; color:#0369a1; }
+.sc-l-orange { background:rgba(249,115,22,.10);  border-color:#f97316; color:#c2410c; }
+
+/* Boş hücrə */
+.sc-empty { text-align:center; color:#e2e8f0; font-size:1.2rem; }
+
+/* Legenda */
+.sc-legend {
+    display:flex; flex-wrap:wrap; gap:10px;
+    padding:16px 20px;
+    border-top:1px solid rgba(0,0,0,.06);
+    background:#f8fafc;
+}
+.sc-legend-item {
+    display:flex; align-items:center; gap:6px;
+    font-size:.76rem; font-weight:600; color:#475569;
+}
+.sc-legend-dot { width:10px; height:10px; border-radius:3px; flex-shrink:0; }
+
+/* Canlı legenda nöqtəsi */
+.sc-live-dot {
+    width:10px; height:10px; border-radius:50%;
+    background:#10b981; flex-shrink:0;
+    animation:sc-live-blink 1.4s ease-in-out infinite;
+}
+@keyframes sc-live-blink {
+    0%,100% { opacity:1; transform:scale(1); }
+    50%      { opacity:.5; transform:scale(.75); }
+}
+
+/* Mobil — yatay scroll */
+.sc-table-wrap { overflow-x:auto; }
+
+/* ── DARK MODE ────────────────────────────────── */
+.dark-mode .sc-page { background:#0f172a; }
+.dark-mode .sc-card,
+.dark-mode .sc-filter-bar { background:#1e293b; border-color:rgba(255,255,255,.07); }
+.dark-mode .sc-table td.sc-time,
+.dark-mode .sc-legend { background:#0f172a; }
+.dark-mode .sc-table td { border-color:rgba(255,255,255,.05); }
+.dark-mode .sc-filter-bar select { background:#0f172a; border-color:rgba(255,255,255,.10); color:#cbd5e1; }
+.dark-mode .sc-table td.sc-col-current { background:rgba(99,102,241,.08) !important; }
+.dark-mode .sc-lesson-current::before { background:#1e293b; border-color:rgba(16,185,129,.30); }
+.dark-mode .sc-l-indigo { background:rgba(79,70,229,.18);  color:#a5b4fc; }
+.dark-mode .sc-l-teal   { background:rgba(13,148,136,.18); color:#5eead4; }
+.dark-mode .sc-l-green  { background:rgba(16,185,129,.18); color:#6ee7b7; }
+.dark-mode .sc-l-amber  { background:rgba(245,158,11,.18); color:#fcd34d; }
+.dark-mode .sc-l-rose   { background:rgba(244,63,94,.18);  color:#fda4af; }
+.dark-mode .sc-l-violet { background:rgba(139,92,246,.18); color:#c4b5fd; }
+.dark-mode .sc-l-sky    { background:rgba(14,165,233,.18); color:#7dd3fc; }
+.dark-mode .sc-legend-item { color:#64748b; }
+
+/* ── RESPONSIVE ───────────────────────────────── */
+@media(max-width:767px){
+    .sc-table th, .sc-table td { padding:4px 3px; }
+    .sc-lesson { padding:6px 7px; font-size:.70rem; }
+    .sc-lesson-room { display:none; }
+    .sc-table th.sc-time-col { width:52px; }
+    .sc-clock { min-width:160px; padding:10px 14px; }
+    .sc-clock-time { font-size:1.6rem; }
+}

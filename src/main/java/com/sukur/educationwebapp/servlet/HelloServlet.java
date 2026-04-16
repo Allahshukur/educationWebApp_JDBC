@@ -1,4 +1,4 @@
-package com.sukur.educationwebapp;
+package com.sukur.educationwebapp.servlet;
 
 import java.io.*;
 

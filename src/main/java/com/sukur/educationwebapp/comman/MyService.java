@@ -4,15 +4,15 @@ import java.util.List;
 
 public interface MyService<T> {
 
-    T create();
+    T create(String name, String surname, String email, int age);
 
     List<T> findAll();
 
-    T findById();
+    T findById(int id);
 
     List<T> search(String search);
 
-    T update();
+    T update(int id, String name, String surname, String email, int age);
 
-    void delete();
+    int delete(int id);
 }

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Education App — Logo Dizaynları</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800;900&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Outfit',sans-serif;background:#0d0f1a;color:#fff;padding:40px 20px;}
+h2{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,.35);margin-bottom:20px;}
+.section{margin-bottom:60px;}
+.grid{display:flex;flex-wrap:wrap;gap:24px;align-items:center;}
+.card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:32px 36px;display:flex;flex-direction:column;align-items:center;gap:20px;}
+.card-light{background:#f1f5f9;border:1px solid #e2e8f0;}
+.label{font-size:.72rem;font-weight:700;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:1px;}
+.label-dark{color:rgba(0,0,0,.35);}
+.download-btn{
+    display:inline-flex;align-items:center;gap:8px;
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+    color:#fff;border:none;border-radius:10px;padding:10px 20px;
+    font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:700;
+    cursor:pointer;margin-top:8px;transition:.2s;
+}
+.download-btn:hover{opacity:.85;transform:translateY(-1px);}
+</style>
+</head>
+<body>
+
+<div style="text-align:center;margin-bottom:50px;">
+    <div style="font-size:2rem;font-weight:900;background:linear-gradient(135deg,#a5b4fc,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px;">Logo Dizaynları</div>
+    <div style="color:rgba(255,255,255,.4);font-size:.88rem;">Education App üçün 2 variant + müxtəlif ölçülər</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     LOGO 1 — Modern Shield + Spark
+═══════════════════════════════════════ -->
+<div class="section">
+    <h2>Variant 1 — Qalxan & İşıq</h2>
+    <div class="grid">
+
+        <!-- Dark BG — Horizontal -->
+        <div class="card">
+            <svg id="logo1h" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 70" width="260" height="70">
+                <defs>
+                    <linearGradient id="g1a" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#6366f1"/>
+                        <stop offset="100%" stop-color="#8b5cf6"/>
+                    </linearGradient>
+                    <linearGradient id="g1b" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#a5f3fc"/>
+                        <stop offset="100%" stop-color="#6366f1"/>
+                    </linearGradient>
+                    <filter id="glow1">
+                        <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+                        <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                </defs>
+
+                <!-- Shield body -->
+                <path d="M35 8 L10 18 L10 40 C10 52 22 62 35 67 C48 62 60 52 60 40 L60 18 Z"
+                      fill="url(#g1a)" filter="url(#glow1)"/>
+                <!-- Shield inner highlight -->
+                <path d="M35 12 L14 21 L14 40 C14 50 24 59 35 63 C46 59 56 50 56 40 L56 21 Z"
+                      fill="rgba(255,255,255,.12)"/>
+                <!-- Book pages left -->
+                <path d="M22 28 L33 24 L33 48 L22 52 Z" fill="white" opacity=".9"/>
+                <!-- Book pages right -->
+                <path d="M37 24 L48 28 L48 52 L37 48 Z" fill="white" opacity=".75"/>
+                <!-- Book spine -->
+                <rect x="33" y="24" width="4" height="24" rx="1" fill="url(#g1b)" opacity=".9"/>
+                <!-- Spark star top -->
+                <g filter="url(#glow1)">
+                    <path d="M35 10 L36.2 13.5 L40 13.5 L37 15.8 L38.2 19.5 L35 17.2 L31.8 19.5 L33 15.8 L30 13.5 L33.8 13.5 Z"
+                          fill="#fcd34d" opacity=".95"/>
+                </g>
+
+                <!-- Text -->
+                <text x="72" y="35" font-family="'Outfit',sans-serif" font-weight="900" font-size="20" fill="white" letter-spacing="-0.5">Education</text>
+                <text x="72" y="56" font-family="'Outfit',sans-serif" font-weight="400" font-size="14" fill="rgba(165,180,252,0.85)" letter-spacing="3">A P P</text>
+            </svg>
+            <span class="label">Horizontal — Tünd Fon</span>
+        </div>
+
+        <!-- Light BG — Horizontal -->
+        <div class="card card-light">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 70" width="260" height="70">
+                <defs>
+                    <linearGradient id="g1c" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#4f46e5"/>
+                        <stop offset="100%" stop-color="#7c3aed"/>
+                    </linearGradient>
+                    <linearGradient id="g1d" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#a5f3fc"/>
+                        <stop offset="100%" stop-color="#4f46e5"/>
+                    </linearGradient>
+                </defs>
+                <path d="M35 8 L10 18 L10 40 C10 52 22 62 35 67 C48 62 60 52 60 40 L60 18 Z" fill="url(#g1c)"/>
+                <path d="M35 12 L14 21 L14 40 C14 50 24 59 35 63 C46 59 56 50 56 40 L56 21 Z" fill="rgba(255,255,255,.15)"/>
+                <path d="M22 28 L33 24 L33 48 L22 52 Z" fill="white" opacity=".95"/>
+                <path d="M37 24 L48 28 L48 52 L37 48 Z" fill="white" opacity=".80"/>
+                <rect x="33" y="24" width="4" height="24" rx="1" fill="url(#g1d)"/>
+                <path d="M35 10 L36.2 13.5 L40 13.5 L37 15.8 L38.2 19.5 L35 17.2 L31.8 19.5 L33 15.8 L30 13.5 L33.8 13.5 Z" fill="#fbbf24"/>
+                <text x="72" y="35" font-family="'Outfit',sans-serif" font-weight="900" font-size="20" fill="#1e1b4b" letter-spacing="-0.5">Education</text>
+                <text x="72" y="56" font-family="'Outfit',sans-serif" font-weight="400" font-size="14" fill="#6366f1" letter-spacing="3">A P P</text>
+            </svg>
+            <span class="label label-dark">Horizontal — İşıq Fon</span>
+        </div>
+
+        <!-- Icon only -->
+        <div class="card">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 75" width="80" height="86">
+                <defs>
+                    <linearGradient id="g1e" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#6366f1"/>
+                        <stop offset="100%" stop-color="#8b5cf6"/>
+                    </linearGradient>
+                    <linearGradient id="g1f" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#a5f3fc"/>
+                        <stop offset="100%" stop-color="#6366f1"/>
+                    </linearGradient>
+                    <filter id="glow2"><feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                    <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                </defs>
+                <path d="M35 4 L5 16 L5 42 C5 58 18 70 35 76 C52 70 65 58 65 42 L65 16 Z" fill="url(#g1e)" filter="url(#glow2)"/>
+                <path d="M35 9 L10 20 L10 42 C10 56 21 67 35 72 C49 67 60 56 60 42 L60 20 Z" fill="rgba(255,255,255,.12)"/>
+                <path d="M18 30 L33 25 L33 55 L18 60 Z" fill="white" opacity=".9"/>
+                <path d="M37 25 L52 30 L52 60 L37 55 Z" fill="white" opacity=".75"/>
+                <rect x="33" y="25" width="4" height="30" rx="1.5" fill="url(#g1f)" opacity=".95"/>
+                <g filter="url(#glow2)">
+                    <path d="M35 9 L36.8 14.5 L42 14.5 L37.8 17.8 L39.6 23.5 L35 20 L30.4 23.5 L32.2 17.8 L28 14.5 L33.2 14.5 Z" fill="#fcd34d"/>
+                </g>
+            </svg>
+            <span class="label">İkon — Böyük</span>
+        </div>
+
+        <!-- Small icon -->
+        <div class="card">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 75" width="48" height="52">
+                <defs>
+                    <linearGradient id="g1g" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#6366f1"/>
+                        <stop offset="100%" stop-color="#8b5cf6"/>
+                    </linearGradient>
+                </defs>
+                <path d="M35 4 L5 16 L5 42 C5 58 18 70 35 76 C52 70 65 58 65 42 L65 16 Z" fill="url(#g1g)"/>
+                <path d="M18 30 L33 25 L33 55 L18 60 Z" fill="white" opacity=".9"/>
+                <path d="M37 25 L52 30 L52 60 L37 55 Z" fill="white" opacity=".75"/>
+                <rect x="33" y="25" width="4" height="30" rx="1.5" fill="rgba(165,243,252,.9)"/>
+                <path d="M35 9 L36.8 14.5 L42 14.5 L37.8 17.8 L39.6 23.5 L35 20 L30.4 23.5 L32.2 17.8 L28 14.5 L33.2 14.5 Z" fill="#fcd34d"/>
+            </svg>
+            <span class="label">İkon — Kiçik</span>
+        </div>
+    </div>
+
+    <div style="margin-top:16px;">
+        <button class="download-btn" onclick="downloadSVG('logo1h','logo1-horizontal.svg')">
+            ⬇ SVG Yüklə (Horizontal)
+        </button>
+    </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     LOGO 2 — Rounded Square + Mortar
+═══════════════════════════════════════ -->
+<div class="section">
+    <h2>Variant 2 — Yuvarlaq Kvadrat & Tac</h2>
+    <div class="grid">
+
+        <!-- Dark BG — Horizontal -->
+        <div class="card">
+            <svg id="logo2h" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 70" width="280" height="70">
+                <defs>
+                    <linearGradient id="g2a" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#06b6d4"/>
+                        <stop offset="100%" stop-color="#4f46e5"/>
+                    </linearGradient>
+                    <linearGradient id="g2b" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+                        <stop offset="100%" stop-color="#a5f3fc" stop-opacity="0.7"/>
+                    </linearGradient>
+                    <filter id="sh2">
+                        <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#4f46e5" flood-opacity="0.5"/>
+                    </filter>
+                </defs>
+
+                <!-- Rounded square bg -->
+                <rect x="2" y="4" width="62" height="62" rx="18" fill="url(#g2a)" filter="url(#sh2)"/>
+                <!-- Inner glow -->
+                <rect x="2" y="4" width="62" height="30" rx="18" fill="rgba(255,255,255,.08)"/>
+
+                <!-- Mortarboard hat -->
+                <!-- Board top -->
+                <polygon points="33,16 58,24 33,32 8,24" fill="white" opacity=".95"/>
+                <!-- Left side -->
+                <path d="M8 24 L33 32 L33 46 C24 46 14 42 8 36 Z" fill="white" opacity=".6"/>
+                <!-- Right side -->
+                <path d="M58 24 L33 32 L33 46 C42 46 52 42 58 36 Z" fill="white" opacity=".45"/>
+                <!-- Center line -->
+                <line x1="33" y1="32" x2="33" y2="46" stroke="rgba(165,243,252,.8)" stroke-width="2"/>
+                <!-- Tassel string -->
+                <line x1="58" y1="24" x2="58" y2="36" stroke="rgba(255,255,255,.7)" stroke-width="1.5"/>
+                <!-- Tassel -->
+                <circle cx="58" cy="38" r="4" fill="#fcd34d" opacity=".9"/>
+                <line x1="56" y1="42" x2="55" y2="48" stroke="#fcd34d" stroke-width="1.5" opacity=".8"/>
+                <line x1="58" y1="42" x2="58" y2="50" stroke="#fcd34d" stroke-width="1.5" opacity=".8"/>
+                <line x1="60" y1="42" x2="61" y2="48" stroke="#fcd34d" stroke-width="1.5" opacity=".8"/>
+
+                <!-- Text -->
+                <text x="78" y="31" font-family="'Plus Jakarta Sans','Outfit',sans-serif" font-weight="900" font-size="22" fill="white" letter-spacing="-0.8">Education</text>
+                <text x="78" y="54" font-family="'Outfit',sans-serif" font-weight="700" font-size="15" fill="rgba(103,232,249,.85)" letter-spacing="5">APP</text>
+            </svg>
+            <span class="label">Horizontal — Tünd Fon</span>
+        </div>
+
+        <!-- Light BG Horizontal -->
+        <div class="card card-light">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 70" width="280" height="70">
+                <defs>
+                    <linearGradient id="g2c" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#0891b2"/>
+                        <stop offset="100%" stop-color="#4f46e5"/>
+                    </linearGradient>
+                </defs>
+                <rect x="2" y="4" width="62" height="62" rx="18" fill="url(#g2c)"/>
+                <rect x="2" y="4" width="62" height="30" rx="18" fill="rgba(255,255,255,.1)"/>
+                <polygon points="33,16 58,24 33,32 8,24" fill="white" opacity=".95"/>
+                <path d="M8 24 L33 32 L33 46 C24 46 14 42 8 36 Z" fill="white" opacity=".65"/>
+                <path d="M58 24 L33 32 L33 46 C42 46 52 42 58 36 Z" fill="white" opacity=".5"/>
+                <line x1="58" y1="24" x2="58" y2="36" stroke="rgba(255,255,255,.7)" stroke-width="1.5"/>
+                <circle cx="58" cy="38" r="4" fill="#fbbf24" opacity=".95"/>
+                <line x1="56" y1="42" x2="55" y2="48" stroke="#fbbf24" stroke-width="1.5"/>
+                <line x1="58" y1="42" x2="58" y2="50" stroke="#fbbf24" stroke-width="1.5"/>
+                <line x1="60" y1="42" x2="61" y2="48" stroke="#fbbf24" stroke-width="1.5"/>
+                <text x="78" y="31" font-family="'Plus Jakarta Sans','Outfit',sans-serif" font-weight="900" font-size="22" fill="#1e1b4b" letter-spacing="-0.8">Education</text>
+                <text x="78" y="54" font-family="'Outfit',sans-serif" font-weight="700" font-size="15" fill="#0891b2" letter-spacing="5">APP</text>
+            </svg>
+            <span class="label label-dark">Horizontal — İşıq Fon</span>
+        </div>
+
+        <!-- Icon only large -->
+        <div class="card">
+            <svg id="logo2icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 68" width="90" height="90">
+                <defs>
+                    <linearGradient id="g2d" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#06b6d4"/>
+                        <stop offset="100%" stop-color="#4f46e5"/>
+                    </linearGradient>
+                    <filter id="sh3">
+                        <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#4f46e5" flood-opacity="0.55"/>
+                    </filter>
+                </defs>
+                <rect x="2" y="2" width="64" height="64" rx="20" fill="url(#g2d)" filter="url(#sh3)"/>
+                <rect x="2" y="2" width="64" height="32" rx="20" fill="rgba(255,255,255,.10)"/>
+                <polygon points="34,14 60,23 34,32 8,23" fill="white" opacity=".95"/>
+                <path d="M8 23 L34 32 L34 48 C24 48 13 43 8 37 Z" fill="white" opacity=".65"/>
+                <path d="M60 23 L34 32 L34 48 C44 48 55 43 60 37 Z" fill="white" opacity=".5"/>
+                <line x1="34" y1="32" x2="34" y2="48" stroke="rgba(165,243,252,.8)" stroke-width="2"/>
+                <line x1="60" y1="23" x2="60" y2="37" stroke="rgba(255,255,255,.7)" stroke-width="2"/>
+                <circle cx="60" cy="40" r="5" fill="#fcd34d"/>
+                <line x1="57" y1="45" x2="56" y2="53" stroke="#fcd34d" stroke-width="2"/>
+                <line x1="60" y1="45" x2="60" y2="55" stroke="#fcd34d" stroke-width="2"/>
+                <line x1="63" y1="45" x2="64" y2="53" stroke="#fcd34d" stroke-width="2"/>
+            </svg>
+            <span class="label">İkon — Böyük</span>
+        </div>
+
+        <!-- Favicon size -->
+        <div class="card">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 68" width="48" height="48">
+                <defs>
+                    <linearGradient id="g2e" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#06b6d4"/>
+                        <stop offset="100%" stop-color="#4f46e5"/>
+                    </linearGradient>
+                </defs>
+                <rect x="2" y="2" width="64" height="64" rx="20" fill="url(#g2e)"/>
+                <polygon points="34,14 60,23 34,32 8,23" fill="white" opacity=".95"/>
+                <path d="M8 23 L34 32 L34 48 C24 48 13 43 8 37 Z" fill="white" opacity=".65"/>
+                <path d="M60 23 L34 32 L34 48 C44 48 55 43 60 37 Z" fill="white" opacity=".5"/>
+                <line x1="60" y1="23" x2="60" y2="37" stroke="rgba(255,255,255,.7)" stroke-width="2"/>
+                <circle cx="60" cy="40" r="5" fill="#fcd34d"/>
+            </svg>
+            <span class="label">Favicon</span>
+        </div>
+
+    </div>
+
+    <div style="margin-top:16px;">
+        <button class="download-btn" onclick="downloadSVG('logo2h','logo2-horizontal.svg')">
+            ⬇ SVG Yüklə (Horizontal)
+        </button>
+        <button class="download-btn" style="margin-left:10px;" onclick="downloadSVG('logo2icon','logo2-icon.svg')">
+            ⬇ SVG Yüklə (İkon)
+        </button>
+    </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     NAVBAR PREVİEW
+═══════════════════════════════════════ -->
+<div class="section">
+    <h2>Navbar Önizləmə</h2>
+    <div style="display:flex;flex-direction:column;gap:16px;">
+
+        <!-- Dark navbar - Logo 1 -->
+        <div style="background:#0f172a;border-radius:14px;padding:14px 24px;display:flex;align-items:center;gap:32px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" width="160" height="38">
+                <defs>
+                    <linearGradient id="nv1" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#6366f1"/>
+                        <stop offset="100%" stop-color="#8b5cf6"/>
+                    </linearGradient>
+                </defs>
+                <path d="M24 3 L5 10 L5 26 C5 35 13 43 24 47 C35 43 43 35 43 26 L43 10 Z" fill="url(#nv1)"/>
+                <path d="M24 6 L8 12.5 L8 26 C8 33.5 15 40.5 24 44 C33 40.5 40 33.5 40 26 L40 12.5 Z" fill="rgba(255,255,255,.10)"/>
+                <path d="M13 19 L22.5 16 L22.5 34 L13 37 Z" fill="white" opacity=".9"/>
+                <path d="M25.5 16 L35 19 L35 37 L25.5 34 Z" fill="white" opacity=".72"/>
+                <rect x="22.5" y="16" width="3" height="18" rx="1" fill="rgba(165,243,252,.9)"/>
+                <path d="M24 5 L25 8 L28 8 L25.8 9.5 L26.8 12.5 L24 11 L21.2 12.5 L22.2 9.5 L20 8 L23 8 Z" fill="#fcd34d"/>
+                <text x="52" y="22" font-family="'Outfit',sans-serif" font-weight="900" font-size="15" fill="white">Education</text>
+                <text x="52" y="38" font-family="'Outfit',sans-serif" font-weight="400" font-size="10" fill="rgba(165,180,252,.8)" letter-spacing="2">APP</text>
+            </svg>
+            <div style="display:flex;gap:24px;margin-left:auto;">
+                <span style="color:rgba(255,255,255,.6);font-size:.84rem;font-weight:600;">Ana Səhifə</span>
+                <span style="color:rgba(255,255,255,.6);font-size:.84rem;font-weight:600;">Kurslar</span>
+                <span style="color:rgba(255,255,255,.6);font-size:.84rem;font-weight:600;">Müəllimlər</span>
+            </div>
+        </div>
+
+        <!-- Light navbar - Logo 2 -->
+        <div style="background:#fff;border-radius:14px;padding:14px 24px;display:flex;align-items:center;gap:32px;box-shadow:0 4px 24px rgba(0,0,0,.08);">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48" width="180" height="38">
+                <defs>
+                    <linearGradient id="nv2" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#06b6d4"/>
+                        <stop offset="100%" stop-color="#4f46e5"/>
+                    </linearGradient>
+                </defs>
+                <rect x="1" y="2" width="44" height="44" rx="13" fill="url(#nv2)"/>
+                <polygon points="23,9 41,15.5 23,22 5,15.5" fill="white" opacity=".95"/>
+                <path d="M5 15.5 L23 22 L23 33 C16 33 7 30 5 25 Z" fill="white" opacity=".65"/>
+                <path d="M41 15.5 L23 22 L23 33 C30 33 39 30 41 25 Z" fill="white" opacity=".5"/>
+                <line x1="41" y1="15.5" x2="41" y2="25" stroke="rgba(255,255,255,.7)" stroke-width="1.5"/>
+                <circle cx="41" cy="27" r="3.5" fill="#fbbf24"/>
+                <text x="56" y="22" font-family="'Plus Jakarta Sans','Outfit',sans-serif" font-weight="900" font-size="16" fill="#1e1b4b">Education</text>
+                <text x="56" y="38" font-family="'Outfit',sans-serif" font-weight="700" font-size="10" fill="#0891b2" letter-spacing="3">APP</text>
+            </svg>
+            <div style="display:flex;gap:24px;margin-left:auto;">
+                <span style="color:#64748b;font-size:.84rem;font-weight:600;">Ana Səhifə</span>
+                <span style="color:#64748b;font-size:.84rem;font-weight:600;">Kurslar</span>
+                <span style="color:#4f46e5;font-size:.84rem;font-weight:700;border-bottom:2px solid #4f46e5;padding-bottom:2px;">Müəllimlər</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+function downloadSVG(id, filename) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var data = new XMLSerializer().serializeToString(el);
+    var blob = new Blob([data], {type:'image/svg+xml'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = filename; a.click();
+    URL.revokeObjectURL(url);
+}
+</script>
+
+</body>
+</html>

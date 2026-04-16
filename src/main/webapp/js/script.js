@@ -108,8 +108,8 @@ window.addEventListener('load', function () {
 // DOMContentLoaded — digər bütün UI məntiqi
 // ------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', function () {
-    console.log('Education App işə düşdü.');
-
+    // console.log('Education App işə düşdü.');
+    console.log('%c✅ Education App v2.0 hazır', 'color:#4f46e5;font-weight:800;font-size:13px;');
     // --- Navbar scroll effekti ---
     const navbar     = document.querySelector('.navbar');
     const backToTop  = document.getElementById('backToTop');

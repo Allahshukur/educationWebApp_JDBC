@@ -1,0 +1,201 @@
+/* ══════════════════════════════════════
+   ABOUT.CSS  —  Haqqımızda Səhifəsi
+══════════════════════════════════════ */
+.ab-page { font-family:'Outfit',sans-serif; }
+
+/* ── HERO ────────────────────────────────────── */
+.ab-hero {
+    background:linear-gradient(145deg,#0f0c29 0%,#302b63 50%,#24243e 100%);
+    padding:80px 0 100px; position:relative; overflow:hidden; text-align:center;
+}
+.ab-hero::before {
+    content:''; position:absolute; inset:0;
+    background:
+        radial-gradient(circle at 20% 40%,rgba(79,70,229,.30) 0%,transparent 55%),
+        radial-gradient(circle at 80% 60%,rgba(124,58,237,.25) 0%,transparent 50%);
+    pointer-events:none;
+}
+.ab-hero-label {
+    display:inline-flex; align-items:center; gap:6px;
+    background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.18);
+    border-radius:50px; padding:5px 18px; font-size:.78rem; font-weight:700;
+    color:rgba(255,255,255,.85); margin-bottom:20px; backdrop-filter:blur(6px);
+    letter-spacing:.5px; text-transform:uppercase;
+}
+.ab-hero-title {
+    font-size:clamp(2rem,5vw,3.4rem); font-weight:900;
+    color:#fff; line-height:1.15; margin-bottom:18px;
+}
+.ab-hero-title span {
+    background:linear-gradient(135deg,#818cf8,#c4b5fd);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+.ab-hero-sub {
+    font-size:1rem; color:rgba(255,255,255,.65);
+    max-width:520px; margin:0 auto; line-height:1.70;
+}
+
+/* Üzən stat çipləri hero altında */
+.ab-hero-stats {
+    display:flex; flex-wrap:wrap; justify-content:center; gap:14px; margin-top:40px;
+}
+.ab-hstat {
+    background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.16);
+    backdrop-filter:blur(8px); border-radius:14px; padding:16px 28px; text-align:center;
+}
+.ab-hstat-val { font-size:1.8rem; font-weight:900; color:#fff; line-height:1; }
+.ab-hstat-lbl { font-size:.75rem; color:rgba(255,255,255,.60); font-weight:600; margin-top:4px; text-transform:uppercase; letter-spacing:.5px; }
+
+/* ── BÖLMƏ BAŞLIĞI ───────────────────────────── */
+.ab-section { padding:72px 0; }
+.ab-section-label {
+    font-size:.75rem; font-weight:800; text-transform:uppercase;
+    letter-spacing:2px; color:#4f46e5; margin-bottom:8px; display:block;
+}
+.ab-section-title {
+    font-size:clamp(1.5rem,3.5vw,2.2rem); font-weight:900;
+    color:#1e293b; margin-bottom:12px; line-height:1.25;
+}
+.ab-section-sub {
+    font-size:.95rem; color:#64748b; line-height:1.70; max-width:540px;
+}
+
+/* ── MİSSİYA / VİZYON ───────────────────────── */
+.ab-mv-card {
+    border-radius:20px; padding:32px; height:100%;
+    display:flex; flex-direction:column; gap:14px;
+    border:1px solid rgba(0,0,0,.07);
+    box-shadow:0 2px 14px rgba(0,0,0,.05);
+    transition:transform .25s, box-shadow .25s;
+}
+.ab-mv-card:hover { transform:translateY(-5px); box-shadow:0 12px 30px rgba(0,0,0,.10); }
+.ab-mv-icon {
+    width:56px; height:56px; border-radius:16px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.4rem;
+}
+.ab-mv-title { font-size:1.15rem; font-weight:800; color:#1e293b; }
+.ab-mv-text  { font-size:.90rem; color:#475569; line-height:1.70; flex:1; }
+
+/* ── DƏYƏRLƏR ───────────────────────────────── */
+.ab-value {
+    display:flex; align-items:flex-start; gap:14px;
+    padding:20px; border-radius:16px;
+    background:#fff; border:1px solid rgba(0,0,0,.06);
+    box-shadow:0 2px 10px rgba(0,0,0,.04);
+    transition:transform .2s;
+}
+.ab-value:hover { transform:translateY(-3px); }
+.ab-value-icon {
+    width:44px; height:44px; border-radius:12px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.1rem; flex-shrink:0;
+}
+.ab-value-title { font-size:.93rem; font-weight:700; color:#1e293b; margin-bottom:4px; }
+.ab-value-text  { font-size:.82rem; color:#64748b; line-height:1.60; }
+
+/* ── KOMANDA ─────────────────────────────────── */
+.ab-team-card {
+    background:#fff; border-radius:20px;
+    border:1px solid rgba(0,0,0,.06);
+    padding:28px 20px; text-align:center;
+    box-shadow:0 2px 14px rgba(0,0,0,.05);
+    transition:transform .25s, box-shadow .25s;
+}
+.ab-team-card:hover { transform:translateY(-6px); box-shadow:0 14px 32px rgba(0,0,0,.11); }
+
+.ab-avatar {
+    width:88px; height:88px; border-radius:50%;
+    margin:0 auto 16px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:2.2rem; font-weight:900; color:#fff;
+    border:3px solid rgba(255,255,255,.90);
+    box-shadow:0 4px 18px rgba(0,0,0,.18);
+}
+.ab-team-name  { font-size:1.05rem; font-weight:800; color:#1e293b; margin-bottom:3px; }
+.ab-team-role  { font-size:.78rem; font-weight:700; color:#4f46e5; margin-bottom:10px; }
+.ab-team-bio   { font-size:.82rem; color:#64748b; line-height:1.60; margin-bottom:16px; }
+.ab-team-socials { display:flex; justify-content:center; gap:8px; }
+.ab-social {
+    width:32px; height:32px; border-radius:9px;
+    background:#f1f5f9; display:flex; align-items:center; justify-content:center;
+    color:#64748b; font-size:.85rem; text-decoration:none;
+    transition:all .2s;
+}
+.ab-social:hover { background:#4f46e5; color:#fff; }
+
+/* ── TARİX ───────────────────────────────────── */
+.ab-timeline { position:relative; padding-left:28px; }
+.ab-timeline::before {
+    content:''; position:absolute; left:10px; top:0; bottom:0;
+    width:2px; background:linear-gradient(180deg,#4f46e5,#7c3aed,transparent);
+    border-radius:2px;
+}
+.ab-tl-item { position:relative; padding-bottom:32px; }
+.ab-tl-dot {
+    position:absolute; left:-23px; top:4px;
+    width:14px; height:14px; border-radius:50%;
+    background:#4f46e5; border:2px solid #fff;
+    box-shadow:0 0 0 3px rgba(79,70,229,.25);
+}
+.ab-tl-year {
+    font-size:.72rem; font-weight:800; text-transform:uppercase;
+    letter-spacing:1px; color:#4f46e5; margin-bottom:4px;
+}
+.ab-tl-title { font-size:.94rem; font-weight:700; color:#1e293b; margin-bottom:4px; }
+.ab-tl-text  { font-size:.83rem; color:#64748b; line-height:1.60; }
+
+/* ── CTA ─────────────────────────────────────── */
+.ab-cta {
+    background:linear-gradient(135deg,#4338ca 0%,#7c3aed 100%);
+    border-radius:24px; padding:52px 40px; text-align:center;
+    position:relative; overflow:hidden;
+}
+.ab-cta::before {
+    content:''; position:absolute; inset:0;
+    background:radial-gradient(circle at 70% 30%,rgba(255,255,255,.10),transparent 55%);
+}
+.ab-cta-title { font-size:clamp(1.5rem,3.5vw,2.2rem); font-weight:900; color:#fff; margin-bottom:10px; }
+.ab-cta-sub   { font-size:.94rem; color:rgba(255,255,255,.70); margin-bottom:28px; }
+.ab-cta-btn {
+    display:inline-flex; align-items:center; gap:8px;
+    background:#fff; color:#4f46e5; font-size:.94rem; font-weight:800;
+    padding:13px 28px; border-radius:14px; text-decoration:none;
+    transition:transform .2s, box-shadow .2s;
+    box-shadow:0 4px 18px rgba(0,0,0,.20);
+}
+.ab-cta-btn:hover { transform:translateY(-3px); box-shadow:0 10px 28px rgba(0,0,0,.25); color:#4f46e5; }
+
+/* ── DARK MODE ───────────────────────────────── */
+[data-bs-theme="dark"] .ab-page,
+.dark-mode .ab-page { background:#0f172a; }
+[data-bs-theme="dark"] .ab-mv-card,
+[data-bs-theme="dark"] .ab-value,
+[data-bs-theme="dark"] .ab-team-card,
+.dark-mode .ab-mv-card,
+.dark-mode .ab-value,
+.dark-mode .ab-team-card { background:#1e293b; border-color:rgba(255,255,255,.07); }
+[data-bs-theme="dark"] .ab-section-title,
+[data-bs-theme="dark"] .ab-mv-title,
+[data-bs-theme="dark"] .ab-value-title,
+[data-bs-theme="dark"] .ab-team-name,
+[data-bs-theme="dark"] .ab-tl-title,
+.dark-mode .ab-section-title,
+.dark-mode .ab-mv-title,
+.dark-mode .ab-value-title,
+.dark-mode .ab-team-name,
+.dark-mode .ab-tl-title { color:#f1f5f9; }
+[data-bs-theme="dark"] .ab-section-sub,
+[data-bs-theme="dark"] .ab-mv-text,
+[data-bs-theme="dark"] .ab-value-text,
+[data-bs-theme="dark"] .ab-team-bio,
+[data-bs-theme="dark"] .ab-tl-text,
+.dark-mode .ab-section-sub,
+.dark-mode .ab-mv-text,
+.dark-mode .ab-value-text,
+.dark-mode .ab-team-bio,
+.dark-mode .ab-tl-text { color:#64748b; }
+[data-bs-theme="dark"] .ab-social,
+.dark-mode .ab-social { background:#0f172a; color:#64748b; }
+[data-bs-theme="dark"] .ab-tl-dot,
+.dark-mode .ab-tl-dot { border-color:#1e293b; }

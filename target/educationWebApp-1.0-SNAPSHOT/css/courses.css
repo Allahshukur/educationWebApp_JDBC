@@ -1,0 +1,539 @@
+/* ================================================================
+   courses.css  v1.0  —  Kurslar Səhifəsi
+   Bootstrap 5 üzərindəki xüsusi stillər
+   ================================================================ */
+
+/* ── 1. Ümumi ───────────────────────────────────────────────────── */
+.cr-page { font-family: 'Outfit', sans-serif; }
+
+/* ── 2. Hero ────────────────────────────────────────────────────── */
+.cr-hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 45%, #0c1a3a 100%);
+    padding: 56px 0 100px;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+}
+
+/* Dekorativ animasiyalı blob arxa fon */
+.cr-hero::before {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(79,70,229,.28) 0%, transparent 70%);
+    top: -160px; right: -100px;
+    pointer-events: none;
+}
+.cr-hero::after {
+    content: '';
+    position: absolute;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(124,58,237,.20) 0%, transparent 70%);
+    bottom: -80px; left: -60px;
+    pointer-events: none;
+}
+
+.cr-hero-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(79,70,229,.25);
+    border: 1px solid rgba(79,70,229,.45);
+    color: #a5b4fc;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+}
+
+.cr-hero-title {
+    font-size: clamp(1.9rem, 4vw, 2.8rem);
+    font-weight: 800;
+    line-height: 1.18;
+    margin-bottom: 10px;
+    letter-spacing: -.4px;
+}
+
+.cr-hero-sub {
+    color: rgba(255,255,255,.60);
+    font-size: 14.5px;
+    margin-bottom: 28px;
+    line-height: 1.6;
+}
+
+/* Hero axtarış çubuğu */
+.cr-hero-search {
+    display: flex;
+    gap: 8px;
+    max-width: 480px;
+}
+.cr-hero-search .form-control {
+    background: rgba(255,255,255,.10);
+    border: 1.5px solid rgba(255,255,255,.18);
+    color: #fff;
+    border-radius: 12px;
+    padding: 10px 16px;
+    font-size: 13.5px;
+    backdrop-filter: blur(8px);
+    transition: border-color .2s, background .2s;
+}
+.cr-hero-search .form-control::placeholder { color: rgba(255,255,255,.45); }
+.cr-hero-search .form-control:focus {
+    background: rgba(255,255,255,.16);
+    border-color: rgba(79,70,229,.8);
+    box-shadow: none;
+    color: #fff;
+    outline: none;
+}
+.cr-hero-search .btn-search {
+    background: #4f46e5;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 22px;
+    font-size: 13.5px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: background .2s, transform .15s;
+}
+.cr-hero-search .btn-search:hover { background: #4338ca; transform: translateY(-1px); }
+.cr-hero-search .btn-reset {
+    background: rgba(255,255,255,.10);
+    color: rgba(255,255,255,.75);
+    border: 1.5px solid rgba(255,255,255,.20);
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-size: 13px;
+    transition: background .2s;
+}
+.cr-hero-search .btn-reset:hover { background: rgba(255,255,255,.18); color: #fff; }
+
+/* Hero stat kartları (glassmorphism) */
+.cr-stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+.cr-stat-box {
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 16px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    backdrop-filter: blur(12px);
+    transition: background .25s;
+}
+.cr-stat-box:hover { background: rgba(255,255,255,.11); }
+.cr-stat-icon-box {
+    width: 42px; height: 42px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+.cr-stat-val {
+    font-size: 1.45rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: #fff;
+}
+.cr-stat-lbl {
+    font-size: 11px;
+    color: rgba(255,255,255,.55);
+    font-weight: 500;
+    margin-top: 1px;
+}
+
+/* ── 3. Ana Bölmə ───────────────────────────────────────────────── */
+.cr-main {
+    background: #f8fafc;
+    padding: 36px 0 64px;
+    margin-top: -36px;
+    border-radius: 28px 28px 0 0;
+    position: relative;
+}
+
+/* ── 4. Toolbar (Filter + Düymələr) ────────────────────────────── */
+.cr-toolbar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 28px;
+}
+.cr-filter-group {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    flex: 1;
+}
+.cr-filter-btn {
+    padding: 7px 16px;
+    border-radius: 20px;
+    border: 1.5px solid #e2e8f0;
+    background: #fff;
+    color: #64748b;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .22s;
+}
+.cr-filter-btn:hover { border-color: #4f46e5; color: #4f46e5; }
+.cr-filter-btn.active {
+    background: #4f46e5;
+    border-color: #4f46e5;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(79,70,229,.3);
+}
+.cr-toolbar-right { display: flex; gap: 8px; align-items: center; }
+.cr-tool-btn {
+    padding: 7px 14px;
+    border-radius: 10px;
+    border: 1.5px solid #e2e8f0;
+    background: #fff;
+    color: #64748b;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .2s;
+    display: flex; align-items: center; gap: 5px;
+}
+.cr-tool-btn:hover { border-color: #94a3b8; color: #334155; }
+.cr-add-btn {
+    padding: 8px 20px;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all .22s;
+    display: flex; align-items: center; gap: 6px;
+    box-shadow: 0 4px 14px rgba(79,70,229,.35);
+}
+.cr-add-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(79,70,229,.45);
+}
+
+/* ── 5. Kurs Kartı ──────────────────────────────────────────────── */
+.cr-card {
+    border-radius: 20px;
+    background: #fff;
+    border: none;
+    box-shadow:
+        0 1px 3px rgba(0,0,0,.04),
+        0 6px 20px rgba(0,0,0,.06);
+    transition: transform .3s cubic-bezier(.4,0,.2,1), box-shadow .3s ease;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.cr-card:hover {
+    transform: translateY(-7px);
+    box-shadow:
+        0 4px 12px rgba(0,0,0,.08),
+        0 20px 48px rgba(0,0,0,.12);
+}
+
+/* Kart yuxarı gradient hissəsi */
+.cr-card-top {
+    height: 114px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.cr-card-deco1 {
+    position: absolute;
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.11);
+    top: -36px; right: -28px;
+    pointer-events: none;
+}
+.cr-card-deco2 {
+    position: absolute;
+    width: 65px; height: 65px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.08);
+    bottom: -20px; left: 18px;
+    pointer-events: none;
+}
+.cr-card-deco3 {
+    position: absolute;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.06);
+    top: 12px; left: 50%;
+    pointer-events: none;
+}
+.cr-card-icon {
+    font-size: 2.6rem;
+    color: rgba(255,255,255,.95);
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 3px 10px rgba(0,0,0,.25));
+    transition: transform .35s ease;
+}
+.cr-card:hover .cr-card-icon { transform: scale(1.12) translateY(-4px); }
+
+.cr-card-id-tag {
+    position: absolute;
+    top: 10px; left: 10px;
+    background: rgba(0,0,0,.25);
+    color: rgba(255,255,255,.9);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 20px;
+    z-index: 1;
+    letter-spacing: .5px;
+    backdrop-filter: blur(4px);
+}
+.cr-card-status-tag {
+    position: absolute;
+    top: 10px; right: 10px;
+    background: rgba(16,185,129,.25);
+    border: 1px solid rgba(16,185,129,.45);
+    color: #6ee7b7;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 20px;
+    z-index: 1;
+    letter-spacing: .5px;
+    backdrop-filter: blur(4px);
+}
+
+/* Kart gövdəsi */
+.cr-card-body {
+    padding: 18px 18px 10px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.cr-card-title {
+    font-size: 15.5px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 6px;
+    line-height: 1.3;
+}
+.cr-card-desc {
+    font-size: 12.5px;
+    color: #64748b;
+    line-height: 1.55;
+    margin-bottom: 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex: 1;
+}
+
+/* Meta chipləri */
+.cr-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.cr-meta-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    color: #475569;
+    background: #f1f5f9;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+.cr-meta-chip i { font-size: 10px; }
+
+/* Rating ulduzları */
+.cr-rating { display: flex; align-items: center; gap: 3px; margin-bottom: 12px; }
+.cr-star { color: #f59e0b; font-size: 11px; }
+.cr-rating-val { font-size: 12px; font-weight: 600; color: #374151; margin-left: 3px; }
+
+/* Kart footer */
+.cr-card-footer {
+    padding: 10px 16px 14px;
+    border-top: 1px solid rgba(0,0,0,.05);
+    display: flex;
+    gap: 7px;
+}
+.cr-btn {
+    flex: 1;
+    padding: 7px 4px;
+    border: none;
+    border-radius: 10px;
+    font-size: 11.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .22s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+.cr-btn-view { background: #ede9fe; color: #4f46e5; }
+.cr-btn-view:hover { background: #4f46e5; color: #fff; box-shadow: 0 4px 12px rgba(79,70,229,.35); }
+.cr-btn-edit { background: #fef3c7; color: #b45309; }
+.cr-btn-edit:hover { background: #d97706; color: #fff; box-shadow: 0 4px 12px rgba(217,119,6,.35); }
+.cr-btn-del { background: #fee2e2; color: #dc2626; flex: 0 0 36px; border-radius: 10px; }
+.cr-btn-del:hover { background: #dc2626; color: #fff; box-shadow: 0 4px 12px rgba(220,38,38,.35); }
+
+/* ── 6. Boş vəziyyət ────────────────────────────────────────────── */
+.cr-empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    display: none;
+}
+.cr-empty-state.show { display: block; }
+.cr-empty-icon {
+    width: 80px; height: 80px;
+    border-radius: 24px;
+    background: #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #94a3b8;
+    margin: 0 auto 20px;
+}
+.cr-empty-title { font-size: 18px; font-weight: 700; color: #334155; margin-bottom: 8px; }
+.cr-empty-sub { font-size: 13.5px; color: #94a3b8; }
+
+/* ── 7. Nəticə sayı ─────────────────────────────────────────────── */
+.cr-count-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(79,70,229,.08);
+    color: #4f46e5;
+    border: 1.5px solid rgba(79,70,229,.15);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+/* ── 8. Kartların giriş animasiyası ─────────────────────────────── */
+.cr-col {
+    animation: crFadeUp .5s ease both;
+}
+@keyframes crFadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.cr-col:nth-child(1)  { animation-delay: .04s; }
+.cr-col:nth-child(2)  { animation-delay: .08s; }
+.cr-col:nth-child(3)  { animation-delay: .12s; }
+.cr-col:nth-child(4)  { animation-delay: .16s; }
+.cr-col:nth-child(5)  { animation-delay: .20s; }
+.cr-col:nth-child(6)  { animation-delay: .24s; }
+.cr-col:nth-child(7)  { animation-delay: .28s; }
+.cr-col:nth-child(8)  { animation-delay: .32s; }
+.cr-col:nth-child(9)  { animation-delay: .36s; }
+.cr-col:nth-child(10) { animation-delay: .40s; }
+.cr-col:nth-child(n+11) { animation-delay: .44s; }
+
+/* ── 9. Responsiv ───────────────────────────────────────────────── */
+@media (max-width: 991px) {
+    .cr-hero { padding: 44px 0 80px; }
+    .cr-stat-grid { grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 32px; }
+}
+@media (max-width: 575px) {
+    .cr-hero { padding: 36px 0 72px; }
+    .cr-hero-title { font-size: 1.7rem; }
+    .cr-stat-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .cr-stat-box { padding: 12px 14px; }
+    .cr-stat-val { font-size: 1.2rem; }
+    .cr-toolbar { flex-direction: column; align-items: stretch; }
+    .cr-filter-group { justify-content: flex-start; }
+    .cr-toolbar-right { justify-content: flex-end; }
+    .cr-main { padding: 28px 0 48px; margin-top: -28px; }
+}
+
+/* ── 10. Dark Mode ──────────────────────────────────────────────── */
+[data-bs-theme="dark"] .cr-main,
+.dark-mode .cr-main { background: #0f172a; }
+
+[data-bs-theme="dark"] .cr-card,
+.dark-mode .cr-card {
+    background: #1e293b;
+    box-shadow: 0 2px 8px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.2);
+}
+
+[data-bs-theme="dark"] .cr-card:hover,
+.dark-mode .cr-card:hover {
+    box-shadow: 0 6px 20px rgba(0,0,0,.5), 0 24px 56px rgba(0,0,0,.35);
+}
+
+[data-bs-theme="dark"] .cr-card-title,
+.dark-mode .cr-card-title { color: #f1f5f9; }
+
+[data-bs-theme="dark"] .cr-card-desc,
+.dark-mode .cr-card-desc { color: #94a3b8; }
+
+[data-bs-theme="dark"] .cr-card-footer,
+.dark-mode .cr-card-footer { border-top-color: rgba(255,255,255,.07); }
+
+[data-bs-theme="dark"] .cr-meta-chip,
+.dark-mode .cr-meta-chip { background: rgba(255,255,255,.07); color: #94a3b8; }
+
+[data-bs-theme="dark"] .cr-filter-btn,
+.dark-mode .cr-filter-btn {
+    background: #1e293b;
+    border-color: rgba(255,255,255,.1);
+    color: #94a3b8;
+}
+
+[data-bs-theme="dark"] .cr-filter-btn:hover,
+.dark-mode .cr-filter-btn:hover { border-color: #4f46e5; color: #818cf8; }
+
+[data-bs-theme="dark"] .cr-filter-btn.active,
+.dark-mode .cr-filter-btn.active { background: #4f46e5; border-color: #4f46e5; color: #fff; }
+
+[data-bs-theme="dark"] .cr-tool-btn,
+.dark-mode .cr-tool-btn {
+    background: #1e293b;
+    border-color: rgba(255,255,255,.1);
+    color: #94a3b8;
+}
+[data-bs-theme="dark"] .cr-tool-btn:hover,
+.dark-mode .cr-tool-btn:hover { border-color: rgba(255,255,255,.2); color: #cbd5e1; }
+
+[data-bs-theme="dark"] .cr-btn-view,
+.dark-mode .cr-btn-view { background: rgba(79,70,229,.15); color: #818cf8; }
+
+[data-bs-theme="dark"] .cr-btn-edit,
+.dark-mode .cr-btn-edit { background: rgba(217,119,6,.15); color: #fcd34d; }
+
+[data-bs-theme="dark"] .cr-btn-del,
+.dark-mode .cr-btn-del { background: rgba(220,38,38,.15); color: #fca5a5; }
+
+[data-bs-theme="dark"] .cr-empty-state .cr-empty-icon,
+.dark-mode .cr-empty-state .cr-empty-icon { background: rgba(255,255,255,.07); }
+
+[data-bs-theme="dark"] .cr-empty-title,
+.dark-mode .cr-empty-title { color: #e2e8f0; }
+
+[data-bs-theme="dark"] .cr-rating-val,
+.dark-mode .cr-rating-val { color: #cbd5e1; }
+
+[data-bs-theme="dark"] .cr-count-badge,
+.dark-mode .cr-count-badge {
+    background: rgba(79,70,229,.12);
+    border-color: rgba(79,70,229,.25);
+    color: #818cf8;
+}

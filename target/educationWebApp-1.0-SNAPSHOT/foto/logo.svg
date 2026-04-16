@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 228 58" width="228" height="58" role="img" aria-label="Education App">
+  <defs>
+
+    <!-- Shield gradient: blue → teal → green (matches original) -->
+    <linearGradient id="shG" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#1d4ed8"/>
+      <stop offset="45%"  stop-color="#0891b2"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+
+    <!-- Shield inner highlight -->
+    <linearGradient id="shH" x1="10%" y1="0%" x2="90%" y2="100%">
+      <stop offset="0%"   stop-color="rgba(255,255,255,0.22)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0.02)"/>
+    </linearGradient>
+
+    <!-- Book left page gradient -->
+    <linearGradient id="bkL" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+
+    <!-- Book right page gradient -->
+    <linearGradient id="bkR" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+
+    <!-- Text swoosh gradient -->
+    <linearGradient id="swG" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#60a5fa" stop-opacity="0.4"/>
+      <stop offset="60%"  stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+
+    <!-- Drop shadow for shield -->
+    <filter id="shShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4"
+                    flood-color="#0f172a" flood-opacity="0.55"/>
+    </filter>
+
+    <!-- Glow for star & tassel -->
+    <filter id="starGlow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- CSS for dark / light mode text -->
+    <style>
+      .logo-txt-edu  { fill: rgba(255,255,255,0.88); }
+      .logo-txt-app  { fill: #ffffff; }
+      .logo-sep      { stroke: rgba(255,255,255,0.35); }
+      /* Light mode (body without dark-mode class) */
+      body:not(.dark-mode) .logo-txt-edu { fill: #e2e8f0; }
+      body:not(.dark-mode) .logo-txt-app { fill: #ffffff; }
+    </style>
+  </defs>
+
+  <!-- ══════════════ SHIELD ══════════════ -->
+  <!-- Outer border / depth shadow -->
+  <path d="M29 2 L5 11 L5 36 Q5 50 29 57 Q53 50 53 36 L53 11 Z"
+        fill="#0c1e4a" filter="url(#shShadow)"/>
+
+  <!-- Shield fill -->
+  <path d="M29 4 L7 12.5 L7 36 Q7 48 29 55 Q51 48 51 36 L51 12.5 Z"
+        fill="url(#shG)"/>
+
+  <!-- Shield inner highlight -->
+  <path d="M29 4 L7 12.5 L7 30 Q18 35 29 36 Q40 35 51 30 L51 12.5 Z"
+        fill="url(#shH)" opacity="0.6"/>
+
+  <!-- Shield border lines (decorative inner frame) -->
+  <path d="M29 5.5 L8.5 13.5 L8.5 36 Q8.5 47 29 53.5"
+        fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+  <path d="M29 5.5 L49.5 13.5 L49.5 36 Q49.5 47 29 53.5"
+        fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+
+  <!-- ══════════════ GRADUATION CAP ══════════════ -->
+  <!-- Mortar board flat top (hexagonal) -->
+  <polygon points="29,9  44,15  29,21  14,15"
+           fill="#0c1e4a"/>
+  <!-- Board sheen -->
+  <polygon points="29,9  44,15  36,18  22,12"
+           fill="rgba(255,255,255,0.10)"/>
+
+  <!-- Cap cylinder body -->
+  <path d="M14 15 L14 21 Q14 24 20 25 L29 27 L38 25 Q44 24 44 21 L44 15 L29 21 Z"
+        fill="#0f2d60"/>
+  <!-- Cylinder top edge highlight -->
+  <line x1="14" y1="15" x2="44" y2="15"
+        stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
+
+  <!-- Top button on cap -->
+  <circle cx="29" cy="9" r="1.8" fill="#1d4ed8"/>
+  <circle cx="29" cy="9" r="1" fill="rgba(255,255,255,0.5)"/>
+
+  <!-- Tassel cord -->
+  <line x1="44" y1="15" x2="44" y2="24"
+        stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/>
+
+  <!-- Tassel ball -->
+  <circle cx="44" cy="26.5" r="3" fill="#fbbf24" filter="url(#starGlow)"/>
+  <circle cx="43.2" cy="25.8" r="1.2" fill="rgba(255,255,255,0.5)"/>
+
+  <!-- Tassel threads -->
+  <line x1="42.5" y1="29.5" x2="41.5" y2="34" stroke="#f59e0b" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="44"   y1="29.5" x2="44"   y2="34.5" stroke="#f59e0b" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="45.5" y1="29.5" x2="46.5" y2="34" stroke="#f59e0b" stroke-width="1.2" stroke-linecap="round"/>
+
+  <!-- ══════════════ OPEN BOOK ══════════════ -->
+  <!-- Book spine (center vertical) -->
+  <rect x="27.5" y="27" width="3" height="22" rx="1"
+        fill="#60a5fa" opacity="0.9"/>
+
+  <!-- Left page -->
+  <path d="M27.5 28 L13 31 L13 47 L27.5 44 Z"
+        fill="url(#bkL)"/>
+  <!-- Right page -->
+  <path d="M30.5 28 L45 31 L45 47 L30.5 44 Z"
+        fill="url(#bkR)"/>
+
+  <!-- Left page lines -->
+  <line x1="16" y1="34.5" x2="26.5" y2="32.5" stroke="rgba(255,255,255,0.45)" stroke-width="0.85" stroke-linecap="round"/>
+  <line x1="16" y1="37.5" x2="26.5" y2="35.5" stroke="rgba(255,255,255,0.35)" stroke-width="0.85" stroke-linecap="round"/>
+  <line x1="16" y1="40.5" x2="26.5" y2="38.5" stroke="rgba(255,255,255,0.25)" stroke-width="0.85" stroke-linecap="round"/>
+
+  <!-- Right page lines -->
+  <line x1="31.5" y1="32.5" x2="42" y2="34.5" stroke="rgba(255,255,255,0.35)" stroke-width="0.85" stroke-linecap="round"/>
+  <line x1="31.5" y1="35.5" x2="42" y2="37.5" stroke="rgba(255,255,255,0.25)" stroke-width="0.85" stroke-linecap="round"/>
+  <line x1="31.5" y1="38.5" x2="42" y2="40.5" stroke="rgba(255,255,255,0.18)" stroke-width="0.85" stroke-linecap="round"/>
+
+  <!-- ══════════════ GOLDEN STAR (top-left shield) ══════════════ -->
+  <path d="M11 7 L11.8 9.4 L14.4 9.4 L12.4 11 L13.2 13.4 L11 11.8 L8.8 13.4 L9.6 11 L7.6 9.4 L10.2 9.4 Z"
+        fill="#fcd34d" opacity="0.92" filter="url(#starGlow)"/>
+
+  <!-- ══════════════ TEXT ══════════════ -->
+  <!-- "Education" — italic, semi-bold -->
+  <text x="66" y="30"
+        font-family="'Outfit','Segoe UI',Arial,sans-serif"
+        font-size="22"
+        font-weight="600"
+        font-style="italic"
+        letter-spacing="-0.4"
+        class="logo-txt-edu">Education</text>
+
+  <!-- Thin vertical separator -->
+  <line x1="172" y1="14" x2="172" y2="35"
+        class="logo-sep" stroke-width="1.2"/>
+
+  <!-- "App" — bold italic -->
+  <text x="177" y="30"
+        font-family="'Outfit','Segoe UI',Arial,sans-serif"
+        font-size="22"
+        font-weight="900"
+        font-style="italic"
+        letter-spacing="-0.4"
+        class="logo-txt-app">App</text>
+
+  <!-- ══════════════ SWOOSH UNDERLINE ══════════════ -->
+  <!-- Main swoosh curve -->
+  <path d="M64 38 Q118 46 185 37 L218 25"
+        fill="none"
+        stroke="url(#swG)"
+        stroke-width="2.2"
+        stroke-linecap="round"/>
+
+  <!-- Arrow head at right end of swoosh -->
+  <path d="M209 22 L220 26 L212 32 Z"
+        fill="#3b82f6" opacity="0.9"/>
+</svg>

@@ -29,6 +29,7 @@
     <link href="css/dark-mode.css?v=1.1" rel="stylesheet">
     <!-- Google Fonts - Outfit + Sora -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="css/ads.css?v=4.0" rel="stylesheet">
 </head>
 <body class="overflow-hidden-init" style="overflow-x:hidden;max-width:100vw;">
 
@@ -68,6 +69,7 @@
     request.setAttribute("isHome", true);
 %>
 <jsp:include page="header.jsp" />
+<jsp:include page="ads.jsp"/>
 
 <header class="hero-section overflow-hidden py-5" style="position:relative;">
     <canvas id="heroCanvas"></canvas>
@@ -169,6 +171,8 @@
         </div>
     </div>
 </section>
+
+<jsp:include page="ads-infeed.jsp"/>
 
 <!-- Geri Sayım - Xüsusi Təklif -->
 <div id="countdown-section">
@@ -772,10 +776,11 @@
 <!-- AOS JS -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <!-- Custom JS -->
-<script src="js/script.js?v=2.2"></script>
+<script src="js/script.js?v=2.3"></script>
 <script>
     AOS.init({ duration: 1000, once: true, offset: 100 });
 </script>
 
+<script src="js/ads.js?v=4.0"></script>
 </body>
 </html>

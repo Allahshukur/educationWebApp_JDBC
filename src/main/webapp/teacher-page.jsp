@@ -39,6 +39,7 @@
     <link href="css/style.css?v=4.3" rel="stylesheet">
     <link href="css/dark-mode.css?v=2.1" rel="stylesheet">
     <link href="css/teacher-page.css?v=1.0" rel="stylesheet">
+    <link href="css/ads.css?v=4.0" rel="stylesheet">
 </head>
 <body class="overflow-hidden-init" style="background:#f8fafc;">
 
@@ -98,7 +99,6 @@
             <!-- Avatar -->
             <div class="tp-avatar-wrap flex-shrink-0">
                 <div class="tp-avatar-ring"></div>
-                <div class="tp-avatar-ring2"></div>
                 <div class="tp-avatar"><%= initials %></div>
                 <div class="tp-avatar-edit" title="Şəkil yüklə"><i class="bi bi-camera-fill"></i></div>
             </div>
@@ -107,13 +107,13 @@
             <div class="text-center text-md-start flex-grow-1">
                 <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-md-start mb-2">
                     <span class="tp-id-badge"><i class="bi bi-hash"></i><%= teacher.getId() %></span>
-                    <span class="tp-hero-status"><i class="bi bi-circle-fill" style="font-size:7px;"></i>Aktiv Müəllim</span>
+                    <span class="tp-hero-status"><i class="bi bi-circle-fill" style="font-size:7px;"></i><%= teacher.getStatus() %></span>
                     <span class="tp-hero-exp"><i class="bi bi-award-fill"></i>5+ il Təcrübə</span>
                 </div>
                 <div class="tp-hero-name mb-1"><%= teacher.getName() %> <%= teacher.getSurname() %></div>
                 <div class="tp-hero-sub mb-1">
-                    <i class="bi bi-briefcase me-1"></i>Senior Java Developer &amp; Müəllim
-                    &nbsp;·&nbsp;<i class="bi bi-geo-alt me-1"></i>Bakı, Azərbaycan
+                    <i class="bi bi-briefcase me-1"></i><%= teacher.getPosition() %> &amp; Müəllim
+                    &nbsp;·&nbsp;<i class="bi bi-geo-alt me-1"></i><%= teacher.getAddress() %>
                 </div>
                 <div class="tp-hero-sub">
                     <i class="bi bi-envelope me-1"></i><%= teacher.getEmail() %>
@@ -174,6 +174,8 @@
             </div>
         </div>
 
+        <jsp:include page="ads-infeed.jsp"/>
+
         <div class="row g-4">
 
             <!-- ── Sol sütun ── -->
@@ -186,32 +188,36 @@
 
                         <div class="tp-info-row">
                             <div class="tp-info-icon" style="background:#ccfbf1;"><i class="bi bi-person-fill" style="color:#0d9488;"></i></div>
-                            <div><div class="tp-info-label">Ad Soyad</div><div class="tp-info-value"><%= teacher.getName() %> <%= teacher.getSurname() %></div></div>
+                            <div><div class="tp-info-label">Ad Soyad:</div><div class="tp-info-value"><%= teacher.getName() %> <%= teacher.getSurname() %></div></div>
                         </div>
                         <div class="tp-info-row">
                             <div class="tp-info-icon" style="background:#dbeafe;"><i class="bi bi-envelope-fill" style="color:#2563eb;"></i></div>
-                            <div><div class="tp-info-label">E-poçt</div>
+                            <div><div class="tp-info-label">E-poçt:</div>
                                 <div class="tp-info-value"><a href="mailto:<%= teacher.getEmail() %>" class="text-decoration-none" style="color:#0d9488;"><%= teacher.getEmail() %></a></div>
                             </div>
                         </div>
                         <div class="tp-info-row">
+                            <div class="tp-info-icon" style="background:#d1fae5;"><i class="bi bi bi-telephone-plus-fill" style="color:#059669;"></i></div>
+                            <div><div class="tp-info-label">Telefon:</div><div class="tp-info-value"><%= teacher.getPhone() %></div></div>
+                        </div>
+                        <div class="tp-info-row">
                             <div class="tp-info-icon" style="background:#fef3c7;"><i class="bi bi-calendar-heart-fill" style="color:#d97706;"></i></div>
-                            <div><div class="tp-info-label">Yaş</div><div class="tp-info-value"><%= teacher.getAge() %> yaş</div></div>
+                            <div><div class="tp-info-label">Yaş:</div><div class="tp-info-value"><%= teacher.getAge() %> yaş</div></div>
                         </div>
                         <div class="tp-info-row">
                             <div class="tp-info-icon" style="background:#ede9fe;"><i class="bi bi-briefcase-fill" style="color:#7c3aed;"></i></div>
-                            <div><div class="tp-info-label">Vəzifə</div><div class="tp-info-value">Senior Java Müəllimi</div></div>
+                            <div><div class="tp-info-label">Vəzifə:</div><div class="tp-info-value"><%= teacher.getPosition() %></div></div>
                         </div>
                         <div class="tp-info-row">
                             <div class="tp-info-icon" style="background:#fce7f3;"><i class="bi bi-geo-alt-fill" style="color:#db2777;"></i></div>
-                            <div><div class="tp-info-label">Ünvan</div><div class="tp-info-value">Bakı, Azərbaycan</div></div>
+                            <div><div class="tp-info-label">Ünvan:</div><div class="tp-info-value"><%= teacher.getAddress() %></div></div>
                         </div>
                         <div class="tp-info-row">
                             <div class="tp-info-icon" style="background:#f0fdf4;"><i class="bi bi-shield-fill-check" style="color:#16a34a;"></i></div>
-                            <div><div class="tp-info-label">Status</div>
+                            <div><div class="tp-info-label">Status:</div>
                                 <div class="tp-info-value">
                                     <span class="badge rounded-pill px-3 py-1" style="background:#ccfbf1;color:#0f766e;font-size:0.8rem;">
-                                        <i class="bi bi-circle-fill me-1" style="font-size:6px;"></i>Aktiv
+                                        <i class="bi bi-circle-fill me-1" style="font-size:6px;"></i><%= teacher.getStatus() %>
                                     </span>
                                 </div>
                             </div>
@@ -360,7 +366,6 @@
                     <!-- Son aktivliklər -->
                     <div class="tp-card">
                         <div class="tp-card-title"><i class="bi bi-clock-history"></i>Son Aktivliklər</div>
-                        <div class="tp-timeline-wrap">
                         <div class="tp-timeline-item">
                             <div class="tp-timeline-dot" style="background:#ccfbf1;"><i class="bi bi-patch-check-fill" style="color:#0d9488;"></i></div>
                             <div><div class="tp-timeline-title">Spring Boot Dərsi Keçildi — 18 tələbə</div><div class="tp-timeline-time"><i class="bi bi-clock me-1"></i>1 saat əvvəl</div></div>
@@ -377,7 +382,6 @@
                             <div class="tp-timeline-dot" style="background:#dbeafe;"><i class="bi bi-file-earmark-check-fill" style="color:#2563eb;"></i></div>
                             <div><div class="tp-timeline-title">12 tələbənin imtahan nəticəsi yoxlandı</div><div class="tp-timeline-time"><i class="bi bi-clock me-1"></i>4 gün əvvəl</div></div>
                         </div>
-                        </div>
                     </div>
 
                 </div>
@@ -391,6 +395,7 @@
 <jsp:include page="footer.jsp"/>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/script.js?v=4.3"></script>
-<script src="js/teacher-page.js?v=1.0"></script>
+<script src="js/teacher-page.js?v=2.0"></script>
+<script src="js/ads.js?v=4.0"></script>
 </body>
 </html>

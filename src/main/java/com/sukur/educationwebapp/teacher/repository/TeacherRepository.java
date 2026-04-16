@@ -16,32 +16,6 @@ import static com.sukur.educationwebapp.db.Db.connection;
 public class TeacherRepository implements MyRepository<Teacher> {
 
     @Override
-    public Teacher create() {
-        Teacher teacher = new Teacher();
-
-        try (Connection connection = connection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO teachers (name, surname, email, age) VALUES (?, ?, ?, ?)");
-
-            System.out.print("Please enter teacher name = ");
-            teacher.setName(new Scanner(System.in).nextLine());
-            System.out.print("Please enter teacher surname = ");
-            teacher.setSurname(new Scanner(System.in).nextLine());
-            System.out.print("Please enter teacher email = ");
-            teacher.setEmail(new Scanner(System.in).nextLine());
-            System.out.print("Please enter teacher age = ");
-            teacher.setAge(new Scanner(System.in).nextInt());
-            preparedStatement.setString(1, teacher.getName());
-            preparedStatement.setString(2, teacher.getSurname());
-            preparedStatement.setString(3, teacher.getEmail());
-            preparedStatement.setInt(4, teacher.getAge());
-
-            preparedStatement.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return teacher;
-    }
-
     public Teacher create(String name, String surname, String email, int age) {
         Teacher teacher = new Teacher().setName(name).setSurname(surname).setEmail(email).setAge(age);
 
@@ -69,12 +43,16 @@ public class TeacherRepository implements MyRepository<Teacher> {
                     "       t.surname,\n" +
                     "       t.age,\n" +
                     "       t.email,\n" +
+                    "       t.phone,\n" +
+                    "       t.position,\n" +
+                    "       t.address,\n" +
+                    "       t.status,\n" +
                     "       IFNULL(GROUP_CONCAT(CONCAT(s.name, ' ', s.surname) SEPARATOR ', '), '0') AS students\n" +
                     "FROM education.teachers t\n" +
                     "LEFT JOIN student_teacher st ON t.id = st.teacher_id\n" +
                     "LEFT JOIN students s ON st.student_id = s.id AND s.deleted = '0'\n" +
                     "WHERE t.deleted = '0' \n" +
-                    "GROUP BY t.id, t.name, t.surname, t.age, t.email;").executeQuery();
+                    "GROUP BY t.id, t.name, t.surname, t.age, t.email, t.phone, t.position, t.address, t.status;").executeQuery();
 
             while (resultSet.next()) {
                 Teacher teacher = new Teacher()
@@ -83,6 +61,10 @@ public class TeacherRepository implements MyRepository<Teacher> {
                         .setSurname(resultSet.getString("surname"))
                         .setAge(resultSet.getInt("age"))
                         .setEmail(resultSet.getString("email"))
+                        .setPhone(resultSet.getString("phone"))
+                        .setPosition(resultSet.getString("position"))
+                        .setAddress(resultSet.getString("address"))
+                        .setStatus(resultSet.getString("status"))
                         .setStudent(resultSet.getString("students"));
                 teachers.add(teacher);
             }
@@ -93,10 +75,8 @@ public class TeacherRepository implements MyRepository<Teacher> {
     }
 
     @Override
-    public Teacher findById() {
+    public Teacher findById(int id) {
         Teacher teacher = null;
-        System.out.print("Axtardiginiz Muellimin id sini qeyd edin: ");
-        int id = new Scanner(System.in).nextInt();
 
         try (Connection connection = connection()) {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT t.id AS teacher_id,\n" +
@@ -104,13 +84,17 @@ public class TeacherRepository implements MyRepository<Teacher> {
                     "       t.surname,\n" +
                     "       t.age,\n" +
                     "       t.email,\n" +
+                    "       t.phone,\n" +
+                    "       t.position,\n" +
+                    "       t.address,\n" +
+                    "       t.status,\n" +
                     "       IFNULL(GROUP_CONCAT(CONCAT(s.name, ' ', s.surname) SEPARATOR ', '), '0') AS students\n" +
                     "FROM education.teachers t\n" +
                     "LEFT JOIN student_teacher st ON t.id = st.teacher_id\n" +
                     "LEFT JOIN students s ON st.student_id = s.id AND s.deleted = '0'\n" +
                     "WHERE t.id = ?" +
                     "  AND t.deleted = '0' \n" +
-                    "GROUP BY t.id, t.name, t.surname, t.age, t.email;");
+                    "GROUP BY t.id, t.name, t.surname, t.age, t.email, t.phone, t.position, t.address, t.status;");
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -120,6 +104,10 @@ public class TeacherRepository implements MyRepository<Teacher> {
                         .setSurname(resultSet.getString("surname"))
                         .setAge(resultSet.getInt("age"))
                         .setEmail(resultSet.getString("email"))
+                        .setPhone(resultSet.getString("phone"))
+                        .setPosition(resultSet.getString("position"))
+                        .setAddress(resultSet.getString("address"))
+                        .setStatus(resultSet.getString("status"))
                         .setStudent(resultSet.getString("students"));
             }
         } catch (Exception e) {
@@ -139,14 +127,17 @@ public class TeacherRepository implements MyRepository<Teacher> {
                 "       t.surname,\n" +
                 "       t.age,\n" +
                 "       t.email,\n" +
+                "       t.phone,\n" +
+                "       t.position,\n" +
+                "       t.address,\n" +
+                "       t.status,\n" +
                 "       IFNULL(GROUP_CONCAT(CONCAT(s.name, ' ', s.surname) SEPARATOR ', '), '0') AS students\n" +
                 "FROM education.teachers t\n" +
                 "LEFT JOIN student_teacher st ON t.id = st.teacher_id\n" +
                 "LEFT JOIN students s ON st.student_id = s.id AND s.deleted = '0'\n" +
                 "WHERE " + (isFullName ? "CONCAT(t.name, ' ', t.surname) LIKE ?" : "(t.name LIKE ? OR t.surname LIKE ?)") + "\n" +
                 "  AND t.deleted = '0' \n" +
-                "GROUP BY t.id, t.name, t.surname, t.age, t.email;";
-
+                "GROUP BY t.id, t.name, t.surname, t.age, t.email, t.phone, t.position, t.address, t.status;";
         try (Connection connection = connection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             if (isFullName) {
@@ -163,6 +154,10 @@ public class TeacherRepository implements MyRepository<Teacher> {
                         .setSurname(resultSet.getString("surname"))
                         .setAge(resultSet.getInt("age"))
                         .setEmail(resultSet.getString("email"))
+                        .setPhone(resultSet.getString("phone"))
+                        .setPosition(resultSet.getString("position"))
+                        .setAddress(resultSet.getString("address"))
+                        .setStatus(resultSet.getString("status"))
                         .setStudent(resultSet.getString("students"));
                 teachers.add(teacher);
             }
@@ -173,40 +168,6 @@ public class TeacherRepository implements MyRepository<Teacher> {
     }
 
     @Override
-    public Teacher update() {
-        List<Teacher> teachers = findAll();
-        System.out.print("Hansi Mellimi yenilemek isteyirsiz? = ");
-        int updateNumber = new Scanner(System.in).nextInt();
-        Teacher teacher = teachers.get(updateNumber - 1);
-        System.out.println(teacher);
-        System.out.println("Yenilemek isteyirsiz? \n Yes \n No");
-        String yesNo = new Scanner(System.in).nextLine();
-
-        try (Connection connection = connection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE teachers SET name = ?, surname = ?, age = ?, email = ? WHERE id = ?");
-            if (yesNo.equalsIgnoreCase("Yes")) {
-                System.out.print("Teacher Name: ");
-                teacher.setName(new Scanner(System.in).nextLine());
-                System.out.print("Teacher Surname: ");
-                teacher.setSurname(new Scanner(System.in).nextLine());
-                System.out.print("Teacher Age: ");
-                teacher.setAge(new Scanner(System.in).nextInt());
-                System.out.print("Teacher Email: ");
-                teacher.setEmail(new Scanner(System.in).nextLine());
-
-                preparedStatement.setString(1, teacher.getName());
-                preparedStatement.setString(2, teacher.getSurname());
-                preparedStatement.setInt(3, teacher.getAge());
-                preparedStatement.setString(4, teacher.getEmail());
-                preparedStatement.setInt(5, teacher.getId());
-            }
-            preparedStatement.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return teacher;
-    }
-
     public Teacher update(int id, String name, String surname, String email, int age) {
         Teacher teacher = new Teacher().setId(id).setName(name).setSurname(surname).setEmail(email).setAge(age);
 
@@ -225,25 +186,6 @@ public class TeacherRepository implements MyRepository<Teacher> {
     }
 
     @Override
-    public int delete() {
-        System.out.print("Hansi Muellimi silmek isteyirsiz? ");
-        int delId = new Scanner(System.in).nextInt();
-        int rowsAffected = 0;
-
-        try (Connection connection = connection();
-             PreparedStatement prepareStatement = connection.prepareStatement("UPDATE teachers t " +
-                     "LEFT JOIN student_teacher st ON t.id = st.teacher_id " +
-                     "SET t.deleted = '1', st.deleted = '1' " +
-                     "WHERE t.id = ? AND t.deleted = '0'")) {
-
-            prepareStatement.setInt(1, delId);
-            rowsAffected = prepareStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return rowsAffected;
-    }
-
     public int delete(int id) {
         try (Connection connection = connection()) {
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE teachers t " +

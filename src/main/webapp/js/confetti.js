@@ -1,20 +1,13 @@
 /* ============================================================
-   CONFETTI.JS  v1.0
-   Global confetti rain — səhifə yüklənəndə hər yerdə işləyir
-   (student-page öz sp-confetti-ni idarə edir, orada ikinci canvas yaranmır)
+   CONFETTI.JS  v2.0
+   Bütün səhifələrdə eyni konfetti — üstdən aşağı rəngli zərələr
+   header.jsp vasitəsilə avtomatik yüklənir
    ============================================================ */
 (function () {
     'use strict';
 
-    /* sp-confetti artıq varsa (student-page) skip et */
-    function spCanvasExists() {
-        return !!document.getElementById('sp-confetti');
-    }
-
     function runConfetti() {
-        if (spCanvasExists()) return;
-
-        /* Canvas yarat */
+        /* Canvas yarat və body-ə əlavə et */
         var canvas = document.createElement('canvas');
         canvas.id = 'global-confetti';
         canvas.style.cssText = [
@@ -32,33 +25,28 @@
         canvas.width  = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        var colors = [
-            '#4f46e5','#818cf8','#7c3aed','#a78bfa',
-            '#c4b5fd','#38bdf8','#34d399','#f472b6',
-            '#fb923c','#facc15','#4ade80','#f87171'
-        ];
+        /* Student-page.js ilə eyni rənglər və davranış */
+        var colors = ['#4f46e5','#818cf8','#7c3aed','#a78bfa','#c4b5fd','#38bdf8','#34d399'];
 
-        /* 120 parça yarat */
         var pieces = [];
-        for (var i = 0; i < 120; i++) {
+        for (var ci = 0; ci < 100; ci++) {
             pieces.push({
                 x:     Math.random() * canvas.width,
-                y:     Math.random() * canvas.height - canvas.height,   /* yuxarıdan başla */
-                w:     Math.random() * 12 + 5,
-                h:     Math.random() * 7 + 3,
+                y:     Math.random() * canvas.height - canvas.height,
+                w:     Math.random() * 10 + 5,
+                h:     Math.random() * 6 + 3,
                 color: colors[Math.floor(Math.random() * colors.length)],
                 rot:   Math.random() * 360,
                 vx:    (Math.random() - 0.5) * 3,
                 vy:    Math.random() * 4 + 2,
-                vr:    Math.random() * 7 - 3.5,
-                alpha: 1,
-                shape: Math.random() > 0.5 ? 'rect' : 'circle'
+                vr:    Math.random() * 6 - 3,
+                alpha: 1
             });
         }
 
         var frame = 0;
 
-        function draw() {
+        function drawConfetti() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             var alive = false;
 
@@ -66,11 +54,7 @@
                 p.x   += p.vx;
                 p.y   += p.vy;
                 p.rot += p.vr;
-
-                /* Aşağı yarıda solur */
-                if (p.y > canvas.height * 0.55) {
-                    p.alpha -= 0.016;
-                }
+                if (p.y > canvas.height * 0.6) p.alpha -= 0.018;
                 if (p.alpha <= 0) return;
                 alive = true;
 
@@ -79,31 +63,22 @@
                 ctx.translate(p.x + p.w / 2, p.y + p.h / 2);
                 ctx.rotate(p.rot * Math.PI / 180);
                 ctx.fillStyle = p.color;
-
-                if (p.shape === 'circle') {
-                    ctx.beginPath();
-                    ctx.arc(0, 0, p.w / 2, 0, Math.PI * 2);
-                    ctx.fill();
-                } else {
-                    ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
-                }
-
+                ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
                 ctx.restore();
             });
 
             frame++;
-            if (alive && frame < 300) {
-                requestAnimationFrame(draw);
+            if (alive && frame < 250) {
+                requestAnimationFrame(drawConfetti);
             } else {
                 canvas.style.display = 'none';
             }
         }
 
-        /* 200ms gözlə — loader bitmişdən sonra başla */
-        setTimeout(draw, 200);
+        /* 300ms gözlə — loader çəkilsin, sonra başla */
+        setTimeout(drawConfetti, 300);
     }
 
-    /* DOM hazır olanda işlət */
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', runConfetti);
     } else {

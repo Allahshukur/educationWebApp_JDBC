@@ -7,7 +7,7 @@
             <div class="col-lg-4 col-md-6">
                 <a class="d-inline-flex align-items-center gap-2 text-decoration-none mb-4" href="index.jsp">
                     <div class="footer-logo-icon">
-                        <img src="foto/logo.png" alt="Education App Logo" class="footer-logo-img">
+                        <img src="foto/logo.svg" alt="Education App Logo" class="footer-logo-img" style="height:44px;width:auto;">
                     </div>
                 </a>
                 <p class="footer-text pe-lg-3 mb-4">
@@ -99,4 +99,8 @@
         </div>
     </div>
 </footer>
+
+<!-- AI Köməkçi Chatbot -->
+<link rel="stylesheet" href="css/chatbot.css?v=1.0">
+<script src="js/chatbot.js?v=1.0"></script>
 

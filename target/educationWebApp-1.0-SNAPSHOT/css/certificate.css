@@ -1,0 +1,215 @@
+/* ══════════════════════════════════════
+   CERTIFICATE.CSS
+══════════════════════════════════════ */
+.cert-page { font-family:'Outfit',sans-serif; background:#f1f5f9; }
+
+/* Nəzarət paneli */
+.cert-controls {
+    background:#fff; border-bottom:1px solid rgba(0,0,0,.07);
+    padding:14px 0; position:sticky; top:72px; z-index:99;
+    box-shadow:0 2px 12px rgba(0,0,0,.05);
+}
+.cert-controls .btn-print {
+    display:inline-flex; align-items:center; gap:7px;
+    background:linear-gradient(135deg,#4f46e5,#7c3aed); color:#fff;
+    border:none; border-radius:12px; padding:10px 22px;
+    font-size:.88rem; font-weight:700; cursor:pointer;
+    transition:all .2s;
+}
+.cert-controls .btn-print:hover { opacity:.88; transform:translateY(-2px); }
+.cert-controls .btn-share {
+    display:inline-flex; align-items:center; gap:7px;
+    background:#f1f5f9; color:#475569; border:1px solid rgba(0,0,0,.09);
+    border-radius:12px; padding:10px 20px;
+    font-size:.88rem; font-weight:700; cursor:pointer; transition:all .2s;
+}
+.cert-controls .btn-share:hover { background:#e2e8f0; }
+.cert-controls .btn-export-pdf {
+    display:inline-flex; align-items:center; gap:7px;
+    background:linear-gradient(135deg,#dc2626,#ea580c); color:#fff;
+    border:none; border-radius:12px; padding:10px 22px;
+    font-size:.88rem; font-weight:700; cursor:pointer; transition:all .2s;
+}
+.cert-controls .btn-export-pdf:hover { opacity:.88; transform:translateY(-2px); }
+
+/* Sertifikat konteyner */
+.cert-wrapper {
+    display:flex; justify-content:center;
+    padding:40px 20px 60px;
+}
+
+/* Sertifikat özü */
+.cert {
+    width:100%; max-width:860px;
+    background:#fff;
+    border-radius:24px;
+    box-shadow:0 8px 48px rgba(0,0,0,.14);
+    overflow:hidden;
+    position:relative;
+}
+
+/* Yuxarı şerit */
+.cert-top-bar {
+    height:12px;
+    background:linear-gradient(90deg,#4338ca,#7c3aed,#db2777,#f59e0b);
+}
+
+/* İçərik */
+.cert-body { padding:48px 56px; text-align:center; position:relative; }
+
+/* Arxa fon naxış */
+.cert-body::before {
+    content:'';
+    position:absolute; inset:0;
+    background:
+        radial-gradient(circle at 10% 20%,rgba(79,70,229,.04) 0%,transparent 50%),
+        radial-gradient(circle at 90% 80%,rgba(124,58,237,.04) 0%,transparent 50%);
+    pointer-events:none;
+}
+
+/* Logo/Qurum */
+.cert-org {
+    display:flex; align-items:center; justify-content:center;
+    gap:10px; margin-bottom:28px;
+}
+.cert-org-icon {
+    width:52px; height:52px; border-radius:14px;
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.5rem; color:#fff;
+    box-shadow:0 4px 14px rgba(79,70,229,.35);
+}
+.cert-org-name { font-size:1.1rem; font-weight:800; color:#1e293b; }
+.cert-org-sub  { font-size:.75rem; color:#64748b; font-weight:500; }
+
+/* Ayırıcı xət */
+.cert-hr {
+    border:none; height:1px;
+    background:linear-gradient(90deg,transparent,rgba(79,70,229,.20),transparent);
+    margin:0 0 28px;
+}
+
+/* Sertifikat başlığı */
+.cert-heading {
+    font-size:.8rem; font-weight:700; text-transform:uppercase;
+    letter-spacing:3px; color:#6366f1; margin-bottom:8px;
+}
+.cert-title {
+    font-size:clamp(1.6rem,4vw,2.4rem); font-weight:900;
+    color:#1e293b; margin-bottom:24px; line-height:1.2;
+}
+
+/* Tələbə adı */
+.cert-recipient-label {
+    font-size:.78rem; color:#94a3b8; font-weight:600;
+    text-transform:uppercase; letter-spacing:1.5px; margin-bottom:6px;
+}
+.cert-recipient-name {
+    font-size:clamp(1.8rem,5vw,3rem); font-weight:900;
+    background:linear-gradient(135deg,#4338ca,#7c3aed);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text; line-height:1.15; margin-bottom:20px;
+}
+
+.cert-desc {
+    font-size:.92rem; color:#475569; line-height:1.7;
+    max-width:580px; margin:0 auto 28px;
+}
+
+/* Kurs adı qutusu */
+.cert-course-box {
+    display:inline-block;
+    background:linear-gradient(135deg,rgba(79,70,229,.08),rgba(124,58,237,.08));
+    border:1.5px solid rgba(79,70,229,.18);
+    border-radius:14px; padding:14px 32px; margin-bottom:32px;
+}
+.cert-course-label {
+    font-size:.72rem; color:#6366f1; font-weight:700;
+    text-transform:uppercase; letter-spacing:1.5px; margin-bottom:4px;
+}
+.cert-course-name {
+    font-size:1.15rem; font-weight:800; color:#1e293b;
+}
+
+/* Stat çipləri */
+.cert-chips {
+    display:flex; flex-wrap:wrap; justify-content:center; gap:10px;
+    margin-bottom:36px;
+}
+.cert-chip {
+    display:inline-flex; align-items:center; gap:6px;
+    background:#f8fafc; border:1px solid rgba(0,0,0,.08);
+    border-radius:50px; padding:6px 16px;
+    font-size:.78rem; font-weight:600; color:#475569;
+}
+.cert-chip i { color:#4f46e5; }
+
+/* İmzalar */
+.cert-signatures {
+    display:flex; justify-content:space-around; flex-wrap:wrap;
+    gap:24px; padding:28px 0 0;
+    border-top:1px dashed rgba(0,0,0,.10);
+}
+.cert-sign { text-align:center; }
+.cert-sign-line {
+    width:140px; height:2px; margin:0 auto 6px;
+    background:linear-gradient(90deg,transparent,#94a3b8,transparent);
+}
+.cert-sign-name { font-size:.83rem; font-weight:700; color:#1e293b; }
+.cert-sign-title { font-size:.72rem; color:#94a3b8; font-weight:500; }
+
+/* Möhür */
+.cert-seal {
+    position:absolute; bottom:44px; right:52px;
+    width:80px; height:80px; border-radius:50%;
+    background:linear-gradient(135deg,#4338ca,#7c3aed);
+    display:flex; align-items:center; justify-content:center;
+    font-size:2rem; color:rgba(255,255,255,.90);
+    box-shadow:0 4px 20px rgba(79,70,229,.40);
+    border:3px solid rgba(255,255,255,.90);
+    opacity:.85;
+}
+@media(max-width:576px){ .cert-seal{ display:none; } }
+
+/* ID / QR sahəsi */
+.cert-footer-bar {
+    background:linear-gradient(135deg,#4338ca,#7c3aed);
+    padding:14px 56px; display:flex;
+    align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;
+}
+.cert-id { font-size:.75rem; color:rgba(255,255,255,.70); font-weight:500; }
+.cert-id strong { color:#fff; }
+.cert-verify {
+    font-size:.75rem; color:rgba(255,255,255,.70); font-weight:500;
+    display:flex; align-items:center; gap:5px;
+}
+
+/* ── PRINT ─────────────────────────────────────── */
+@media print {
+    @page { size: A4 landscape; margin: 0; }
+    /* Qalan idarəetmə printCert() JavaScript funksiyası tərəfindən edilir */
+}
+
+/* ── DARK MODE ────────────────────────────────── */
+[data-bs-theme="dark"] .cert-controls,
+.dark-mode .cert-controls { background:#1e293b; border-color:rgba(255,255,255,.07); }
+[data-bs-theme="dark"] .cert,
+.dark-mode .cert { background:#1e293b; }
+[data-bs-theme="dark"] .cert-page,
+.dark-mode .cert-page { background:#0f172a; }
+[data-bs-theme="dark"] .cert-title,
+[data-bs-theme="dark"] .cert-course-name,
+[data-bs-theme="dark"] .cert-sign-name,
+[data-bs-theme="dark"] .cert-org-name,
+.dark-mode .cert-title,
+.dark-mode .cert-course-name,
+.dark-mode .cert-sign-name,
+.dark-mode .cert-org-name { color:#f1f5f9; }
+[data-bs-theme="dark"] .cert-desc,
+.dark-mode .cert-desc { color:#94a3b8; }
+[data-bs-theme="dark"] .cert-chip,
+.dark-mode .cert-chip { background:#0f172a; border-color:rgba(255,255,255,.08); color:#94a3b8; }
+[data-bs-theme="dark"] .cert-course-box,
+.dark-mode .cert-course-box { background:rgba(79,70,229,.12); border-color:rgba(79,70,229,.25); }
+[data-bs-theme="dark"] .cert-controls .btn-share,
+.dark-mode .cert-controls .btn-share { background:#0f172a; border-color:rgba(255,255,255,.10); color:#94a3b8; }

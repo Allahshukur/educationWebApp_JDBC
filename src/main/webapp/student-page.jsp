@@ -34,7 +34,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="css/style.css?v=4.3" rel="stylesheet">
     <link href="css/dark-mode.css?v=2.1" rel="stylesheet">
-    <link href="css/student-page.css?v=2.0" rel="stylesheet">
+    <link href="css/student-page.css?v=1.0" rel="stylesheet">
+    <link href="css/ads.css?v=4.0" rel="stylesheet">
 </head>
 <body class="overflow-hidden-init" style="background:#f8fafc;">
 
@@ -91,19 +92,18 @@
         <div class="d-flex flex-column flex-md-row align-items-center align-items-md-start gap-4">
             <div class="sp-avatar-wrap flex-shrink-0">
                 <div class="sp-avatar-ring"></div>
-                <div class="sp-avatar-ring2"></div>
                 <div class="sp-avatar"><%= initials %></div>
                 <div class="sp-avatar-edit" title="Şəkil yüklə"><i class="bi bi-camera-fill"></i></div>
             </div>
             <div class="text-center text-md-start flex-grow-1">
                 <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-md-start mb-2">
                     <span class="sp-id-badge"><i class="bi bi-hash"></i><%= student.getId() %></span>
-                    <span class="sp-hero-status"><i class="bi bi-circle-fill" style="font-size:7px;"></i>Aktiv</span>
+                    <span class="sp-hero-status"><i class="bi bi-circle-fill" style="font-size:7px;"></i><%= student.getStatus() %></span>
                 </div>
                 <div class="sp-hero-name mb-1"><%= student.getName() %> <%= student.getSurname() %></div>
                 <div class="sp-hero-sub">
-                    <i class="bi bi-mortarboard me-1"></i>Java Proqramlaşdırma
-                    &nbsp;·&nbsp;<i class="bi bi-geo-alt me-1"></i>Bakı, Azərbaycan
+                    <i class="bi bi-mortarboard me-1"></i><%= student.getSpecialty()%>
+                    &nbsp;·&nbsp;<i class="bi bi-geo-alt me-1"></i><%= student.getAddress() %>
                 </div>
                 <div class="mt-3">
                     <a href="students.jsp" class="sp-back-btn">
@@ -119,81 +119,47 @@
 <div class="sp-content">
     <div class="container pb-5">
 
-        <!-- Flip Stat kartlar -->
+        <!-- Stat kartlar -->
         <div class="row g-3 mb-4">
-            <!-- Orta Qiymət -->
             <div class="col-6 col-md-3">
-                <div class="sp-stat-flip">
-                    <div class="sp-stat-flip-inner">
-                        <div class="sp-stat-flip-front">
-                            <div class="sp-stat-icon" style="background:#ede9fe;">
-                                <i class="bi bi-star-fill" style="color:#4f46e5;font-size:1.3rem;"></i>
-                            </div>
-                            <div class="sp-stat-value">88%</div>
-                            <div class="sp-stat-label">Orta Qiymət</div>
-                        </div>
-                        <div class="sp-stat-flip-back" style="background:linear-gradient(135deg,#4f46e5,#7c3aed);">
-                            <div class="sp-stat-back-value">Bu semester: 91%<br>Keçən: 85%</div>
-                            <div class="sp-stat-back-label">📈 Yüksəliş dinamikası</div>
-                        </div>
+                <div class="sp-stat">
+                    <div class="sp-stat-icon" style="background:#ede9fe;">
+                        <i class="bi bi-star-fill" style="color:#4f46e5;font-size:1.3rem;"></i>
                     </div>
+                    <div class="sp-stat-value">88%</div>
+                    <div class="sp-stat-label">Orta Qiymət</div>
                 </div>
             </div>
-            <!-- Davamiyyət -->
             <div class="col-6 col-md-3">
-                <div class="sp-stat-flip">
-                    <div class="sp-stat-flip-inner">
-                        <div class="sp-stat-flip-front">
-                            <div class="sp-stat-icon" style="background:#d1fae5;">
-                                <i class="bi bi-check2-circle" style="color:#059669;font-size:1.3rem;"></i>
-                            </div>
-                            <div class="sp-stat-value">92%</div>
-                            <div class="sp-stat-label">Davamiyyət</div>
-                        </div>
-                        <div class="sp-stat-flip-back" style="background:linear-gradient(135deg,#059669,#34d399);">
-                            <div class="sp-stat-back-value">Dərs: 46/50<br>İş: 4 qaib</div>
-                            <div class="sp-stat-back-label">✅ Əla davamiyyət</div>
-                        </div>
+                <div class="sp-stat">
+                    <div class="sp-stat-icon" style="background:#d1fae5;">
+                        <i class="bi bi-check2-circle" style="color:#059669;font-size:1.3rem;"></i>
                     </div>
+                    <div class="sp-stat-value">92%</div>
+                    <div class="sp-stat-label">Davamiyyət</div>
                 </div>
             </div>
-            <!-- Tapşırıq -->
             <div class="col-6 col-md-3">
-                <div class="sp-stat-flip">
-                    <div class="sp-stat-flip-inner">
-                        <div class="sp-stat-flip-front">
-                            <div class="sp-stat-icon" style="background:#fef3c7;">
-                                <i class="bi bi-journal-text" style="color:#d97706;font-size:1.3rem;"></i>
-                            </div>
-                            <div class="sp-stat-value">14</div>
-                            <div class="sp-stat-label">Tapşırıq</div>
-                        </div>
-                        <div class="sp-stat-flip-back" style="background:linear-gradient(135deg,#d97706,#f59e0b);">
-                            <div class="sp-stat-back-value">Tamamlandı: 12<br>Gözləmədə: 2</div>
-                            <div class="sp-stat-back-label">📝 Bu ay</div>
-                        </div>
+                <div class="sp-stat">
+                    <div class="sp-stat-icon" style="background:#fef3c7;">
+                        <i class="bi bi-journal-text" style="color:#d97706;font-size:1.3rem;"></i>
                     </div>
+                    <div class="sp-stat-value">14</div>
+                    <div class="sp-stat-label">Tapşırıq</div>
                 </div>
             </div>
-            <!-- Sertifikat -->
             <div class="col-6 col-md-3">
-                <div class="sp-stat-flip">
-                    <div class="sp-stat-flip-inner">
-                        <div class="sp-stat-flip-front">
-                            <div class="sp-stat-icon" style="background:#dbeafe;">
-                                <i class="bi bi-trophy-fill" style="color:#2563eb;font-size:1.3rem;"></i>
-                            </div>
-                            <div class="sp-stat-value">3</div>
-                            <div class="sp-stat-label">Sertifikat</div>
-                        </div>
-                        <div class="sp-stat-flip-back" style="background:linear-gradient(135deg,#2563eb,#38bdf8);">
-                            <div class="sp-stat-back-value">Java Core ✓<br>Spring Boot ✓<br>SQL Basics ✓</div>
-                            <div class="sp-stat-back-label">🏆 Qazanılmış</div>
-                        </div>
+                <div class="sp-stat">
+                    <div class="sp-stat-icon" style="background:#dbeafe;">
+                        <i class="bi bi-trophy-fill" style="color:#2563eb;font-size:1.3rem;"></i>
                     </div>
+                    <div class="sp-stat-value">3</div>
+                    <div class="sp-stat-label">Sertifikat</div>
                 </div>
             </div>
         </div>
+
+        <jsp:include page="ads-infeed.jsp"/>
 
         <div class="row g-4">
             <!-- Sol: Şəxsi məlumatlar -->
@@ -211,23 +177,27 @@
                         </div>
                     </div>
                     <div class="sp-info-row">
-                        <div class="sp-info-icon" style="background:#d1fae5;"><i class="bi bi-calendar-heart-fill" style="color:#059669;"></i></div>
+                        <div class="sp-info-icon" style="background:#d1fae5;"><i class="bi bi bi-telephone-plus-fill" style="color:#059669;"></i></div>
+                        <div><div class="sp-info-label">Telefon</div><div class="sp-info-value"><%= student.getPhone() %></div></div>
+                    </div>
+                    <div class="sp-info-row">
+                        <div class="sp-info-icon" style="background:#d1fae5;"><i class="bi bi-calendar-heart-fill" style="color:#22c5c5;"></i></div>
                         <div><div class="sp-info-label">Yaş</div><div class="sp-info-value"><%= student.getAge() %> yaş</div></div>
                     </div>
                     <div class="sp-info-row">
                         <div class="sp-info-icon" style="background:#fef3c7;"><i class="bi bi-mortarboard-fill" style="color:#d97706;"></i></div>
-                        <div><div class="sp-info-label">İxtisas</div><div class="sp-info-value">Java Proqramlaşdırma</div></div>
+                        <div><div class="sp-info-label">İxtisas</div><div class="sp-info-value"><%= student.getSpecialty() %></div></div>
                     </div>
                     <div class="sp-info-row">
                         <div class="sp-info-icon" style="background:#fce7f3;"><i class="bi bi-geo-alt-fill" style="color:#db2777;"></i></div>
-                        <div><div class="sp-info-label">Ünvan</div><div class="sp-info-value">Bakı, Azərbaycan</div></div>
+                        <div><div class="sp-info-label">Ünvan</div><div class="sp-info-value"><%= student.getAddress() %></div></div>
                     </div>
                     <div class="sp-info-row">
                         <div class="sp-info-icon" style="background:#f0fdf4;"><i class="bi bi-shield-fill-check" style="color:#16a34a;"></i></div>
                         <div><div class="sp-info-label">Status</div>
                             <div class="sp-info-value">
                                 <span class="badge rounded-pill px-3 py-1" style="background:#d1fae5;color:#059669;font-size:0.8rem;">
-                                    <i class="bi bi-circle-fill me-1" style="font-size:6px;"></i>Aktiv
+                                    <i class="bi bi-circle-fill me-1" style="font-size:6px;"></i><%= student.getStatus() %>
                                 </span>
                             </div>
                         </div>
@@ -253,93 +223,45 @@
                         </div>
                     </div>
 
-                    <!-- İrəliləyiş — SVG Dairəvi -->
+                    <!-- İrəliləyiş -->
                     <div class="sp-info-card">
                         <div class="sp-info-card-title"><i class="bi bi-graph-up-arrow"></i>Tədris İrəliləyişi</div>
-                        <div class="sp-circle-grid">
-                            <!-- Java Əsasları -->
-                            <div class="sp-circle-item">
-                                <div class="sp-circle-wrap">
-                                    <svg class="sp-circle-svg" viewBox="0 0 96 96">
-                                        <circle class="sp-circle-bg" cx="48" cy="48" r="40"/>
-                                        <circle class="sp-circle-fill" cx="48" cy="48" r="40"
-                                                data-pct="95" stroke="#4f46e5"/>
-                                    </svg>
-                                    <div class="sp-circle-center">
-                                        <span class="sp-circle-pct">95%</span>
-                                        <span class="sp-circle-sub">Java</span>
-                                    </div>
-                                </div>
-                                <div class="sp-circle-label">Java Əsasları</div>
-                            </div>
-                            <!-- OOP -->
-                            <div class="sp-circle-item">
-                                <div class="sp-circle-wrap">
-                                    <svg class="sp-circle-svg" viewBox="0 0 96 96">
-                                        <circle class="sp-circle-bg" cx="48" cy="48" r="40"/>
-                                        <circle class="sp-circle-fill" cx="48" cy="48" r="40"
-                                                data-pct="82" stroke="#059669"/>
-                                    </svg>
-                                    <div class="sp-circle-center">
-                                        <span class="sp-circle-pct">82%</span>
-                                        <span class="sp-circle-sub">OOP</span>
-                                    </div>
-                                </div>
-                                <div class="sp-circle-label">OOP Konseptləri</div>
-                            </div>
-                            <!-- Spring -->
-                            <div class="sp-circle-item">
-                                <div class="sp-circle-wrap">
-                                    <svg class="sp-circle-svg" viewBox="0 0 96 96">
-                                        <circle class="sp-circle-bg" cx="48" cy="48" r="40"/>
-                                        <circle class="sp-circle-fill" cx="48" cy="48" r="40"
-                                                data-pct="68" stroke="#d97706"/>
-                                    </svg>
-                                    <div class="sp-circle-center">
-                                        <span class="sp-circle-pct">68%</span>
-                                        <span class="sp-circle-sub">Spring</span>
-                                    </div>
-                                </div>
-                                <div class="sp-circle-label">Spring Framework</div>
-                            </div>
-                            <!-- SQL -->
-                            <div class="sp-circle-item">
-                                <div class="sp-circle-wrap">
-                                    <svg class="sp-circle-svg" viewBox="0 0 96 96">
-                                        <circle class="sp-circle-bg" cx="48" cy="48" r="40"/>
-                                        <circle class="sp-circle-fill" cx="48" cy="48" r="40"
-                                                data-pct="75" stroke="#2563eb"/>
-                                    </svg>
-                                    <div class="sp-circle-center">
-                                        <span class="sp-circle-pct">75%</span>
-                                        <span class="sp-circle-sub">SQL</span>
-                                    </div>
-                                </div>
-                                <div class="sp-circle-label">Verilənlər Bazası</div>
-                            </div>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between sp-progress-label mb-1"><span>Java Əsasları</span><span style="color:#4f46e5;font-weight:700;">95%</span></div>
+                            <div class="sp-progress-bar"><div class="sp-progress-fill" style="width:95%;"></div></div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between sp-progress-label mb-1"><span>OOP Konseptləri</span><span style="color:#059669;font-weight:700;">82%</span></div>
+                            <div class="sp-progress-bar"><div class="sp-progress-fill" style="width:82%;background:linear-gradient(90deg,#059669,#34d399);"></div></div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between sp-progress-label mb-1"><span>Spring Framework</span><span style="color:#d97706;font-weight:700;">68%</span></div>
+                            <div class="sp-progress-bar"><div class="sp-progress-fill" style="width:68%;background:linear-gradient(90deg,#d97706,#fbbf24);"></div></div>
+                        </div>
+                        <div>
+                            <div class="d-flex justify-content-between sp-progress-label mb-1"><span>Verilənlər Bazası</span><span style="color:#2563eb;font-weight:700;">75%</span></div>
+                            <div class="sp-progress-bar"><div class="sp-progress-fill" style="width:75%;background:linear-gradient(90deg,#2563eb,#60a5fa);"></div></div>
                         </div>
                     </div>
 
                     <!-- Son aktivlik -->
                     <div class="sp-info-card">
                         <div class="sp-info-card-title"><i class="bi bi-clock-history"></i>Son Aktivliklər</div>
-                        <div class="sp-timeline-wrap">
-                            <div class="sp-timeline-item">
-                                <div class="sp-timeline-dot" style="background:#ede9fe;"><i class="bi bi-patch-check-fill" style="color:#4f46e5;"></i></div>
-                                <div><div class="sp-timeline-title">Java OOP Tapşırığı Təhvil Verildi</div><div class="sp-timeline-time"><i class="bi bi-clock me-1"></i>2 saat əvvəl</div></div>
-                            </div>
-                            <div class="sp-timeline-item">
-                                <div class="sp-timeline-dot" style="background:#d1fae5;"><i class="bi bi-trophy-fill" style="color:#059669;"></i></div>
-                                <div><div class="sp-timeline-title">Spring Boot Sertifikatı Qazanıldı</div><div class="sp-timeline-time"><i class="bi bi-clock me-1"></i>1 gün əvvəl</div></div>
-                            </div>
-                            <div class="sp-timeline-item">
-                                <div class="sp-timeline-dot" style="background:#dbeafe;"><i class="bi bi-book-fill" style="color:#2563eb;"></i></div>
-                                <div><div class="sp-timeline-title">Verilənlər Bazası Dərsinə Qatıldı</div><div class="sp-timeline-time"><i class="bi bi-clock me-1"></i>3 gün əvvəl</div></div>
-                            </div>
-                            <div class="sp-timeline-item">
-                                <div class="sp-timeline-dot" style="background:#fef3c7;"><i class="bi bi-star-fill" style="color:#d97706;"></i></div>
-                                <div><div class="sp-timeline-title">Sınaqda 92 bal topladı</div><div class="sp-timeline-time"><i class="bi bi-clock me-1"></i>5 gün əvvəl</div></div>
-                            </div>
+                        <div class="sp-timeline-item">
+                            <div class="sp-timeline-dot" style="background:#ede9fe;"><i class="bi bi-patch-check-fill" style="color:#4f46e5;"></i></div>
+                            <div><div class="sp-timeline-title">Java OOP Tapşırığı Təhvil Verildi</div><div class="sp-timeline-time"><i class="bi bi-clock me-1"></i>2 saat əvvəl</div></div>
+                        </div>
+                        <div class="sp-timeline-item">
+                            <div class="sp-timeline-dot" style="background:#d1fae5;"><i class="bi bi-trophy-fill" style="color:#059669;"></i></div>
+                            <div><div class="sp-timeline-title">Spring Boot Sertifikatı Qazanıldı</div><div class="sp-timeline-time"><i class="bi bi-clock me-1"></i>1 gün əvvəl</div></div>
+                        </div>
+                        <div class="sp-timeline-item">
+                            <div class="sp-timeline-dot" style="background:#dbeafe;"><i class="bi bi-book-fill" style="color:#2563eb;"></i></div>
+                            <div><div class="sp-timeline-title">Verilənlər Bazası Dərsinə Qatıldı</div><div class="sp-timeline-time"><i class="bi bi-clock me-1"></i>3 gün əvvəl</div></div>
+                        </div>
+                        <div class="sp-timeline-item">
+                            <div class="sp-timeline-dot" style="background:#fef3c7;"><i class="bi bi-star-fill" style="color:#d97706;"></i></div>
+                            <div><div class="sp-timeline-title">Sınaqda 92 bal topladı</div><div class="sp-timeline-time"><i class="bi bi-clock me-1"></i>5 gün əvvəl</div></div>
                         </div>
                     </div>
 
@@ -354,6 +276,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/script.js?v=4.3"></script>
 <script src="js/student-page.js?v=2.0"></script>
-<canvas id="sp-confetti"></canvas>
+<script src="js/ads.js?v=4.0"></script>
 </body>
 </html>

@@ -7,6 +7,10 @@ public class Student {
     private String surname;
     private int age;
     private String email;
+    private String phone;
+    private String specialty;
+    private String address;
+    private String status;
     private Boolean deleted;
     private String teacher;
 
@@ -55,6 +59,42 @@ public class Student {
 
     public Student setEmail(String email) {
         this.email = email;
+        return this;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public Student setPhone(String phone) {
+        this.phone = phone;
+        return this;
+    }
+
+    public String getSpecialty() {
+        return specialty;
+    }
+
+    public Student setSpecialty(String specialty) {
+        this.specialty = specialty;
+        return this;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public Student setAddress(String address) {
+        this.address = address;
+        return this;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public Student setStatus(String status) {
+        this.status = status;
         return this;
     }
 

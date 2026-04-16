@@ -1,0 +1,119 @@
+/* ══════════════════════════════════════
+   ERROR.CSS  —  404 Xəta Səhifəsi
+══════════════════════════════════════ */
+.err-page {
+    font-family:'Outfit',sans-serif;
+    min-height:100vh;
+    display:flex; flex-direction:column;
+    background:linear-gradient(145deg,#0f0c29,#302b63,#24243e);
+    position:relative; overflow:hidden;
+}
+
+/* Arxa fon dairələri */
+.err-bg-orb {
+    position:absolute; border-radius:50%;
+    filter:blur(80px); pointer-events:none; animation:orbFloat 8s ease-in-out infinite;
+}
+.err-bg-orb-1 { width:500px;height:500px;top:-160px;left:-120px;background:rgba(79,70,229,.35); }
+.err-bg-orb-2 { width:400px;height:400px;bottom:-100px;right:-80px;background:rgba(124,58,237,.30);animation-delay:3s; }
+.err-bg-orb-3 { width:260px;height:260px;top:40%;left:55%;background:rgba(16,185,129,.15);animation-delay:5s; }
+
+@keyframes orbFloat {
+    0%,100%{transform:translateY(0) scale(1);}
+    50%{transform:translateY(-30px) scale(1.05);}
+}
+
+/* Məzmun */
+.err-content {
+    flex:1; display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    text-align:center; padding:40px 20px; position:relative; z-index:2;
+}
+
+/* 404 nömrəsi */
+.err-num {
+    font-size:clamp(7rem,22vw,14rem);
+    font-weight:900; line-height:1;
+    background:linear-gradient(135deg,#818cf8,#c4b5fd,#67e8f9);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+    filter:drop-shadow(0 0 40px rgba(129,140,248,.4));
+    animation:numPulse 3s ease-in-out infinite;
+    user-select:none;
+}
+@keyframes numPulse{
+    0%,100%{filter:drop-shadow(0 0 30px rgba(129,140,248,.4));}
+    50%{filter:drop-shadow(0 0 60px rgba(129,140,248,.7));}
+}
+
+/* Astronaut ikonası */
+.err-icon {
+    font-size:4rem; margin:-20px 0 10px;
+    animation:astronautFloat 4s ease-in-out infinite;
+    display:block;
+}
+@keyframes astronautFloat{
+    0%,100%{transform:translateY(0) rotate(-5deg);}
+    50%{transform:translateY(-16px) rotate(5deg);}
+}
+
+.err-title {
+    font-size:clamp(1.4rem,4vw,2rem); font-weight:800;
+    color:#fff; margin-bottom:10px;
+}
+.err-sub {
+    font-size:.95rem; color:rgba(255,255,255,.60);
+    max-width:380px; line-height:1.65; margin-bottom:32px;
+}
+
+/* Düymələr */
+.err-btn-home {
+    display:inline-flex; align-items:center; gap:8px;
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+    color:#fff; font-size:.94rem; font-weight:700;
+    padding:13px 28px; border-radius:14px; border:none;
+    text-decoration:none; cursor:pointer;
+    box-shadow:0 8px 24px rgba(79,70,229,.40);
+    transition:transform .2s,box-shadow .2s;
+}
+.err-btn-home:hover { transform:translateY(-3px); box-shadow:0 14px 32px rgba(79,70,229,.50); color:#fff; }
+
+.err-btn-back {
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.20);
+    color:rgba(255,255,255,.80); font-size:.94rem; font-weight:700;
+    padding:13px 28px; border-radius:14px;
+    text-decoration:none; cursor:pointer; backdrop-filter:blur(6px);
+    transition:all .2s;
+}
+.err-btn-back:hover { background:rgba(255,255,255,.18); color:#fff; transform:translateY(-2px); }
+
+/* Sürüşən ulduzlar */
+.err-stars { position:absolute; inset:0; pointer-events:none; }
+.err-star {
+    position:absolute; width:3px; height:3px;
+    background:#fff; border-radius:50%;
+    animation:starTwinkle var(--dur,3s) ease-in-out infinite;
+    opacity:0;
+}
+@keyframes starTwinkle{
+    0%,100%{opacity:0;transform:scale(.5);}
+    50%{opacity:.8;transform:scale(1.2);}
+}
+
+/* Xətt */
+.err-divider {
+    width:60px; height:3px; border-radius:2px;
+    background:linear-gradient(90deg,#4f46e5,#7c3aed);
+    margin:0 auto 20px;
+}
+
+/* Faydalı keçidlər */
+.err-links { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:16px; }
+.err-link {
+    display:inline-flex; align-items:center; gap:5px;
+    font-size:.80rem; font-weight:600; color:rgba(255,255,255,.55);
+    text-decoration:none; transition:color .2s;
+}
+.err-link:hover { color:#a5b4fc; }
+.err-link::before { content:'→'; opacity:.6; }

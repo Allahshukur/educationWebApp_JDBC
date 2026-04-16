@@ -1,0 +1,113 @@
+/* ═══════════════════════════════════════════════
+   ANNOUNCEMENTS.CSS  —  Elanlar Səhifəsi
+   Dark mode + Mobile responsive
+═══════════════════════════════════════════════ */
+
+/* ── ANNOUNCEMENT CARD ──────────────────────── */
+.ann-card {
+    border-left: 4px solid;
+    border-radius: 16px;
+    padding: 20px 24px;
+    background: #fff;
+    margin-bottom: 16px;
+    transition: all 0.2s;
+    position: relative;
+    border: 1px solid rgba(0,0,0,.06);
+    box-shadow: 0 2px 10px rgba(0,0,0,.05);
+}
+.ann-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(0,0,0,.10);
+}
+.ann-card.unread::before {
+    content: '';
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79,70,229,.2);
+}
+.ann-card.cat-exam    { border-left-color: #ef4444; }
+.ann-card.cat-assign  { border-left-color: #f59e0b; }
+.ann-card.cat-general { border-left-color: #4f46e5; }
+.ann-card.cat-event   { border-left-color: #10b981; }
+.ann-card.cat-update  { border-left-color: #8b5cf6; }
+
+/* ── AVATAR ─────────────────────────────────── */
+.ann-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    color: #fff;
+    flex-shrink: 0;
+    font-weight: 700;
+}
+
+/* ── BODY CLAMP ─────────────────────────────── */
+.ann-body {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 0.88rem;
+}
+
+/* ── CATEGORY BADGES ────────────────────────── */
+.badge-exam    { background: rgba(239,68,68,.12);   color: #ef4444; }
+.badge-assign  { background: rgba(245,158,11,.12);  color: #f59e0b; }
+.badge-general { background: rgba(79,70,229,.12);   color: #4f46e5; }
+.badge-event   { background: rgba(16,185,129,.12);  color: #10b981; }
+.badge-update  { background: rgba(139,92,246,.12);  color: #8b5cf6; }
+
+/* ── RESPONSIVE ─────────────────────────────── */
+@media (max-width: 768px) {
+    .ann-card { padding: 14px 16px; }
+    .ann-avatar { width: 36px; height: 36px; font-size: 0.95rem; }
+}
+@media (max-width: 576px) {
+    .ann-card:hover { transform: none; }
+}
+
+/* ── DARK MODE ──────────────────────────────── */
+.dark-mode .ann-card {
+    background: #1e293b;
+    border-color: rgba(255,255,255,.07);
+}
+.dark-mode .ann-card:hover {
+    box-shadow: 0 8px 28px rgba(0,0,0,.4);
+}
+.dark-mode .ann-card.unread::before {
+    background: #818cf8;
+    box-shadow: 0 0 0 3px rgba(129,140,248,.25);
+}
+.dark-mode .badge-exam    { background: rgba(239,68,68,.15);   color: #fca5a5; }
+.dark-mode .badge-assign  { background: rgba(245,158,11,.15);  color: #fcd34d; }
+.dark-mode .badge-general { background: rgba(129,140,248,.15); color: #a5b4fc; }
+.dark-mode .badge-event   { background: rgba(16,185,129,.15);  color: #6ee7b7; }
+.dark-mode .badge-update  { background: rgba(139,92,246,.15);  color: #c4b5fd; }
+.dark-mode .form-select {
+    background-color: #0f172a;
+    border-color: rgba(255,255,255,.1);
+    color: #cbd5e1;
+}
+.dark-mode .pagination .page-link {
+    background: #1e293b;
+    border-color: rgba(255,255,255,.1);
+    color: #94a3b8;
+}
+.dark-mode .pagination .page-item.active .page-link {
+    background: #4f46e5;
+    border-color: #4f46e5;
+    color: #fff;
+}
+.dark-mode .pagination .page-item.disabled .page-link {
+    background: #0f172a;
+    color: #475569;
+}

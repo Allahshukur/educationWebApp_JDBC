@@ -1,6 +1,6 @@
-<%@ page import="com.sukur.educationwebapp.teacher.service.TeacherService" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.sukur.educationwebapp.teacher.entity.Teacher" %>
+<%@ page import="com.sukur.educationwebapp.teacher.service.TeacherService" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%!
     private String escJs(String value) {
@@ -16,6 +16,48 @@
 %>
 <%
     TeacherService teacherService = new TeacherService();
+    String action = request.getParameter("action");
+    String msg = "", msgType = "";
+
+    if ("POST".equals(request.getMethod())) {
+        if ("delete".equals(action)) {
+            try {
+                int id = Integer.parseInt(request.getParameter("id"));
+                teacherService.delete(id);
+                msg = "Müəllim uğurla silindi.";
+                msgType = "success";
+                response.sendRedirect("teachers.jsp");
+            } catch (Exception e) {
+                msg = "Xəta: " + e.getMessage();
+                msgType = "danger";
+            }
+        } else if ("update".equals(action)) {
+            try {
+                int id = Integer.parseInt(request.getParameter("id"));
+                teacherService.update(id, request.getParameter("name"), request.getParameter("surname"),
+                        request.getParameter("email"), Integer.parseInt(request.getParameter("age")));
+                msg = "Müəllim məlumatları yeniləndi.";
+                msgType = "success";
+                response.sendRedirect("teachers.jsp");
+            } catch (Exception e) {
+                msg = "Xəta: " + e.getMessage();
+                msgType = "danger";
+            }
+        } else if ("create".equals(action)) {
+            try {
+                teacherService.create(request.getParameter("name"), request.getParameter("surname"),
+                        request.getParameter("email"), Integer.parseInt(request.getParameter("age")));
+                msg = "Yeni müəllim əlavə edildi.";
+                msgType = "success";
+                response.sendRedirect("teachers.jsp");
+            } catch (Exception e) {
+                msg = "Xəta: " + e.getMessage();
+                msgType = "danger";
+            }
+        }
+    }
+%>
+<%
     String searchWord = request.getParameter("search");
     List<Teacher> allTeachers = teacherService.findAll();
     List<Teacher> teachers;
@@ -40,6 +82,7 @@
     <link href="css/style.css?v=3.9" rel="stylesheet">
     <link href="css/dark-mode.css?v=1.1" rel="stylesheet">
     <style>body { font-family: 'Outfit', sans-serif; }</style>
+    <link href="css/ads.css?v=4.0" rel="stylesheet">
 </head>
 <body class="overflow-hidden-init">
 
@@ -49,7 +92,7 @@
         <div class="loader-circle"></div>
         <div class="loader-circle"></div>
         <div class="loader-circle"></div>
-        <div class="loader-subtext">Müəllim paneli yüklənir...</div>
+        <div class="loader-subtext">Müəllim səyfəsi yüklənir...</div>
     </div>
 </div>
 
@@ -58,6 +101,7 @@
     request.setAttribute("isHome", false);
 %>
 <jsp:include page="header.jsp"/>
+<jsp:include page="ads.jsp"/>
 
 <section class="teacher-galaxy-section min-vh-100">
     <div class="container py-4">
@@ -68,7 +112,7 @@
                 <div class="tg-stat-card tg-stat-blue">
                     <div class="tg-stat-icon"><i class="bi bi-mortarboard-fill"></i></div>
                     <div>
-                        <div class="tg-stat-val"><%= totalTeachers %></div>
+                        <div class="tg-stat-val"><%= totalAllTeachers %></div>
                         <div class="tg-stat-lbl">Cəmi Müəllim</div>
                     </div>
                 </div>
@@ -77,7 +121,7 @@
                 <div class="tg-stat-card tg-stat-green">
                     <div class="tg-stat-icon"><i class="bi bi-book-half"></i></div>
                     <div>
-                        <div class="tg-stat-val"><%= totalTeachers * 3 %></div>
+                        <div class="tg-stat-val"><%= totalAllTeachers * 3 %></div>
                         <div class="tg-stat-lbl">Aktiv Kurslar</div>
                     </div>
                 </div>
@@ -102,6 +146,17 @@
             </div>
         </div>
 
+        <jsp:include page="ads-infeed.jsp"/>
+
+        <!-- Alert -->
+        <% if (!msg.isEmpty()) { %>
+        <div class="alert alert-<%= msgType %> alert-dismissible fade show rounded-3 d-flex align-items-center gap-2 mb-3">
+            <i class="bi bi-<%= "success".equals(msgType) ? "check-circle-fill" : "exclamation-circle-fill" %>"></i>
+            <span><%= msg %></span>
+            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert"></button>
+        </div>
+        <% } %>
+
         <!-- ── 3 Sütunlu Layout ── -->
         <div class="row g-3">
 
@@ -113,8 +168,8 @@
                     <div class="tg-card-title"><i class="bi bi-person-badge me-2"></i>Müəllim Profili</div>
                     <div class="tg-profile-box">
                         <img src="foto/teacher.jpg" alt="Profil" class="tg-profile-img">
-                        <div class="tg-profile-name">Elvin Məmmədov</div>
-                        <div class="tg-profile-role">Kompüter Elmləri</div>
+                        <div class="tg-profile-name">Allahşükür Ağazadə</div>
+                        <div class="tg-profile-role">Senior Java Müəllimi</div>
                         <div class="tg-profile-stats">
                             <div class="tg-pstat">
                                 <span class="tg-pstat-val">12</span>
@@ -131,13 +186,13 @@
                                 <span class="tg-pstat-lbl">Tələbə</span>
                             </div>
                         </div>
-                        <div class="tg-profile-email"><i class="bi bi-envelope me-1"></i>e.memmedov@example.com</div>
+                        <div class="tg-profile-email"><i class="bi bi-envelope me-1"></i>agazade.424@gmail.com</div>
                     </div>
                 </div>
 
                 <!-- Bacarım Profili -->
                 <div class="tg-card mb-3" data-aos="fade-right" data-aos-delay="80">
-                    <div class="tg-card-title"><i class="bi bi-bar-chart-fill me-2"></i>Bacarım Profili</div>
+                    <div class="tg-card-title"><i class="bi bi-bar-chart-fill me-2"></i>Bacarıq Profili</div>
                     <div>
                         <div class="tg-skill-item">
                             <div class="d-flex justify-content-between mb-1">
@@ -170,7 +225,7 @@
                         <div class="tg-top-item">
                             <div class="tg-top-avatar tg-av-blue">EM</div>
                             <div class="tg-top-info">
-                                <div class="tg-top-name">E. Məmmədov</div>
+                                <div class="tg-top-name">Əfqan Əzimzade</div>
                                 <div class="tg-top-sub">Proqramlaşdırma</div>
                             </div>
                             <div class="tg-top-rating"><i class="bi bi-star-fill"></i> 4.9</div>
@@ -178,7 +233,7 @@
                         <div class="tg-top-item">
                             <div class="tg-top-avatar tg-av-green">SR</div>
                             <div class="tg-top-info">
-                                <div class="tg-top-name">S. Rəhimova</div>
+                                <div class="tg-top-name">Aygün Ağazadə</div>
                                 <div class="tg-top-sub">Tarix</div>
                             </div>
                             <div class="tg-top-rating"><i class="bi bi-star-fill"></i> 4.8</div>
@@ -186,7 +241,7 @@
                         <div class="tg-top-item">
                             <div class="tg-top-avatar tg-av-purple">SN</div>
                             <div class="tg-top-info">
-                                <div class="tg-top-name">S. Nəsirov</div>
+                                <div class="tg-top-name">Ayan Əzimzadə</div>
                                 <div class="tg-top-sub">Süni İntellekt</div>
                             </div>
                             <div class="tg-top-rating"><i class="bi bi-star-fill"></i> 4.7</div>
@@ -210,7 +265,7 @@
                         <h5 class="fw-bold mb-0 text-dark d-flex align-items-center gap-2 flex-wrap">
                             <i class="bi bi-table text-info"></i> Müəllim Siyahısı
                             <span class="badge bg-info-subtle text-info ms-1 rounded-pill" style="font-size:0.75rem;">
-                                <%= totalTeachers %> nəfər
+                                <%= totalAllTeachers %> nəfər
                             </span>
                         </h5>
                     </div>
@@ -282,7 +337,7 @@
                             <li><label class="dropdown-item edu-col-lbl-t"><input type="checkbox" class="form-check-input m-0 edu-col-chk-t" data-colidx="1" data-export-index="1" data-label="Müəllim" checked> Müəllim</label></li>
                             <li><label class="dropdown-item edu-col-lbl-t"><input type="checkbox" class="form-check-input m-0 edu-col-chk-t" data-export-index="2" data-label="Email" checked> Email</label></li>
                             <li><label class="dropdown-item edu-col-lbl-t"><input type="checkbox" class="form-check-input m-0 edu-col-chk-t" data-colidx="2" data-export-index="3" data-label="Yaş" checked> Yaş</label></li>
-                            <li><label class="dropdown-item edu-col-lbl-t"><input type="checkbox" class="form-check-input m-0 edu-col-chk-t" data-colidx="3" data-export-index="4" data-label="Sahə" checked> Sahə</label></li>
+                            <li><label class="dropdown-item edu-col-lbl-t"><input type="checkbox" class="form-check-input m-0 edu-col-chk-t" data-colidx="3" data-export-index="4" data-label="Vəzifə" checked> Vəzifə</label></li>
                             <li><label class="dropdown-item edu-col-lbl-t"><input type="checkbox" class="form-check-input m-0 edu-col-chk-t" data-colidx="4" data-export-index="5" data-label="Status" checked> Status</label></li>
                         </ul>
                     </div>
@@ -322,7 +377,7 @@
                         <th class="ps-4 col-id">ID</th>
                         <th class="col-teacher">Müəllim</th>
                         <th class="text-center col-age">Yaş</th>
-                        <th class="text-center col-field">Sahə</th>
+                        <th class="text-center col-field">Vəzifə</th>
                         <th class="text-center col-status">Status</th>
                         <th class="text-center col-actions">Əməliyyat</th>
                     </tr>
@@ -348,8 +403,6 @@
                     <%
                         } else {
                             for (Teacher teacher : teachers) {
-                                String initials = teacher.getName().substring(0, 1).toUpperCase()
-                                        + teacher.getSurname().substring(0, 1).toUpperCase();
                     %>
                     <tr class="stagger-item row-clickable" data-tid="<%= teacher.getId() %>" data-export-email="<%= teacher.getEmail() %>">
                         <td class="ps-4">
@@ -371,12 +424,12 @@
                         </td>
                         <td class="text-center">
                             <span class="badge rounded-pill px-3 py-2 subject-badge-info">
-                                <i class="bi bi-cpu me-1"></i>Kompüter Elmləri
+                                <i class="bi bi-cpu me-1"></i><%= teacher.getPosition() %>
                             </span>
                         </td>
                         <td class="text-center">
                             <span class="badge badge-soft-success rounded-pill px-3 py-2">
-                                <i class="bi bi-circle-fill me-1" style="font-size:6px;"></i>Aktiv
+                                <i class="bi bi-circle-fill me-1" style="font-size:6px;"></i><%= teacher.getStatus() %>
                             </span>
                         </td>
                         <td class="text-center">
@@ -548,31 +601,31 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body px-4 pb-4">
-                <form action="teacher" method="POST">
+                <form action="teachers.jsp" method="POST">
                     <input type="hidden" name="action" value="create">
                     <div class="mb-3">
-                        <label class="form-label small fw-semibold text-muted">Ad</label>
+                        <label class="form-label small fw-semibold text-muted">Ad:</label>
                         <input type="text" name="name" class="form-control rounded-3 px-3"
-                               placeholder="Məs: Murad" required>
+                               placeholder="Məs: Sukur" required>
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label small fw-semibold text-muted">Soyad</label>
+                        <label class="form-label small fw-semibold text-muted">Soyad:</label>
                         <input type="text" name="surname" class="form-control rounded-3 px-3"
-                               placeholder="Məs: Qasımov" required>
+                               placeholder="Məs: Aghazade" required>
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="row g-3 mb-3">
                         <div class="col-6">
-                            <label class="form-label small fw-semibold text-muted">Yaş</label>
+                            <label class="form-label small fw-semibold text-muted">Yaş:</label>
                             <input type="number" name="age" class="form-control rounded-3 px-3"
                                    placeholder="Məs: 35" min="20" max="80" required>
                             <div class="invalid-feedback"></div>
                         </div>
                         <div class="col-6">
-                            <label class="form-label small fw-semibold text-muted">Email</label>
+                            <label class="form-label small fw-semibold text-muted">Email:</label>
                             <input type="email" name="email" class="form-control rounded-3 px-3"
-                                   placeholder="murad@email.com" required>
+                                   placeholder="sukur@email.com" required>
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
@@ -599,7 +652,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body px-4 pb-4">
-                <form action="teacher" method="POST">
+                <form action="teachers.jsp" method="POST">
                     <input type="hidden" name="action" value="update">
                     <input type="hidden" name="id" id="edit-teacher-id-hidden">
                     <div class="mb-3">
@@ -608,26 +661,26 @@
                                class="form-control rounded-3 px-3 bg-light text-muted" disabled>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label small fw-semibold text-muted">Ad</label>
+                        <label class="form-label small fw-semibold text-muted">Ad:</label>
                         <input type="text" name="name" id="edit-teacher-name"
                                class="form-control rounded-3 px-3" required>
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label small fw-semibold text-muted">Soyad</label>
+                        <label class="form-label small fw-semibold text-muted">Soyad:</label>
                         <input type="text" name="surname" id="edit-teacher-surname"
                                class="form-control rounded-3 px-3" required>
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="row g-3 mb-3">
                         <div class="col-6">
-                            <label class="form-label small fw-semibold text-muted">Yaş</label>
+                            <label class="form-label small fw-semibold text-muted">Yaş:</label>
                             <input type="number" name="age" id="edit-teacher-age"
                                    class="form-control rounded-3 px-3" min="20" max="80" required>
                             <div class="invalid-feedback"></div>
                         </div>
                         <div class="col-6">
-                            <label class="form-label small fw-semibold text-muted">Email</label>
+                            <label class="form-label small fw-semibold text-muted">Email:</label>
                             <input type="email" name="email" id="edit-teacher-email"
                                    class="form-control rounded-3 px-3" required>
                             <div class="invalid-feedback"></div>
@@ -655,7 +708,7 @@
                     <span class="fw-semibold text-dark" id="delete-teacher-name"></span>
                     adlı müəllimi silmək istədiyinizə əminsiniz?
                 </p>
-                <form action="teacher" method="POST">
+                <form action="teachers.jsp" method="POST">
                     <input type="hidden" name="action" value="delete">
                     <input type="hidden" name="id" id="delete-teacher-id">
                     <div class="d-flex gap-2">
@@ -813,7 +866,7 @@ function teacherFilter(btn, type) {
 
 function getTeacherExportData() {
     return {
-        headers: ['ID', 'Müəllim', 'Email', 'Yaş', 'Sahə', 'Status'],
+        headers: ['ID', 'Müəllim', 'Email', 'Yaş', 'Vəzifə', 'Status'],
         dataRows: [
             <% for (int i = 0; i < allTeachers.size(); i++) {
                 Teacher exportTeacher = allTeachers.get(i);
@@ -822,8 +875,8 @@ function getTeacherExportData() {
                 "<%= escJs(exportTeacher.getName() + " " + exportTeacher.getSurname()) %>",
                 "<%= escJs(exportTeacher.getEmail()) %>",
                 "<%= exportTeacher.getAge() %>",
-                "Kompüter Elmləri",
-                "Aktiv"
+                "<%= exportTeacher.getPosition() %>",
+                "<%= exportTeacher.getStatus() %>"
             ]<%= i < allTeachers.size() - 1 ? "," : "" %>
             <% } %>
         ]
@@ -840,7 +893,7 @@ document.querySelectorAll('.edu-col-chk-t').forEach(chk => {
     chk.addEventListener('change', function () {
         const idx = parseInt(this.dataset.colidx);
         const lbl = this.dataset.label || '';
-        /* Email / Yaş / Sahə: cədvəldə heç vaxt dəyişməsin,
+        /* Email / Yaş / Vəzifə: cədvəldə heç vaxt dəyişməsin,
            yalnız export üçün checked/unchecked vəziyyəti saxlanır */
         if (idx === 2 || idx === 3 || lbl === 'Email') return;
         document.querySelectorAll('#teacherTable tr').forEach(row => {
@@ -909,8 +962,8 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-/* ─── Yaş, Sahə, Email default gizlət ── */
-/* ─── Yaş / Sahə / Email: cədvəldə gizlət, checkbox-lar aktiv+checked qalır ─── */
+/* ─── Yaş, Vəzifə, Email default gizlət ── */
+/* ─── Yaş / Vəzifə / Email: cədvəldə gizlət, checkbox-lar aktiv+checked qalır ─── */
 (function initHiddenCols() {
     tchShowHiddenCols(false);
 })();
@@ -939,31 +992,20 @@ document.addEventListener('keydown', function(e) {
     });
 })();
 
-/* ─── Init popovers ─── */
-document.querySelectorAll('[data-bs-toggle="popover"]').forEach(el => new bootstrap.Popover(el));
-document.addEventListener('table:pageChanged', function(event) {
-    if (event.detail && event.detail.tableId === '#teacherTable') {
-        updateTeacherVisibleCount();
-    }
-});
-updateTeacherVisibleCount();
-</script>
-
-<script>
-/* ── Müəllim sətrinə klik → teacher-page.jsp ── */
-(function initTeacherRowClick() {
-    document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('#teacherTable tbody tr.row-clickable').forEach(function (row) {
-            row.style.cursor = 'pointer';
-            row.addEventListener('click', function (e) {
-                if (e.target.closest('.btn-action, .btn-edit, .btn-delete, .btn-view, button, input, a, .dropdown')) return;
-                var tid = row.dataset.tid;
-                if (tid) window.location.href = 'teacher-page.jsp?id=' + tid;
-            });
-        });
+/* ─── Sıra klikinə görə teacher-page.jsp-ə yönləndir ─── */
+document.querySelectorAll('#teacherTable tbody tr.row-clickable').forEach(function(row) {
+    row.style.cursor = 'pointer';
+    row.addEventListener('click', function(e) {
+        /* Düymə, link, input, checkbox kliki — naviqasiya etmə */
+        if (e.target.closest('button, a, input, label, .dropdown, [data-bs-toggle]')) return;
+        var tid = row.getAttribute('data-tid');
+        if (tid) window.location.href = 'teacher-page.jsp?id=' + tid;
     });
-})();
-</script>
+});
 
+/* ─── Init popovers ─── */
+document.querySelectorAll('[data-bs-toggle="popover"]').forEach(function(el) { new bootstrap.Popover(el); });
+</script>
+<script src="js/ads.js?v=4.0"></script>
 </body>
 </html>

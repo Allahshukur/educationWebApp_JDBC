@@ -1,0 +1,68 @@
+/* ═══════════════════════════════════════════════
+   ATTENDANCE.CSS  —  Davamiyyət Səhifəsi
+   Dark mode + Mobile responsive
+═══════════════════════════════════════════════ */
+
+/* ── ATTENDANCE DAY CELL ────────────────────── */
+.att-day {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    font-weight: 700;
+    margin: 0 auto;
+}
+.att-present { background: rgba(16,185,129,.15);  color: #059669; }
+.att-absent  { background: rgba(239,68,68,.12);   color: #dc2626; }
+.att-late    { background: rgba(245,158,11,.12);  color: #b45309; }
+.att-future  { background: #f1f5f9; color: #cbd5e1; }
+
+/* ── LEGEND DOT ─────────────────────────────── */
+.att-legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 4px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* ── RESPONSIVE ─────────────────────────────── */
+@media (max-width: 768px) {
+    .att-day { width: 30px; height: 30px; font-size: 0.72rem; border-radius: 7px; }
+    .table th, .table td { font-size: 0.8rem; padding: 0.5rem 0.3rem; }
+}
+@media (max-width: 576px) {
+    .att-day { width: 26px; height: 26px; font-size: 0.65rem; }
+    .table-responsive { font-size: 0.75rem; }
+}
+
+/* ── DARK MODE ──────────────────────────────── */
+.dark-mode .att-future {
+    background: rgba(255,255,255,.05);
+    color: rgba(255,255,255,.2);
+}
+.dark-mode .att-present { background: rgba(16,185,129,.18);  color: #6ee7b7; }
+.dark-mode .att-absent  { background: rgba(239,68,68,.15);   color: #fca5a5; }
+.dark-mode .att-late    { background: rgba(245,158,11,.15);  color: #fcd34d; }
+.dark-mode .table {
+    color: #cbd5e1;
+}
+.dark-mode .table-light th {
+    background: #0f172a !important;
+    color: #94a3b8;
+    border-color: rgba(255,255,255,.07);
+}
+.dark-mode .table > :not(caption) > * > * {
+    background-color: transparent;
+    border-bottom-color: rgba(255,255,255,.06);
+    color: #cbd5e1;
+}
+.dark-mode .border-bottom {
+    border-color: rgba(255,255,255,.07) !important;
+}
+.dark-mode .border-top {
+    border-color: rgba(255,255,255,.07) !important;
+}

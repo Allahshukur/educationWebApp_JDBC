@@ -1,0 +1,64 @@
+/* ═══════════════════════════════════════════════
+   GRADES.CSS  —  Qiymət Kitabçası Səhifəsi
+   Dark mode + Mobile responsive
+═══════════════════════════════════════════════ */
+
+/* ── GRADE LETTERS ──────────────────────────── */
+.grade-letter {
+    font-size: 2rem;
+    font-weight: 900;
+    line-height: 1;
+}
+.grade-A { color: #059669; }
+.grade-B { color: #0891b2; }
+.grade-C { color: #d97706; }
+.grade-D { color: #ea580c; }
+.grade-F { color: #dc2626; }
+
+/* ── TABLE ROW HOVER ────────────────────────── */
+.grade-row { transition: background 0.2s; }
+.grade-row:hover { background: rgba(79, 70, 229, 0.04); }
+
+/* ── RESPONSIVE ─────────────────────────────── */
+@media (max-width: 768px) {
+    .grade-letter { font-size: 1.4rem; }
+    .table th, .table td { font-size: 0.82rem; padding: 0.5rem 0.4rem; }
+}
+@media (max-width: 576px) {
+    .table-responsive { font-size: 0.78rem; }
+}
+
+/* ── DARK MODE ──────────────────────────────── */
+.dark-mode .grade-row:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+.dark-mode .table {
+    color: #cbd5e1;
+}
+.dark-mode .table-light th,
+.dark-mode .table-light > tr > th {
+    background: #0f172a !important;
+    color: #94a3b8;
+    border-color: rgba(255,255,255,.07);
+}
+.dark-mode .table > :not(caption) > * > * {
+    background-color: transparent;
+    border-bottom-color: rgba(255,255,255,.06);
+    color: #cbd5e1;
+}
+.dark-mode .table-striped > tbody > tr:nth-of-type(odd) > * {
+    background-color: rgba(255,255,255,.03);
+    color: #cbd5e1;
+}
+.dark-mode .table-hover > tbody > tr:hover > * {
+    background-color: rgba(255,255,255,.05);
+}
+.dark-mode .grade-A { color: #6ee7b7; }
+.dark-mode .grade-B { color: #67e8f9; }
+.dark-mode .grade-C { color: #fcd34d; }
+.dark-mode .grade-D { color: #fdba74; }
+.dark-mode .grade-F { color: #fca5a5; }
+.dark-mode .list-group-item,
+.dark-mode .border-bottom {
+    border-color: rgba(255,255,255,.07) !important;
+}

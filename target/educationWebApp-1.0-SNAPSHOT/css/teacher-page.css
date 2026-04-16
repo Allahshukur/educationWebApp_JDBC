@@ -1,118 +1,89 @@
 /* ============================================================
    TEACHER-PAGE.CSS  —  teacher-page.jsp üçün bütün stillər
-   v2.0 — 3D Tilt + Animated Gradient Borders + Shimmer
    ============================================================ */
 
-/* ══════════════════════════════════════════
-   HERO
-══════════════════════════════════════════ */
+/* ── Hero ── */
 .tp-hero {
     background: linear-gradient(135deg, #0f766e 0%, #0d9488 40%, #14b8a6 100%);
-    background-size: 300% 300%;
-    animation: tp-hero-shift 8s ease infinite;
     border-radius: 0 0 44px 44px;
     padding: 52px 0 90px;
     position: relative;
     overflow: hidden;
 }
-@keyframes tp-hero-shift {
-    0%   { background-position: 0% 50%; }
-    50%  { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* Hero dekorativ dairələr */
 .tp-hero::before {
     content: '';
-    position: absolute; top: -70px; right: -70px;
-    width: 320px; height: 320px; border-radius: 50%;
-    background: rgba(255,255,255,0.07);
-    animation: tp-float 6s ease-in-out infinite;
+    position: absolute;
+    top: -70px; right: -70px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
 }
 .tp-hero::after {
     content: '';
-    position: absolute; bottom: -90px; left: -90px;
-    width: 280px; height: 280px; border-radius: 50%;
-    background: rgba(255,255,255,0.05);
-    animation: tp-float 8s ease-in-out infinite reverse;
+    position: absolute;
+    bottom: -90px; left: -90px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
 }
-@keyframes tp-float {
-    0%,100% { transform: translateY(0) scale(1); }
-    50%      { transform: translateY(-20px) scale(1.05); }
-}
-
-/* Hero particles */
 .tp-hero-blob {
-    position: absolute; top: 20px; left: 50%;
-    width: 200px; height: 200px; border-radius: 50%;
+    position: absolute;
+    top: 20px; left: 50%;
+    width: 200px; height: 200px;
+    border-radius: 50%;
     background: rgba(255,255,255,0.04);
     transform: translateX(-50%);
-    animation: tp-float 7s ease-in-out infinite;
-}
-.tp-particle {
-    position: absolute; border-radius: 50%;
-    background: rgba(255,255,255,0.15);
-    animation: tp-particle-up linear infinite;
-}
-@keyframes tp-particle-up {
-    0%   { transform: translateY(0) scale(1); opacity: 0.7; }
-    100% { transform: translateY(-200px) scale(0); opacity: 0; }
 }
 
-/* ══════════════════════════════════════════
-   AVATAR
-══════════════════════════════════════════ */
+/* ── Avatar ── */
 .tp-avatar-wrap { position: relative; display: inline-block; }
 .tp-avatar {
-    width: 128px; height: 128px; border-radius: 50%;
-    border: 4px solid rgba(255,255,255,0.5);
+    width: 128px; height: 128px;
+    border-radius: 50%;
+    border: 5px solid rgba(255,255,255,0.45);
     background: linear-gradient(135deg, #5eead4, #0f766e);
     display: flex; align-items: center; justify-content: center;
     font-size: 2.8rem; font-weight: 800;
-    color: white; font-family: 'Outfit', sans-serif;
-    box-shadow: 0 0 0 0 rgba(20,184,166,0.5);
-    animation: tp-avatar-pulse 3s ease-in-out infinite;
-    margin: 0 auto; position: relative; z-index: 2;
+    color: white;
+    font-family: 'Outfit', sans-serif;
+    box-shadow: 0 10px 40px rgba(15,118,110,0.45);
+    margin: 0 auto;
 }
-@keyframes tp-avatar-pulse {
-    0%,100% { box-shadow: 0 0 0 0 rgba(20,184,166,0.45), 0 10px 40px rgba(15,118,110,0.4); }
-    50%      { box-shadow: 0 0 0 14px rgba(20,184,166,0), 0 10px 40px rgba(15,118,110,0.4); }
-}
-
-/* Çift ring — fərqli sürətdə fırlanır */
 .tp-avatar-ring {
-    position: absolute; inset: -8px; border-radius: 50%;
-    border: 2px dashed rgba(255,255,255,0.4);
-    animation: tp-spin 10s linear infinite;
+    position: absolute; inset: -7px;
+    border-radius: 50%;
+    border: 2px dashed rgba(255,255,255,0.35);
+    animation: tp-spin 12s linear infinite;
     pointer-events: none;
 }
-.tp-avatar-ring2 {
-    position: absolute; inset: -16px; border-radius: 50%;
-    border: 1.5px dashed rgba(255,255,255,0.18);
-    animation: tp-spin 18s linear infinite reverse;
-    pointer-events: none;
-}
-@keyframes tp-spin { to { transform: rotate(360deg); } }
+@keyframes tp-spin     { to { transform: rotate(360deg); } }
+@keyframes tp-spin-rev { to { transform: rotate(-360deg); } }
 
+
+/* Avatar pulse glow */
+@keyframes tp-avatar-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(94,234,212,0.55), 0 10px 40px rgba(15,118,110,0.45); }
+    70%  { box-shadow: 0 0 0 16px rgba(94,234,212,0),  0 10px 40px rgba(15,118,110,0.45); }
+    100% { box-shadow: 0 0 0 0 rgba(94,234,212,0),     0 10px 40px rgba(15,118,110,0.45); }
+}
+.tp-avatar { animation: tp-avatar-pulse 2.6s ease-out infinite; }
 .tp-avatar-edit {
     position: absolute; bottom: 4px; right: 4px;
     width: 34px; height: 34px; border-radius: 50%;
     background: white; color: #0f766e;
-    font-size: 0.85rem; z-index: 3;
+    font-size: 0.85rem;
     display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    cursor: pointer; border: 2px solid #ccfbf1;
-    transition: background 0.2s, color 0.2s, transform 0.2s;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+    cursor: pointer;
+    border: 2px solid #ccfbf1;
+    transition: background 0.2s, color 0.2s;
 }
-.tp-avatar-edit:hover { background: #0f766e; color: white; transform: scale(1.12); }
+.tp-avatar-edit:hover { background: #0f766e; color: white; }
 
-/* ══════════════════════════════════════════
-   HERO TEXT / BADGES
-══════════════════════════════════════════ */
+/* ── Hero badge/text ── */
 .tp-hero-name {
     font-size: 2rem; font-weight: 800;
     color: white; font-family: 'Outfit', sans-serif; line-height: 1.2;
-    text-shadow: 0 2px 12px rgba(0,0,0,0.15);
 }
 .tp-hero-sub { font-size: 0.92rem; color: rgba(255,255,255,0.78); font-weight: 500; }
 .tp-id-badge {
@@ -120,10 +91,8 @@
     background: rgba(255,255,255,0.18); color: white;
     border: 1px solid rgba(255,255,255,0.3); border-radius: 20px;
     padding: 4px 14px; font-size: 0.82rem; font-weight: 600;
-    backdrop-filter: blur(8px);
-    transition: background 0.2s, transform 0.2s;
+    backdrop-filter: blur(6px);
 }
-.tp-id-badge:hover { background: rgba(255,255,255,0.28); transform: translateY(-1px); }
 .tp-hero-status {
     display: inline-flex; align-items: center; gap: 6px;
     background: rgba(74,222,128,0.2); color: #bbf7d0;
@@ -141,72 +110,24 @@
     background: rgba(255,255,255,0.16); color: white;
     border: 1px solid rgba(255,255,255,0.3); border-radius: 12px;
     padding: 8px 20px; font-size: 0.88rem; font-weight: 600;
-    text-decoration: none; transition: background 0.2s, transform 0.2s;
-    backdrop-filter: blur(8px);
+    text-decoration: none; transition: background 0.2s;
+    backdrop-filter: blur(6px);
 }
-.tp-back-btn:hover { background: rgba(255,255,255,0.28); color: white; transform: translateX(-3px); }
+.tp-back-btn:hover { background: rgba(255,255,255,0.26); color: white; }
 
-/* ══════════════════════════════════════════
-   CONTENT LIFT
-══════════════════════════════════════════ */
-.tp-content { margin-top: -52px; position: relative; z-index: 10; }
+/* ── Content lift ── */
+.tp-content {
+    margin-top: -52px;
+    position: relative; z-index: 10;
+}
 
-/* ══════════════════════════════════════════
-   CARDS — gradient border on hover (3D tilt via JS)
-══════════════════════════════════════════ */
+/* ── Cards ── */
 .tp-card {
-    background: white;
-    border-radius: 22px;
-    box-shadow: 0 4px 28px rgba(15,118,110,0.08);
-    padding: 28px;
-    border: 1px solid #f0fdf4;
+    background: white; border-radius: 22px;
+    box-shadow: 0 4px 28px rgba(15,118,110,0.10);
+    padding: 28px; border: 1px solid #f0fdf4;
     height: 100%;
-    position: relative;
-    transform-style: preserve-3d;
-    will-change: transform;
-    transition: box-shadow 0.3s, border-color 0.3s;
-    overflow: hidden;
-    /* GPU katmanı */
-    backface-visibility: hidden;
 }
-
-/* Gradient border wrapper — ::before */
-.tp-card::before {
-    content: '';
-    position: absolute; inset: -2px;
-    border-radius: 24px;
-    background: linear-gradient(45deg, #0d9488, #5eead4, #4f46e5, #7c3aed, #0d9488);
-    background-size: 300% 300%;
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.35s;
-    animation: tp-grad-shift 4s ease infinite;
-}
-.tp-card:hover::before { opacity: 1; }
-@keyframes tp-grad-shift {
-    0%   { background-position: 0% 50%; }
-    50%  { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* Shimmer sweep üzərinə */
-.tp-card::after {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%;
-    width: 60%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
-    transform: skewX(-15deg);
-    transition: left 0.6s ease;
-    pointer-events: none;
-}
-.tp-card:hover::after { left: 140%; }
-
-.tp-card:hover {
-    box-shadow: 0 16px 48px rgba(15,118,110,0.18);
-    border-color: transparent;
-}
-
 .tp-card-title {
     font-size: 0.73rem; font-weight: 700;
     text-transform: uppercase; letter-spacing: 0.09em;
@@ -215,66 +136,17 @@
 }
 .tp-card-title i { font-size: 1rem; color: #0d9488; }
 
-/* ══════════════════════════════════════════
-   STAT CARDS — gradient glow + tilt
-══════════════════════════════════════════ */
-.tp-stat {
-    background: white; border-radius: 18px; padding: 22px;
-    text-align: center;
-    box-shadow: 0 4px 20px rgba(15,118,110,0.09);
-    border: 1px solid #f0fdf4;
-    position: relative; overflow: hidden;
-    transition: transform 0.22s, box-shadow 0.22s, border-color 0.3s;
-    will-change: transform;
-    cursor: default;
-}
-.tp-stat::before {
-    content: '';
-    position: absolute; inset: -2px; border-radius: 20px;
-    background: linear-gradient(135deg, #0d9488, #14b8a6, #4f46e5, #7c3aed);
-    background-size: 300% 300%;
-    z-index: -1; opacity: 0;
-    transition: opacity 0.3s;
-    animation: tp-grad-shift 3s ease infinite;
-}
-.tp-stat:hover::before { opacity: 1; }
-.tp-stat:hover {
-    transform: translateY(-6px) scale(1.02);
-    box-shadow: 0 16px 40px rgba(15,118,110,0.22);
-    border-color: transparent;
-}
-.tp-stat-icon {
-    width: 52px; height: 52px; border-radius: 16px;
-    margin: 0 auto 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.4rem;
-    transition: transform 0.3s;
-}
-.tp-stat:hover .tp-stat-icon { transform: scale(1.15) rotate(-5deg); }
-.tp-stat-value {
-    font-size: 1.55rem; font-weight: 800; color: #1e293b;
-    font-family: 'Outfit', sans-serif; line-height: 1;
-}
-.tp-stat-label { font-size: 0.74rem; color: #94a3b8; font-weight: 600; margin-top: 5px; }
-
-/* ══════════════════════════════════════════
-   INFO ROWS
-══════════════════════════════════════════ */
+/* ── Info rows ── */
 .tp-info-row {
     display: flex; align-items: center; gap: 14px;
     padding: 13px 0; border-bottom: 1px solid #f0fdf4;
-    transition: background 0.15s, padding-left 0.2s;
-    border-radius: 8px; margin: 0 -8px; padding-left: 8px;
 }
-.tp-info-row:hover { background: #f0fdf4; padding-left: 14px; }
 .tp-info-row:last-child { border-bottom: none; }
 .tp-info-icon {
     width: 42px; height: 42px; border-radius: 13px;
     display: flex; align-items: center; justify-content: center;
     font-size: 1.1rem; flex-shrink: 0;
-    transition: transform 0.2s;
 }
-.tp-info-row:hover .tp-info-icon { transform: scale(1.1) rotate(-4deg); }
 .tp-info-label {
     font-size: 0.72rem; color: #94a3b8; font-weight: 600;
     text-transform: uppercase; letter-spacing: 0.05em;
@@ -284,155 +156,96 @@
     font-size: 0.95rem; font-weight: 600; color: #1e293b; line-height: 1.3;
 }
 
-/* ══════════════════════════════════════════
-   STUDENT CHIPS
-══════════════════════════════════════════ */
+/* ── Stat cards ── */
+.tp-stat {
+    background: white; border-radius: 18px; padding: 22px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(15,118,110,0.09);
+    border: 1px solid #f0fdf4;
+    transition: transform 0.22s, box-shadow 0.22s;
+}
+.tp-stat:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(15,118,110,0.18); }
+.tp-stat-icon {
+    width: 52px; height: 52px; border-radius: 16px;
+    margin: 0 auto 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+}
+.tp-stat-value {
+    font-size: 1.5rem; font-weight: 800; color: #1e293b;
+    font-family: 'Outfit', sans-serif; line-height: 1;
+}
+.tp-stat-label { font-size: 0.74rem; color: #94a3b8; font-weight: 600; margin-top: 5px; }
+
+/* ── Student chips ── */
 .tp-student-chip {
     display: inline-flex; align-items: center; gap: 8px;
     background: #f0fdf4; border-radius: 12px;
     padding: 8px 14px; font-size: 0.85rem; font-weight: 600;
     color: #134e4a; border: 1px solid #ccfbf1; margin: 4px;
-    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-    cursor: default;
+    transition: background 0.15s;
 }
-.tp-student-chip:hover {
-    background: linear-gradient(135deg, #ccfbf1, #99f6e4);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 14px rgba(13,148,136,0.2);
-}
-.tp-student-chip i { color: #0d9488; transition: transform 0.2s; }
-.tp-student-chip:hover i { transform: scale(1.2); }
+.tp-student-chip:hover { background: #ccfbf1; }
+.tp-student-chip i { color: #0d9488; }
 
-/* ══════════════════════════════════════════
-   SKILL BADGES — shimmer + hover glow
-══════════════════════════════════════════ */
+/* ── Skill badge ── */
 .tp-skill-badge {
     display: inline-flex; align-items: center; gap: 6px;
     background: linear-gradient(135deg, #f0fdf4, #ccfbf1);
     color: #0f766e; border: 1px solid #99f6e4;
     border-radius: 10px; padding: 6px 14px;
     font-size: 0.82rem; font-weight: 700; margin: 4px;
-    position: relative; overflow: hidden;
-    transition: transform 0.2s, box-shadow 0.2s, color 0.2s;
-    cursor: default;
-}
-.tp-skill-badge::before {
-    content: '';
-    position: absolute; top: 0; left: -100%;
-    width: 50%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
-    transition: left 0.4s ease;
-}
-.tp-skill-badge:hover::before { left: 150%; }
-.tp-skill-badge:hover {
-    transform: translateY(-2px) scale(1.04);
-    box-shadow: 0 4px 16px rgba(13,148,136,0.25);
-    color: #0f766e;
-    background: linear-gradient(135deg, #ccfbf1, #5eead4);
 }
 
-/* ══════════════════════════════════════════
-   RATING
-══════════════════════════════════════════ */
-.tp-stars { color: #f59e0b; font-size: 1.15rem; letter-spacing: 2px; }
-.tp-rating-value {
-    font-size: 2.2rem; font-weight: 800; color: #1e293b;
-    font-family: 'Outfit', sans-serif;
-    background: linear-gradient(135deg, #0d9488, #0f766e);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
+/* ── Rating stars ── */
+.tp-stars { color: #f59e0b; font-size: 1.1rem; letter-spacing: 2px; }
+.tp-rating-value { font-size: 2rem; font-weight: 800; color: #1e293b; font-family: 'Outfit', sans-serif; }
 .tp-rating-count { font-size: 0.8rem; color: #94a3b8; }
 
-/* ══════════════════════════════════════════
-   PROGRESS BARS — shimmer sweep
-══════════════════════════════════════════ */
+/* ── Progress bar ── */
 .tp-progress-label { font-size: 0.78rem; font-weight: 600; color: #64748b; margin-bottom: 4px; }
-.tp-progress-bar {
-    height: 9px; border-radius: 99px;
-    background: #f0fdf4; overflow: hidden;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.06);
-}
+.tp-progress-bar { height: 8px; border-radius: 99px; background: #f0fdf4; overflow: hidden; }
 .tp-progress-fill {
     height: 100%; border-radius: 99px;
-    background: linear-gradient(90deg, #0f766e, #14b8a6, #5eead4);
-    background-size: 200% 100%;
-    animation: tp-shimmer-bar 2.5s ease infinite;
-    transition: width 1.2s cubic-bezier(.4,0,.2,1);
-    position: relative;
-}
-@keyframes tp-shimmer-bar {
-    0%   { background-position: 200% center; }
-    100% { background-position: -200% center; }
+    background: linear-gradient(90deg, #0f766e, #14b8a6);
+    transition: width 1.1s ease;
 }
 
-/* ══════════════════════════════════════════
-   TIMELINE — vertical connector line
-══════════════════════════════════════════ */
-.tp-timeline-wrap { position: relative; }
-.tp-timeline-wrap::before {
-    content: '';
-    position: absolute;
-    left: 18px; top: 0; bottom: 0;
-    width: 2px;
-    background: linear-gradient(to bottom, #ccfbf1, #5eead4, #ccfbf1);
-    border-radius: 99px;
-}
+/* ── Timeline ── */
 .tp-timeline-item {
     display: flex; gap: 14px;
-    padding: 14px 0; border-bottom: none;
-    position: relative;
+    padding: 14px 0; border-bottom: 1px solid #f0fdf4;
 }
+.tp-timeline-item:last-child { border-bottom: none; }
 .tp-timeline-dot {
     width: 38px; height: 38px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     font-size: 0.95rem; flex-shrink: 0; margin-top: 2px;
-    position: relative; z-index: 2;
-    transition: transform 0.2s, box-shadow 0.2s;
 }
-.tp-timeline-item:hover .tp-timeline-dot {
-    transform: scale(1.15);
-    box-shadow: 0 0 0 4px rgba(13,148,136,0.2);
-}
-.tp-timeline-title {
-    font-size: 0.88rem; font-weight: 600; color: #334155;
-    transition: color 0.2s;
-}
-.tp-timeline-item:hover .tp-timeline-title { color: #0d9488; }
-.tp-timeline-time { font-size: 0.75rem; color: #94a3b8; margin-top: 2px; }
+.tp-timeline-title { font-size: 0.88rem; font-weight: 600; color: #334155; }
+.tp-timeline-time  { font-size: 0.75rem; color: #94a3b8; margin-top: 2px; }
 
-/* ══════════════════════════════════════════
-   EXPERIENCE
-══════════════════════════════════════════ */
+/* ── Experience card ── */
 .tp-exp-item {
     display: flex; gap: 16px;
     padding: 16px 0; border-bottom: 1px solid #f0fdf4;
     align-items: flex-start;
-    transition: background 0.15s, padding-left 0.2s;
-    border-radius: 8px; margin: 0 -8px; padding-left: 8px;
 }
-.tp-exp-item:hover { background: #f0fdf4; padding-left: 14px; }
 .tp-exp-item:last-child { border-bottom: none; }
 .tp-exp-icon {
     width: 46px; height: 46px; border-radius: 14px;
     display: flex; align-items: center; justify-content: center;
     font-size: 1.2rem; flex-shrink: 0;
-    transition: transform 0.25s;
 }
-.tp-exp-item:hover .tp-exp-icon { transform: scale(1.1) rotate(-5deg); }
 .tp-exp-role { font-size: 0.92rem; font-weight: 700; color: #1e293b; }
 .tp-exp-company { font-size: 0.82rem; color: #0d9488; font-weight: 600; }
 .tp-exp-period { font-size: 0.76rem; color: #94a3b8; margin-top: 3px; }
 
-/* ══════════════════════════════════════════
-   NOT FOUND
-══════════════════════════════════════════ */
+/* ── Not found ── */
 .tp-not-found { text-align: center; padding: 80px 20px; }
 .tp-not-found-icon { font-size: 4rem; color: #cbd5e1; margin-bottom: 16px; }
 
-/* ══════════════════════════════════════════
-   RESPONSIVE
-══════════════════════════════════════════ */
+/* ── Responsive ── */
 @media (max-width: 767px) {
     .tp-hero { padding: 36px 0 76px; border-radius: 0 0 30px 30px; }
     .tp-avatar { width: 96px; height: 96px; font-size: 2.1rem; }
@@ -440,11 +253,9 @@
     .tp-card { padding: 20px; }
     .tp-stat { padding: 16px 12px; }
     .tp-stat-value { font-size: 1.25rem; }
-    .tp-timeline-wrap::before { display: none; }
-    .tp-info-row:hover { padding-left: 8px; }
-    .tp-exp-item:hover { padding-left: 8px; }
 }
 @media (max-width: 575px) {
     .tp-hero-name { font-size: 1.3rem; }
     .tp-stat-icon { width: 42px; height: 42px; }
 }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          

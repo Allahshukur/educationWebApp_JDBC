@@ -8,6 +8,116 @@
     boolean isCourse  = uri.endsWith("courses.jsp");
     String pageLabel  = isHome ? "Ana Səhifə" : isStudent ? "Tələbələr" : isTeacher ? "Müəllimlər" : isCourse ? "Kurslar" : "";
 %>
+<!-- Dropdown fix -->
+<style>
+#navbarNav { overflow: visible !important; }
+.navbar { overflow: visible !important; }
+.navbar .dropdown-menu {
+    z-index: 9999 !important;
+    display: none;
+    animation: ddFadeIn .18s ease;
+}
+.navbar .dropdown-menu.show { display: block; }
+@keyframes ddFadeIn {
+    from { opacity:0; transform:translateY(-6px); }
+    to   { opacity:1; transform:translateY(0); }
+}
+
+/* ── Desktop dropdown hover ── */
+.navbar .dropdown-item:hover {
+    background: rgba(79,70,229,.08) !important;
+    color: #4f46e5 !important;
+}
+
+/* ── Mobile/Tablet dropdown (collapsed navbar) ── */
+@media (max-width: 991.98px) {
+    .navbar .dropdown-menu {
+        position: static !important;
+        float: none !important;
+        transform: none !important;
+        inset: auto !important;
+        background: rgba(255,255,255,0.10) !important;
+        border: 1px solid rgba(255,255,255,0.18) !important;
+        border-radius: 14px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 6px 0 4px 0 !important;
+        padding: 6px !important;
+        box-shadow: none !important;
+        backdrop-filter: blur(10px) !important;
+    }
+    .navbar .dropdown-menu .dropdown-divider {
+        border-color: rgba(255,255,255,0.15) !important;
+        margin: 3px 6px !important;
+    }
+    .navbar .dropdown-item {
+        color: #fff !important;
+        border-radius: 10px !important;
+        padding: 7px 10px !important;
+        margin: 1px 0 !important;
+        font-size: 0.85rem !important;
+        font-weight: 600 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+    .navbar .dropdown-item:hover,
+    .navbar .dropdown-item:focus {
+        background: rgba(255,255,255,0.15) !important;
+        color: #fff !important;
+    }
+    /* Kiçik ikon qutusu */
+    .navbar .dropdown-item > span[style*="border-radius:8px"] {
+        width: 20px !important;
+        height: 20px !important;
+        min-width: 20px !important;
+        border-radius: 6px !important;
+        background: rgba(255,255,255,0.15) !important;
+        flex-shrink: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    .navbar .dropdown-item > span[style*="border-radius:8px"] i {
+        color: #fff !important;
+        font-size: 0.72rem !important;
+    }
+}
+
+/* ── Dark mode — Desktop dropdown ── */
+.dark-mode .navbar .dropdown-menu {
+    background: #1e293b !important;
+    border-color: rgba(255,255,255,0.08) !important;
+}
+.dark-mode .navbar .dropdown-item {
+    color: #cbd5e1 !important;
+}
+.dark-mode .navbar .dropdown-item:hover {
+    background: rgba(79,70,229,0.14) !important;
+    color: #a5b4fc !important;
+}
+.dark-mode .navbar .dropdown-menu .dropdown-divider {
+    border-color: rgba(255,255,255,0.07) !important;
+}
+
+/* ── Dark mode — Mobile dropdown ── */
+@media (max-width: 991.98px) {
+    .dark-mode .navbar .dropdown-menu {
+        background: rgba(15,23,42,0.75) !important;
+        border-color: rgba(255,255,255,0.10) !important;
+    }
+    .dark-mode .navbar .dropdown-item {
+        color: #e2e8f0 !important;
+    }
+    .dark-mode .navbar .dropdown-item:hover {
+        background: rgba(79,70,229,0.20) !important;
+        color: #a5b4fc !important;
+    }
+}
+</style>
 <!-- RESPONSIVE NAVBAR -->
 <nav id="mainNavbar" class="navbar navbar-expand-lg fixed-top navbar-responsive py-0"
      style="background:linear-gradient(135deg,#4f46e5 0%,#7c3aed 100%);
@@ -16,7 +126,8 @@
 
         <!-- LOGO -->
         <a class="navbar-brand navbar-logo flex-shrink-0 p-0" href="index.jsp">
-            <img src="foto/logo.png" alt="Education App" class="header-logo-img">
+            <img src="foto/logo.svg" alt="Education App" class="header-logo-img" id="navLogo"
+                 style="height:48px;width:auto;transition:filter .3s;">
         </a>
 
         <!-- MOBILE: Language + Dark + Hamburger -->
@@ -80,6 +191,120 @@
                         <i class="bi bi-stars me-1"></i>Üstünlüklər
                     </a>
                 </li>
+
+                <!-- Daha çox dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link nav-btn fw-semibold dropdown-toggle" href="#"
+                       id="moreDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-grid-3x3-gap-fill me-1"></i>Daha çox
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-4 py-2 mt-2"
+                        aria-labelledby="moreDropdown"
+                        style="min-width:220px;backdrop-filter:blur(12px);">
+                        <li>
+                            <a class="dropdown-item rounded-3 mx-1 fw-600 d-flex align-items-center gap-2 py-2"
+                               href="dashboard.jsp">
+                                <span style="width:28px;height:28px;border-radius:8px;background:rgba(79,70,229,.12);display:flex;align-items:center;justify-content:center;">
+                                    <i class="bi bi-speedometer2" style="color:#4f46e5;font-size:.85rem;"></i>
+                                </span>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item rounded-3 mx-1 fw-600 d-flex align-items-center gap-2 py-2"
+                               href="schedule.jsp">
+                                <span style="width:28px;height:28px;border-radius:8px;background:rgba(8,145,178,.12);display:flex;align-items:center;justify-content:center;">
+                                    <i class="bi bi-calendar3-week-fill" style="color:#0891b2;font-size:.85rem;"></i>
+                                </span>
+                                Dərs Cədvəli
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item rounded-3 mx-1 fw-600 d-flex align-items-center gap-2 py-2"
+                               href="certificate.jsp">
+                                <span style="width:28px;height:28px;border-radius:8px;background:rgba(16,185,129,.12);display:flex;align-items:center;justify-content:center;">
+                                    <i class="bi bi-patch-check-fill" style="color:#10b981;font-size:.85rem;"></i>
+                                </span>
+                                Sertifikat
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item rounded-3 mx-1 fw-600 d-flex align-items-center gap-2 py-2"
+                               href="about.jsp">
+                                <span style="width:28px;height:28px;border-radius:8px;background:rgba(124,58,237,.12);display:flex;align-items:center;justify-content:center;">
+                                    <i class="bi bi-info-circle-fill" style="color:#7c3aed;font-size:.85rem;"></i>
+                                </span>
+                                Haqqımızda
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider mx-3 my-1"></li>
+                        <li>
+                            <a class="dropdown-item rounded-3 mx-1 fw-600 d-flex align-items-center gap-2 py-2"
+                               href="quiz.jsp">
+                                <span style="width:28px;height:28px;border-radius:8px;background:rgba(124,58,237,.12);display:flex;align-items:center;justify-content:center;">
+                                    <i class="bi bi-patch-question-fill" style="color:#7c3aed;font-size:.85rem;"></i>
+                                </span>
+                                Quiz
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item rounded-3 mx-1 fw-600 d-flex align-items-center gap-2 py-2"
+                               href="assignments.jsp">
+                                <span style="width:28px;height:28px;border-radius:8px;background:rgba(217,119,6,.12);display:flex;align-items:center;justify-content:center;">
+                                    <i class="bi bi-journal-check" style="color:#d97706;font-size:.85rem;"></i>
+                                </span>
+                                Tapşırıqlar
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item rounded-3 mx-1 fw-600 d-flex align-items-center gap-2 py-2"
+                               href="grades.jsp">
+                                <span style="width:28px;height:28px;border-radius:8px;background:rgba(5,150,105,.12);display:flex;align-items:center;justify-content:center;">
+                                    <i class="bi bi-trophy-fill" style="color:#059669;font-size:.85rem;"></i>
+                                </span>
+                                Qiymətlər
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item rounded-3 mx-1 fw-600 d-flex align-items-center gap-2 py-2"
+                               href="attendance.jsp">
+                                <span style="width:28px;height:28px;border-radius:8px;background:rgba(2,132,199,.12);display:flex;align-items:center;justify-content:center;">
+                                    <i class="bi bi-calendar2-check-fill" style="color:#0284c7;font-size:.85rem;"></i>
+                                </span>
+                                Davamiyyət
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item rounded-3 mx-1 fw-600 d-flex align-items-center gap-2 py-2"
+                               href="announcements.jsp">
+                                <span style="width:28px;height:28px;border-radius:8px;background:rgba(219,39,119,.12);display:flex;align-items:center;justify-content:center;">
+                                    <i class="bi bi-megaphone-fill" style="color:#db2777;font-size:.85rem;"></i>
+                                </span>
+                                Elanlar
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item rounded-3 mx-1 fw-600 d-flex align-items-center gap-2 py-2"
+                               href="payment.jsp">
+                                <span style="width:28px;height:28px;border-radius:8px;background:rgba(16,185,129,.12);display:flex;align-items:center;justify-content:center;">
+                                    <i class="bi bi-credit-card-fill" style="color:#10b981;font-size:.85rem;"></i>
+                                </span>
+                                Ödəniş
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider mx-3 my-1"></li>
+                        <li>
+                            <a class="dropdown-item rounded-3 mx-1 fw-600 d-flex align-items-center gap-2 py-2"
+                               href="404.jsp">
+                                <span style="width:28px;height:28px;border-radius:8px;background:rgba(239,68,68,.10);display:flex;align-items:center;justify-content:center;">
+                                    <i class="bi bi-exclamation-triangle-fill" style="color:#ef4444;font-size:.85rem;"></i>
+                                </span>
+                                404 Səhifəsi
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
 
             <!-- Sağ hissə: axtarış, dil, dark, notif, giriş -->
@@ -130,46 +355,106 @@
                     </button>
                     <div id="notifPanel"
                          style="display:none;position:absolute;right:0;top:calc(100% + 10px);
-                                width:300px;background:white;border-radius:16px;
+                                width:320px;background:white;border-radius:18px;
                                 box-shadow:0 20px 60px rgba(0,0,0,0.18);z-index:9999;overflow:hidden;">
                         <div style="background:linear-gradient(135deg,#4f46e5,#7c3aed);padding:14px 18px;color:white;">
                             <div class="d-flex align-items-center justify-content-between">
-                                <span class="fw-bold">Bildirişlər</span>
-                                <span class="badge bg-white text-primary rounded-pill"
-                                      style="font-size:0.75rem;">3 yeni</span>
+                                <span class="fw-800">Bildirişlər</span>
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="badge bg-white text-primary rounded-pill"
+                                          id="notifCountBadge" style="font-size:.72rem;">3 yeni</span>
+                                    <button onclick="markAllNotifsRead()"
+                                            style="background:rgba(255,255,255,.18);border:none;color:#fff;
+                                                   font-size:.70rem;font-weight:700;border-radius:8px;padding:3px 8px;cursor:pointer;">
+                                        Hamısını oxu
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                        <div style="max-height:240px;overflow-y:auto;">
-                            <div class="notif-item unread">
-                                <div class="notif-icon" style="background:#dbeafe;color:#2563eb;">
-                                    <i class="bi bi-person-plus-fill"></i></div>
-                                <div>
-                                    <div class="notif-title">Yeni tələbə qeydiyyatı</div>
-                                    <div class="notif-time">2 dəq əvvəl</div>
+                        <div style="max-height:280px;overflow-y:auto;" id="notifList">
+                            <div class="notif-item unread" onclick="markNotifRead(this)">
+                                <div class="notif-icon" style="background:#ede9fe;color:#7c3aed;">
+                                    <i class="bi bi-patch-question-fill"></i></div>
+                                <div class="flex-grow-1">
+                                    <div class="notif-title">Java Əsasları — Quiz vaxtı</div>
+                                    <div class="notif-desc" style="font-size:.72rem;color:#64748b;">Bu gün saat 10:45-də başlayır</div>
+                                    <div class="notif-time">5 dəq əvvəl</div>
                                 </div>
                             </div>
-                            <div class="notif-item unread">
-                                <div class="notif-icon" style="background:#d1fae5;color:#059669;">
-                                    <i class="bi bi-journal-plus"></i></div>
-                                <div>
-                                    <div class="notif-title">Yeni kurs əlavə edildi</div>
-                                    <div class="notif-time">15 dəq əvvəl</div>
-                                </div>
-                            </div>
-                            <div class="notif-item unread">
+                            <div class="notif-item unread" onclick="markNotifRead(this)">
                                 <div class="notif-icon" style="background:#fef3c7;color:#d97706;">
-                                    <i class="bi bi-star-fill"></i></div>
-                                <div>
-                                    <div class="notif-title">Yeni rəy: 5 ⭐</div>
+                                    <i class="bi bi-journal-check"></i></div>
+                                <div class="flex-grow-1">
+                                    <div class="notif-title">HTML Portfolio — son tarix yaxınlaşır</div>
+                                    <div class="notif-desc" style="font-size:.72rem;color:#64748b;">18 Aprel 2026 — 7 gün qalıb</div>
                                     <div class="notif-time">1 saat əvvəl</div>
                                 </div>
                             </div>
+                            <div class="notif-item unread" onclick="markNotifRead(this)">
+                                <div class="notif-icon" style="background:#fce7f3;color:#db2777;">
+                                    <i class="bi bi-megaphone-fill"></i></div>
+                                <div class="flex-grow-1">
+                                    <div class="notif-title">Yeni elan: İmtahan tarixi dəyişdi</div>
+                                    <div class="notif-desc" style="font-size:.72rem;color:#64748b;">Əli Əliyev — Java Əsasları</div>
+                                    <div class="notif-time">2 saat əvvəl</div>
+                                </div>
+                            </div>
+                            <div class="notif-item" onclick="markNotifRead(this)">
+                                <div class="notif-icon" style="background:#d1fae5;color:#059669;">
+                                    <i class="bi bi-trophy-fill"></i></div>
+                                <div class="flex-grow-1">
+                                    <div class="notif-title">OOP imtahan nəticəsi: 82/100</div>
+                                    <div class="notif-desc" style="font-size:.72rem;color:#64748b;">Hərf qiymət: B</div>
+                                    <div class="notif-time">Dünən</div>
+                                </div>
+                            </div>
+                            <div class="notif-item" onclick="markNotifRead(this)">
+                                <div class="notif-icon" style="background:#dbeafe;color:#2563eb;">
+                                    <i class="bi bi-calendar2-check-fill"></i></div>
+                                <div class="flex-grow-1">
+                                    <div class="notif-title">Davamiyyət: 90% — əla nəticə!</div>
+                                    <div class="notif-desc" style="font-size:.72rem;color:#64748b;">Spring Framework kursu</div>
+                                    <div class="notif-time">2 gün əvvəl</div>
+                                </div>
+                            </div>
                         </div>
-                        <div style="padding:10px 18px;border-top:1px solid #f1f5f9;text-align:center;">
-                            <a href="#" style="font-size:0.83rem;color:#4f46e5;text-decoration:none;font-weight:600;">
-                                Hamısını gör →</a>
+                        <div style="padding:12px 18px;border-top:1px solid #f1f5f9;text-align:center;">
+                            <a href="announcements.jsp"
+                               style="font-size:.83rem;color:#4f46e5;text-decoration:none;font-weight:700;">
+                                Bütün elanları gör →
+                            </a>
                         </div>
                     </div>
+                    <style>
+                    .notif-item { display:flex;align-items:flex-start;gap:12px;padding:12px 18px;
+                                  border-bottom:1px solid #f8fafc;cursor:pointer;transition:background .15s; }
+                    .notif-item:hover { background:#f8fafc; }
+                    .notif-item.unread { background:#fafbff; }
+                    .notif-item.unread .notif-title { font-weight:700; }
+                    .notif-icon { width:36px;height:36px;border-radius:10px;display:flex;
+                                  align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0; }
+                    .notif-title { font-size:.82rem;color:#1e293b;font-weight:600; }
+                    .notif-time  { font-size:.70rem;color:#94a3b8;margin-top:2px; }
+                    </style>
+                    <script>
+                    function markNotifRead(el) {
+                        el.classList.remove('unread');
+                        updateNotifCount();
+                    }
+                    function markAllNotifsRead() {
+                        document.querySelectorAll('#notifList .notif-item.unread').forEach(function(el){
+                            el.classList.remove('unread');
+                        });
+                        updateNotifCount();
+                    }
+                    function updateNotifCount() {
+                        var cnt = document.querySelectorAll('#notifList .notif-item.unread').length;
+                        var dot = document.querySelector('.notif-dot');
+                        var badge = document.getElementById('notifCountBadge');
+                        if (dot) { dot.textContent = cnt; dot.style.display = cnt > 0 ? '' : 'none'; }
+                        if (badge) badge.textContent = cnt + ' yeni';
+                    }
+                    </script>
                 </div>
 
                 <!-- Giriş düyməsi -->
@@ -231,12 +516,27 @@
         }
 
         // Nav link klikləndikdə mobile-da menünü bağla
+        // Dropdown-toggle klikləndikdə BAĞLAMA — dropdown açılsın
         nav.querySelectorAll('a.nav-link').forEach(function(link) {
-            link.addEventListener('click', function() {
+            link.addEventListener('click', function(e) {
                 if (window.innerWidth >= 992) return;
+                // Dropdown toggle-sa menünü bağlama, dropdownu aç
+                if (this.classList.contains('dropdown-toggle')) return;
                 nav.classList.remove('show');
                 var toggler = document.querySelector('.btn-hamburger');
                 if (toggler) toggler.classList.add('collapsed');
+            });
+        });
+
+        // Dropdown içindəki item klikləndikdə menünü bağla
+        nav.querySelectorAll('.dropdown-item').forEach(function(item) {
+            item.addEventListener('click', function() {
+                if (window.innerWidth >= 992) return;
+                setTimeout(function() {
+                    nav.classList.remove('show');
+                    var toggler = document.querySelector('.btn-hamburger');
+                    if (toggler) toggler.classList.add('collapsed');
+                }, 150);
             });
         });
 
@@ -255,4 +555,4 @@
     });
 })();
 </script>
-<script src="js/confetti.js?v=1.0"></script>
+<script src="js/confetti.js?v=2.0"></script>
